@@ -1,2 +1,0 @@
-turtle5k
--DCATKIN_DEVEL_PREFIX=/home/student/turtle5k/devel -DCMAKE_INSTALL_PREFIX=/home/student/turtle5k/install -G Unix Makefiles
