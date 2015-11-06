@@ -1,5 +1,5 @@
 FILE(REMOVE_RECURSE
-  "CMakeFiles/shooting.dir/src/Shooting.cpp.o"
+  "CMakeFiles/shooting.dir/src/shooting.cpp.o"
   "/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/shooting.pdb"
   "/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/shooting"
 )

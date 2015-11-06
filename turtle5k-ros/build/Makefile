@@ -215,17 +215,30 @@ tests/fast:
 .PHONY : tests/fast
 
 #=============================================================================
-# Target rules for targets named ball_detection
+# Target rules for targets named ballcontrol
 
 # Build rule for target.
-ball_detection: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ball_detection
-.PHONY : ball_detection
+ballcontrol: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ballcontrol
+.PHONY : ballcontrol
 
 # fast build rule for target.
-ball_detection/fast:
-	$(MAKE) -f turtle5k/CMakeFiles/ball_detection.dir/build.make turtle5k/CMakeFiles/ball_detection.dir/build
-.PHONY : ball_detection/fast
+ballcontrol/fast:
+	$(MAKE) -f turtle5k/CMakeFiles/ballcontrol.dir/build.make turtle5k/CMakeFiles/ballcontrol.dir/build
+.PHONY : ballcontrol/fast
+
+#=============================================================================
+# Target rules for targets named balldetector
+
+# Build rule for target.
+balldetector: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 balldetector
+.PHONY : balldetector
+
+# fast build rule for target.
+balldetector/fast:
+	$(MAKE) -f turtle5k/CMakeFiles/balldetector.dir/build.make turtle5k/CMakeFiles/balldetector.dir/build
+.PHONY : balldetector/fast
 
 #=============================================================================
 # Target rules for targets named ballhandling
@@ -241,17 +254,56 @@ ballhandling/fast:
 .PHONY : ballhandling/fast
 
 #=============================================================================
-# Target rules for targets named localisation
+# Target rules for targets named camera
 
 # Build rule for target.
-localisation: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 localisation
-.PHONY : localisation
+camera: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 camera
+.PHONY : camera
 
 # fast build rule for target.
-localisation/fast:
-	$(MAKE) -f turtle5k/CMakeFiles/localisation.dir/build.make turtle5k/CMakeFiles/localisation.dir/build
-.PHONY : localisation/fast
+camera/fast:
+	$(MAKE) -f turtle5k/CMakeFiles/camera.dir/build.make turtle5k/CMakeFiles/camera.dir/build
+.PHONY : camera/fast
+
+#=============================================================================
+# Target rules for targets named commands
+
+# Build rule for target.
+commands: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 commands
+.PHONY : commands
+
+# fast build rule for target.
+commands/fast:
+	$(MAKE) -f turtle5k/CMakeFiles/commands.dir/build.make turtle5k/CMakeFiles/commands.dir/build
+.PHONY : commands/fast
+
+#=============================================================================
+# Target rules for targets named compass
+
+# Build rule for target.
+compass: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 compass
+.PHONY : compass
+
+# fast build rule for target.
+compass/fast:
+	$(MAKE) -f turtle5k/CMakeFiles/compass.dir/build.make turtle5k/CMakeFiles/compass.dir/build
+.PHONY : compass/fast
+
+#=============================================================================
+# Target rules for targets named goaldetector
+
+# Build rule for target.
+goaldetector: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 goaldetector
+.PHONY : goaldetector
+
+# fast build rule for target.
+goaldetector/fast:
+	$(MAKE) -f turtle5k/CMakeFiles/goaldetector.dir/build.make turtle5k/CMakeFiles/goaldetector.dir/build
+.PHONY : goaldetector/fast
 
 #=============================================================================
 # Target rules for targets named pathfinding
@@ -265,6 +317,19 @@ pathfinding: cmake_check_build_system
 pathfinding/fast:
 	$(MAKE) -f turtle5k/CMakeFiles/pathfinding.dir/build.make turtle5k/CMakeFiles/pathfinding.dir/build
 .PHONY : pathfinding/fast
+
+#=============================================================================
+# Target rules for targets named positioning
+
+# Build rule for target.
+positioning: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 positioning
+.PHONY : positioning
+
+# fast build rule for target.
+positioning/fast:
+	$(MAKE) -f turtle5k/CMakeFiles/positioning.dir/build.make turtle5k/CMakeFiles/positioning.dir/build
+.PHONY : positioning/fast
 
 #=============================================================================
 # Target rules for targets named roscpp_generate_messages_cpp
@@ -410,6 +475,19 @@ strategy/fast:
 .PHONY : strategy/fast
 
 #=============================================================================
+# Target rules for targets named tactics
+
+# Build rule for target.
+tactics: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tactics
+.PHONY : tactics
+
+# fast build rule for target.
+tactics/fast:
+	$(MAKE) -f turtle5k/CMakeFiles/tactics.dir/build.make turtle5k/CMakeFiles/tactics.dir/build
+.PHONY : tactics/fast
+
+#=============================================================================
 # Target rules for targets named wheelcontrol
 
 # Build rule for target.
@@ -453,10 +531,15 @@ help:
 	@echo "... run_tests"
 	@echo "... test"
 	@echo "... tests"
-	@echo "... ball_detection"
+	@echo "... ballcontrol"
+	@echo "... balldetector"
 	@echo "... ballhandling"
-	@echo "... localisation"
+	@echo "... camera"
+	@echo "... commands"
+	@echo "... compass"
+	@echo "... goaldetector"
 	@echo "... pathfinding"
+	@echo "... positioning"
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_py"
@@ -468,6 +551,7 @@ help:
 	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... strategy"
+	@echo "... tactics"
 	@echo "... wheelcontrol"
 	@echo "... world"
 .PHONY : help

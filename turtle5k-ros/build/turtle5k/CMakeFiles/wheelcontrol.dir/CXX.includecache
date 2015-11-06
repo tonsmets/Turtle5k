@@ -6,9 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/WheelControl.cpp
-sstream
--
+/home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/wheelcontrol.cpp
 ros/ros.h
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/ros/ros.h
 std_msgs/String.h

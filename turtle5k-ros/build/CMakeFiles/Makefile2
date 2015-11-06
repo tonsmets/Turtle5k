@@ -211,21 +211,32 @@ clean: CMakeFiles/tests.dir/clean
 # Directory level rules for directory turtle5k
 
 # Convenience name for "all" pass in the directory.
-turtle5k/all: turtle5k/CMakeFiles/ball_detection.dir/all
+turtle5k/all: turtle5k/CMakeFiles/ballcontrol.dir/all
+turtle5k/all: turtle5k/CMakeFiles/balldetector.dir/all
 turtle5k/all: turtle5k/CMakeFiles/ballhandling.dir/all
-turtle5k/all: turtle5k/CMakeFiles/localisation.dir/all
+turtle5k/all: turtle5k/CMakeFiles/camera.dir/all
+turtle5k/all: turtle5k/CMakeFiles/commands.dir/all
+turtle5k/all: turtle5k/CMakeFiles/compass.dir/all
+turtle5k/all: turtle5k/CMakeFiles/goaldetector.dir/all
 turtle5k/all: turtle5k/CMakeFiles/pathfinding.dir/all
+turtle5k/all: turtle5k/CMakeFiles/positioning.dir/all
 turtle5k/all: turtle5k/CMakeFiles/shooting.dir/all
 turtle5k/all: turtle5k/CMakeFiles/strategy.dir/all
+turtle5k/all: turtle5k/CMakeFiles/tactics.dir/all
 turtle5k/all: turtle5k/CMakeFiles/wheelcontrol.dir/all
 turtle5k/all: turtle5k/CMakeFiles/world.dir/all
 .PHONY : turtle5k/all
 
 # Convenience name for "clean" pass in the directory.
-turtle5k/clean: turtle5k/CMakeFiles/ball_detection.dir/clean
+turtle5k/clean: turtle5k/CMakeFiles/ballcontrol.dir/clean
+turtle5k/clean: turtle5k/CMakeFiles/balldetector.dir/clean
 turtle5k/clean: turtle5k/CMakeFiles/ballhandling.dir/clean
-turtle5k/clean: turtle5k/CMakeFiles/localisation.dir/clean
+turtle5k/clean: turtle5k/CMakeFiles/camera.dir/clean
+turtle5k/clean: turtle5k/CMakeFiles/commands.dir/clean
+turtle5k/clean: turtle5k/CMakeFiles/compass.dir/clean
+turtle5k/clean: turtle5k/CMakeFiles/goaldetector.dir/clean
 turtle5k/clean: turtle5k/CMakeFiles/pathfinding.dir/clean
+turtle5k/clean: turtle5k/CMakeFiles/positioning.dir/clean
 turtle5k/clean: turtle5k/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
 turtle5k/clean: turtle5k/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
 turtle5k/clean: turtle5k/CMakeFiles/roscpp_generate_messages_py.dir/clean
@@ -237,6 +248,7 @@ turtle5k/clean: turtle5k/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
 turtle5k/clean: turtle5k/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
 turtle5k/clean: turtle5k/CMakeFiles/std_msgs_generate_messages_py.dir/clean
 turtle5k/clean: turtle5k/CMakeFiles/strategy.dir/clean
+turtle5k/clean: turtle5k/CMakeFiles/tactics.dir/clean
 turtle5k/clean: turtle5k/CMakeFiles/wheelcontrol.dir/clean
 turtle5k/clean: turtle5k/CMakeFiles/world.dir/clean
 .PHONY : turtle5k/clean
@@ -246,38 +258,73 @@ turtle5k/preinstall:
 .PHONY : turtle5k/preinstall
 
 #=============================================================================
-# Target rules for target turtle5k/CMakeFiles/ball_detection.dir
+# Target rules for target turtle5k/CMakeFiles/ballcontrol.dir
 
 # All Build rule for target.
-turtle5k/CMakeFiles/ball_detection.dir/all:
-	$(MAKE) -f turtle5k/CMakeFiles/ball_detection.dir/build.make turtle5k/CMakeFiles/ball_detection.dir/depend
-	$(MAKE) -f turtle5k/CMakeFiles/ball_detection.dir/build.make turtle5k/CMakeFiles/ball_detection.dir/build
+turtle5k/CMakeFiles/ballcontrol.dir/all:
+	$(MAKE) -f turtle5k/CMakeFiles/ballcontrol.dir/build.make turtle5k/CMakeFiles/ballcontrol.dir/depend
+	$(MAKE) -f turtle5k/CMakeFiles/ballcontrol.dir/build.make turtle5k/CMakeFiles/ballcontrol.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles  1
-	@echo "Built target ball_detection"
-.PHONY : turtle5k/CMakeFiles/ball_detection.dir/all
+	@echo "Built target ballcontrol"
+.PHONY : turtle5k/CMakeFiles/ballcontrol.dir/all
 
 # Include target in all.
-all: turtle5k/CMakeFiles/ball_detection.dir/all
+all: turtle5k/CMakeFiles/ballcontrol.dir/all
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-turtle5k/CMakeFiles/ball_detection.dir/rule: cmake_check_build_system
+turtle5k/CMakeFiles/ballcontrol.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles 1
-	$(MAKE) -f CMakeFiles/Makefile2 turtle5k/CMakeFiles/ball_detection.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 turtle5k/CMakeFiles/ballcontrol.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles 0
-.PHONY : turtle5k/CMakeFiles/ball_detection.dir/rule
+.PHONY : turtle5k/CMakeFiles/ballcontrol.dir/rule
 
 # Convenience name for target.
-ball_detection: turtle5k/CMakeFiles/ball_detection.dir/rule
-.PHONY : ball_detection
+ballcontrol: turtle5k/CMakeFiles/ballcontrol.dir/rule
+.PHONY : ballcontrol
 
 # clean rule for target.
-turtle5k/CMakeFiles/ball_detection.dir/clean:
-	$(MAKE) -f turtle5k/CMakeFiles/ball_detection.dir/build.make turtle5k/CMakeFiles/ball_detection.dir/clean
-.PHONY : turtle5k/CMakeFiles/ball_detection.dir/clean
+turtle5k/CMakeFiles/ballcontrol.dir/clean:
+	$(MAKE) -f turtle5k/CMakeFiles/ballcontrol.dir/build.make turtle5k/CMakeFiles/ballcontrol.dir/clean
+.PHONY : turtle5k/CMakeFiles/ballcontrol.dir/clean
 
 # clean rule for target.
-clean: turtle5k/CMakeFiles/ball_detection.dir/clean
+clean: turtle5k/CMakeFiles/ballcontrol.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target turtle5k/CMakeFiles/balldetector.dir
+
+# All Build rule for target.
+turtle5k/CMakeFiles/balldetector.dir/all:
+	$(MAKE) -f turtle5k/CMakeFiles/balldetector.dir/build.make turtle5k/CMakeFiles/balldetector.dir/depend
+	$(MAKE) -f turtle5k/CMakeFiles/balldetector.dir/build.make turtle5k/CMakeFiles/balldetector.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles  2
+	@echo "Built target balldetector"
+.PHONY : turtle5k/CMakeFiles/balldetector.dir/all
+
+# Include target in all.
+all: turtle5k/CMakeFiles/balldetector.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+turtle5k/CMakeFiles/balldetector.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 turtle5k/CMakeFiles/balldetector.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles 0
+.PHONY : turtle5k/CMakeFiles/balldetector.dir/rule
+
+# Convenience name for target.
+balldetector: turtle5k/CMakeFiles/balldetector.dir/rule
+.PHONY : balldetector
+
+# clean rule for target.
+turtle5k/CMakeFiles/balldetector.dir/clean:
+	$(MAKE) -f turtle5k/CMakeFiles/balldetector.dir/build.make turtle5k/CMakeFiles/balldetector.dir/clean
+.PHONY : turtle5k/CMakeFiles/balldetector.dir/clean
+
+# clean rule for target.
+clean: turtle5k/CMakeFiles/balldetector.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -287,7 +334,7 @@ clean: turtle5k/CMakeFiles/ball_detection.dir/clean
 turtle5k/CMakeFiles/ballhandling.dir/all:
 	$(MAKE) -f turtle5k/CMakeFiles/ballhandling.dir/build.make turtle5k/CMakeFiles/ballhandling.dir/depend
 	$(MAKE) -f turtle5k/CMakeFiles/ballhandling.dir/build.make turtle5k/CMakeFiles/ballhandling.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles  2
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles  3
 	@echo "Built target ballhandling"
 .PHONY : turtle5k/CMakeFiles/ballhandling.dir/all
 
@@ -316,38 +363,143 @@ clean: turtle5k/CMakeFiles/ballhandling.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target turtle5k/CMakeFiles/localisation.dir
+# Target rules for target turtle5k/CMakeFiles/camera.dir
 
 # All Build rule for target.
-turtle5k/CMakeFiles/localisation.dir/all:
-	$(MAKE) -f turtle5k/CMakeFiles/localisation.dir/build.make turtle5k/CMakeFiles/localisation.dir/depend
-	$(MAKE) -f turtle5k/CMakeFiles/localisation.dir/build.make turtle5k/CMakeFiles/localisation.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles  3
-	@echo "Built target localisation"
-.PHONY : turtle5k/CMakeFiles/localisation.dir/all
+turtle5k/CMakeFiles/camera.dir/all:
+	$(MAKE) -f turtle5k/CMakeFiles/camera.dir/build.make turtle5k/CMakeFiles/camera.dir/depend
+	$(MAKE) -f turtle5k/CMakeFiles/camera.dir/build.make turtle5k/CMakeFiles/camera.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles  4
+	@echo "Built target camera"
+.PHONY : turtle5k/CMakeFiles/camera.dir/all
 
 # Include target in all.
-all: turtle5k/CMakeFiles/localisation.dir/all
+all: turtle5k/CMakeFiles/camera.dir/all
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-turtle5k/CMakeFiles/localisation.dir/rule: cmake_check_build_system
+turtle5k/CMakeFiles/camera.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles 1
-	$(MAKE) -f CMakeFiles/Makefile2 turtle5k/CMakeFiles/localisation.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 turtle5k/CMakeFiles/camera.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles 0
-.PHONY : turtle5k/CMakeFiles/localisation.dir/rule
+.PHONY : turtle5k/CMakeFiles/camera.dir/rule
 
 # Convenience name for target.
-localisation: turtle5k/CMakeFiles/localisation.dir/rule
-.PHONY : localisation
+camera: turtle5k/CMakeFiles/camera.dir/rule
+.PHONY : camera
 
 # clean rule for target.
-turtle5k/CMakeFiles/localisation.dir/clean:
-	$(MAKE) -f turtle5k/CMakeFiles/localisation.dir/build.make turtle5k/CMakeFiles/localisation.dir/clean
-.PHONY : turtle5k/CMakeFiles/localisation.dir/clean
+turtle5k/CMakeFiles/camera.dir/clean:
+	$(MAKE) -f turtle5k/CMakeFiles/camera.dir/build.make turtle5k/CMakeFiles/camera.dir/clean
+.PHONY : turtle5k/CMakeFiles/camera.dir/clean
 
 # clean rule for target.
-clean: turtle5k/CMakeFiles/localisation.dir/clean
+clean: turtle5k/CMakeFiles/camera.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target turtle5k/CMakeFiles/commands.dir
+
+# All Build rule for target.
+turtle5k/CMakeFiles/commands.dir/all:
+	$(MAKE) -f turtle5k/CMakeFiles/commands.dir/build.make turtle5k/CMakeFiles/commands.dir/depend
+	$(MAKE) -f turtle5k/CMakeFiles/commands.dir/build.make turtle5k/CMakeFiles/commands.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles  5
+	@echo "Built target commands"
+.PHONY : turtle5k/CMakeFiles/commands.dir/all
+
+# Include target in all.
+all: turtle5k/CMakeFiles/commands.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+turtle5k/CMakeFiles/commands.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 turtle5k/CMakeFiles/commands.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles 0
+.PHONY : turtle5k/CMakeFiles/commands.dir/rule
+
+# Convenience name for target.
+commands: turtle5k/CMakeFiles/commands.dir/rule
+.PHONY : commands
+
+# clean rule for target.
+turtle5k/CMakeFiles/commands.dir/clean:
+	$(MAKE) -f turtle5k/CMakeFiles/commands.dir/build.make turtle5k/CMakeFiles/commands.dir/clean
+.PHONY : turtle5k/CMakeFiles/commands.dir/clean
+
+# clean rule for target.
+clean: turtle5k/CMakeFiles/commands.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target turtle5k/CMakeFiles/compass.dir
+
+# All Build rule for target.
+turtle5k/CMakeFiles/compass.dir/all:
+	$(MAKE) -f turtle5k/CMakeFiles/compass.dir/build.make turtle5k/CMakeFiles/compass.dir/depend
+	$(MAKE) -f turtle5k/CMakeFiles/compass.dir/build.make turtle5k/CMakeFiles/compass.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles  6
+	@echo "Built target compass"
+.PHONY : turtle5k/CMakeFiles/compass.dir/all
+
+# Include target in all.
+all: turtle5k/CMakeFiles/compass.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+turtle5k/CMakeFiles/compass.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 turtle5k/CMakeFiles/compass.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles 0
+.PHONY : turtle5k/CMakeFiles/compass.dir/rule
+
+# Convenience name for target.
+compass: turtle5k/CMakeFiles/compass.dir/rule
+.PHONY : compass
+
+# clean rule for target.
+turtle5k/CMakeFiles/compass.dir/clean:
+	$(MAKE) -f turtle5k/CMakeFiles/compass.dir/build.make turtle5k/CMakeFiles/compass.dir/clean
+.PHONY : turtle5k/CMakeFiles/compass.dir/clean
+
+# clean rule for target.
+clean: turtle5k/CMakeFiles/compass.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target turtle5k/CMakeFiles/goaldetector.dir
+
+# All Build rule for target.
+turtle5k/CMakeFiles/goaldetector.dir/all:
+	$(MAKE) -f turtle5k/CMakeFiles/goaldetector.dir/build.make turtle5k/CMakeFiles/goaldetector.dir/depend
+	$(MAKE) -f turtle5k/CMakeFiles/goaldetector.dir/build.make turtle5k/CMakeFiles/goaldetector.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles  7
+	@echo "Built target goaldetector"
+.PHONY : turtle5k/CMakeFiles/goaldetector.dir/all
+
+# Include target in all.
+all: turtle5k/CMakeFiles/goaldetector.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+turtle5k/CMakeFiles/goaldetector.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 turtle5k/CMakeFiles/goaldetector.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles 0
+.PHONY : turtle5k/CMakeFiles/goaldetector.dir/rule
+
+# Convenience name for target.
+goaldetector: turtle5k/CMakeFiles/goaldetector.dir/rule
+.PHONY : goaldetector
+
+# clean rule for target.
+turtle5k/CMakeFiles/goaldetector.dir/clean:
+	$(MAKE) -f turtle5k/CMakeFiles/goaldetector.dir/build.make turtle5k/CMakeFiles/goaldetector.dir/clean
+.PHONY : turtle5k/CMakeFiles/goaldetector.dir/clean
+
+# clean rule for target.
+clean: turtle5k/CMakeFiles/goaldetector.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -357,7 +509,7 @@ clean: turtle5k/CMakeFiles/localisation.dir/clean
 turtle5k/CMakeFiles/pathfinding.dir/all:
 	$(MAKE) -f turtle5k/CMakeFiles/pathfinding.dir/build.make turtle5k/CMakeFiles/pathfinding.dir/depend
 	$(MAKE) -f turtle5k/CMakeFiles/pathfinding.dir/build.make turtle5k/CMakeFiles/pathfinding.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles  4
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles  8
 	@echo "Built target pathfinding"
 .PHONY : turtle5k/CMakeFiles/pathfinding.dir/all
 
@@ -383,6 +535,41 @@ turtle5k/CMakeFiles/pathfinding.dir/clean:
 
 # clean rule for target.
 clean: turtle5k/CMakeFiles/pathfinding.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target turtle5k/CMakeFiles/positioning.dir
+
+# All Build rule for target.
+turtle5k/CMakeFiles/positioning.dir/all:
+	$(MAKE) -f turtle5k/CMakeFiles/positioning.dir/build.make turtle5k/CMakeFiles/positioning.dir/depend
+	$(MAKE) -f turtle5k/CMakeFiles/positioning.dir/build.make turtle5k/CMakeFiles/positioning.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles  9
+	@echo "Built target positioning"
+.PHONY : turtle5k/CMakeFiles/positioning.dir/all
+
+# Include target in all.
+all: turtle5k/CMakeFiles/positioning.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+turtle5k/CMakeFiles/positioning.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 turtle5k/CMakeFiles/positioning.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles 0
+.PHONY : turtle5k/CMakeFiles/positioning.dir/rule
+
+# Convenience name for target.
+positioning: turtle5k/CMakeFiles/positioning.dir/rule
+.PHONY : positioning
+
+# clean rule for target.
+turtle5k/CMakeFiles/positioning.dir/clean:
+	$(MAKE) -f turtle5k/CMakeFiles/positioning.dir/build.make turtle5k/CMakeFiles/positioning.dir/clean
+.PHONY : turtle5k/CMakeFiles/positioning.dir/clean
+
+# clean rule for target.
+clean: turtle5k/CMakeFiles/positioning.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -578,7 +765,7 @@ clean: turtle5k/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
 turtle5k/CMakeFiles/shooting.dir/all:
 	$(MAKE) -f turtle5k/CMakeFiles/shooting.dir/build.make turtle5k/CMakeFiles/shooting.dir/depend
 	$(MAKE) -f turtle5k/CMakeFiles/shooting.dir/build.make turtle5k/CMakeFiles/shooting.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles  5
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles  10
 	@echo "Built target shooting"
 .PHONY : turtle5k/CMakeFiles/shooting.dir/all
 
@@ -706,7 +893,7 @@ clean: turtle5k/CMakeFiles/std_msgs_generate_messages_py.dir/clean
 turtle5k/CMakeFiles/strategy.dir/all:
 	$(MAKE) -f turtle5k/CMakeFiles/strategy.dir/build.make turtle5k/CMakeFiles/strategy.dir/depend
 	$(MAKE) -f turtle5k/CMakeFiles/strategy.dir/build.make turtle5k/CMakeFiles/strategy.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles  6
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles  11
 	@echo "Built target strategy"
 .PHONY : turtle5k/CMakeFiles/strategy.dir/all
 
@@ -735,13 +922,48 @@ clean: turtle5k/CMakeFiles/strategy.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target turtle5k/CMakeFiles/tactics.dir
+
+# All Build rule for target.
+turtle5k/CMakeFiles/tactics.dir/all:
+	$(MAKE) -f turtle5k/CMakeFiles/tactics.dir/build.make turtle5k/CMakeFiles/tactics.dir/depend
+	$(MAKE) -f turtle5k/CMakeFiles/tactics.dir/build.make turtle5k/CMakeFiles/tactics.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles  12
+	@echo "Built target tactics"
+.PHONY : turtle5k/CMakeFiles/tactics.dir/all
+
+# Include target in all.
+all: turtle5k/CMakeFiles/tactics.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+turtle5k/CMakeFiles/tactics.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 turtle5k/CMakeFiles/tactics.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles 0
+.PHONY : turtle5k/CMakeFiles/tactics.dir/rule
+
+# Convenience name for target.
+tactics: turtle5k/CMakeFiles/tactics.dir/rule
+.PHONY : tactics
+
+# clean rule for target.
+turtle5k/CMakeFiles/tactics.dir/clean:
+	$(MAKE) -f turtle5k/CMakeFiles/tactics.dir/build.make turtle5k/CMakeFiles/tactics.dir/clean
+.PHONY : turtle5k/CMakeFiles/tactics.dir/clean
+
+# clean rule for target.
+clean: turtle5k/CMakeFiles/tactics.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target turtle5k/CMakeFiles/wheelcontrol.dir
 
 # All Build rule for target.
 turtle5k/CMakeFiles/wheelcontrol.dir/all:
 	$(MAKE) -f turtle5k/CMakeFiles/wheelcontrol.dir/build.make turtle5k/CMakeFiles/wheelcontrol.dir/depend
 	$(MAKE) -f turtle5k/CMakeFiles/wheelcontrol.dir/build.make turtle5k/CMakeFiles/wheelcontrol.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles  7
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles  13
 	@echo "Built target wheelcontrol"
 .PHONY : turtle5k/CMakeFiles/wheelcontrol.dir/all
 
@@ -776,7 +998,7 @@ clean: turtle5k/CMakeFiles/wheelcontrol.dir/clean
 turtle5k/CMakeFiles/world.dir/all:
 	$(MAKE) -f turtle5k/CMakeFiles/world.dir/build.make turtle5k/CMakeFiles/world.dir/depend
 	$(MAKE) -f turtle5k/CMakeFiles/world.dir/build.make turtle5k/CMakeFiles/world.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles  8
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles  14
 	@echo "Built target world"
 .PHONY : turtle5k/CMakeFiles/world.dir/all
 

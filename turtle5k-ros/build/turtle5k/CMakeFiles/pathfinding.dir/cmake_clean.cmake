@@ -1,5 +1,5 @@
 FILE(REMOVE_RECURSE
-  "CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.o"
+  "CMakeFiles/pathfinding.dir/src/pathfinding.cpp.o"
   "/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/pathfinding.pdb"
   "/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/pathfinding"
 )

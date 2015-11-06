@@ -1,5 +1,5 @@
 FILE(REMOVE_RECURSE
-  "CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.o"
+  "CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.o"
   "/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/wheelcontrol.pdb"
   "/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/wheelcontrol"
 )

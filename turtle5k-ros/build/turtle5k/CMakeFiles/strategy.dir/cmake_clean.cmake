@@ -1,5 +1,5 @@
 FILE(REMOVE_RECURSE
-  "CMakeFiles/strategy.dir/src/Strategy.cpp.o"
+  "CMakeFiles/strategy.dir/src/strategy.cpp.o"
   "/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/strategy.pdb"
   "/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/strategy"
 )

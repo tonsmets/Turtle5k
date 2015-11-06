@@ -49,37 +49,37 @@ include turtle5k/CMakeFiles/shooting.dir/progress.make
 # Include the compile flags for this target's objects.
 include turtle5k/CMakeFiles/shooting.dir/flags.make
 
-turtle5k/CMakeFiles/shooting.dir/src/Shooting.cpp.o: turtle5k/CMakeFiles/shooting.dir/flags.make
-turtle5k/CMakeFiles/shooting.dir/src/Shooting.cpp.o: /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/Shooting.cpp
+turtle5k/CMakeFiles/shooting.dir/src/shooting.cpp.o: turtle5k/CMakeFiles/shooting.dir/flags.make
+turtle5k/CMakeFiles/shooting.dir/src/shooting.cpp.o: /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/shooting.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object turtle5k/CMakeFiles/shooting.dir/src/Shooting.cpp.o"
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/shooting.dir/src/Shooting.cpp.o -c /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/Shooting.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object turtle5k/CMakeFiles/shooting.dir/src/shooting.cpp.o"
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/shooting.dir/src/shooting.cpp.o -c /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/shooting.cpp
 
-turtle5k/CMakeFiles/shooting.dir/src/Shooting.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/shooting.dir/src/Shooting.cpp.i"
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/Shooting.cpp > CMakeFiles/shooting.dir/src/Shooting.cpp.i
+turtle5k/CMakeFiles/shooting.dir/src/shooting.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/shooting.dir/src/shooting.cpp.i"
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/shooting.cpp > CMakeFiles/shooting.dir/src/shooting.cpp.i
 
-turtle5k/CMakeFiles/shooting.dir/src/Shooting.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/shooting.dir/src/Shooting.cpp.s"
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/Shooting.cpp -o CMakeFiles/shooting.dir/src/Shooting.cpp.s
+turtle5k/CMakeFiles/shooting.dir/src/shooting.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/shooting.dir/src/shooting.cpp.s"
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/shooting.cpp -o CMakeFiles/shooting.dir/src/shooting.cpp.s
 
-turtle5k/CMakeFiles/shooting.dir/src/Shooting.cpp.o.requires:
-.PHONY : turtle5k/CMakeFiles/shooting.dir/src/Shooting.cpp.o.requires
+turtle5k/CMakeFiles/shooting.dir/src/shooting.cpp.o.requires:
+.PHONY : turtle5k/CMakeFiles/shooting.dir/src/shooting.cpp.o.requires
 
-turtle5k/CMakeFiles/shooting.dir/src/Shooting.cpp.o.provides: turtle5k/CMakeFiles/shooting.dir/src/Shooting.cpp.o.requires
-	$(MAKE) -f turtle5k/CMakeFiles/shooting.dir/build.make turtle5k/CMakeFiles/shooting.dir/src/Shooting.cpp.o.provides.build
-.PHONY : turtle5k/CMakeFiles/shooting.dir/src/Shooting.cpp.o.provides
+turtle5k/CMakeFiles/shooting.dir/src/shooting.cpp.o.provides: turtle5k/CMakeFiles/shooting.dir/src/shooting.cpp.o.requires
+	$(MAKE) -f turtle5k/CMakeFiles/shooting.dir/build.make turtle5k/CMakeFiles/shooting.dir/src/shooting.cpp.o.provides.build
+.PHONY : turtle5k/CMakeFiles/shooting.dir/src/shooting.cpp.o.provides
 
-turtle5k/CMakeFiles/shooting.dir/src/Shooting.cpp.o.provides.build: turtle5k/CMakeFiles/shooting.dir/src/Shooting.cpp.o
+turtle5k/CMakeFiles/shooting.dir/src/shooting.cpp.o.provides.build: turtle5k/CMakeFiles/shooting.dir/src/shooting.cpp.o
 
 # Object files for target shooting
 shooting_OBJECTS = \
-"CMakeFiles/shooting.dir/src/Shooting.cpp.o"
+"CMakeFiles/shooting.dir/src/shooting.cpp.o"
 
 # External object files for target shooting
 shooting_EXTERNAL_OBJECTS =
 
-/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/shooting: turtle5k/CMakeFiles/shooting.dir/src/Shooting.cpp.o
+/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/shooting: turtle5k/CMakeFiles/shooting.dir/src/shooting.cpp.o
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/shooting: turtle5k/CMakeFiles/shooting.dir/build.make
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/shooting: /opt/ros/indigo/lib/libroscpp.so
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/shooting: /usr/lib/i386-linux-gnu/libboost_signals.so
@@ -106,7 +106,7 @@ shooting_EXTERNAL_OBJECTS =
 turtle5k/CMakeFiles/shooting.dir/build: /home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/shooting
 .PHONY : turtle5k/CMakeFiles/shooting.dir/build
 
-turtle5k/CMakeFiles/shooting.dir/requires: turtle5k/CMakeFiles/shooting.dir/src/Shooting.cpp.o.requires
+turtle5k/CMakeFiles/shooting.dir/requires: turtle5k/CMakeFiles/shooting.dir/src/shooting.cpp.o.requires
 .PHONY : turtle5k/CMakeFiles/shooting.dir/requires
 
 turtle5k/CMakeFiles/shooting.dir/clean:

@@ -49,37 +49,37 @@ include turtle5k/CMakeFiles/pathfinding.dir/progress.make
 # Include the compile flags for this target's objects.
 include turtle5k/CMakeFiles/pathfinding.dir/flags.make
 
-turtle5k/CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.o: turtle5k/CMakeFiles/pathfinding.dir/flags.make
-turtle5k/CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.o: /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/Pathfinding.cpp
+turtle5k/CMakeFiles/pathfinding.dir/src/pathfinding.cpp.o: turtle5k/CMakeFiles/pathfinding.dir/flags.make
+turtle5k/CMakeFiles/pathfinding.dir/src/pathfinding.cpp.o: /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/pathfinding.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object turtle5k/CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.o"
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.o -c /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/Pathfinding.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object turtle5k/CMakeFiles/pathfinding.dir/src/pathfinding.cpp.o"
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/pathfinding.dir/src/pathfinding.cpp.o -c /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/pathfinding.cpp
 
-turtle5k/CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.i"
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/Pathfinding.cpp > CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.i
+turtle5k/CMakeFiles/pathfinding.dir/src/pathfinding.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pathfinding.dir/src/pathfinding.cpp.i"
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/pathfinding.cpp > CMakeFiles/pathfinding.dir/src/pathfinding.cpp.i
 
-turtle5k/CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.s"
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/Pathfinding.cpp -o CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.s
+turtle5k/CMakeFiles/pathfinding.dir/src/pathfinding.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pathfinding.dir/src/pathfinding.cpp.s"
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/pathfinding.cpp -o CMakeFiles/pathfinding.dir/src/pathfinding.cpp.s
 
-turtle5k/CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.o.requires:
-.PHONY : turtle5k/CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.o.requires
+turtle5k/CMakeFiles/pathfinding.dir/src/pathfinding.cpp.o.requires:
+.PHONY : turtle5k/CMakeFiles/pathfinding.dir/src/pathfinding.cpp.o.requires
 
-turtle5k/CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.o.provides: turtle5k/CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.o.requires
-	$(MAKE) -f turtle5k/CMakeFiles/pathfinding.dir/build.make turtle5k/CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.o.provides.build
-.PHONY : turtle5k/CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.o.provides
+turtle5k/CMakeFiles/pathfinding.dir/src/pathfinding.cpp.o.provides: turtle5k/CMakeFiles/pathfinding.dir/src/pathfinding.cpp.o.requires
+	$(MAKE) -f turtle5k/CMakeFiles/pathfinding.dir/build.make turtle5k/CMakeFiles/pathfinding.dir/src/pathfinding.cpp.o.provides.build
+.PHONY : turtle5k/CMakeFiles/pathfinding.dir/src/pathfinding.cpp.o.provides
 
-turtle5k/CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.o.provides.build: turtle5k/CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.o
+turtle5k/CMakeFiles/pathfinding.dir/src/pathfinding.cpp.o.provides.build: turtle5k/CMakeFiles/pathfinding.dir/src/pathfinding.cpp.o
 
 # Object files for target pathfinding
 pathfinding_OBJECTS = \
-"CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.o"
+"CMakeFiles/pathfinding.dir/src/pathfinding.cpp.o"
 
 # External object files for target pathfinding
 pathfinding_EXTERNAL_OBJECTS =
 
-/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/pathfinding: turtle5k/CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.o
+/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/pathfinding: turtle5k/CMakeFiles/pathfinding.dir/src/pathfinding.cpp.o
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/pathfinding: turtle5k/CMakeFiles/pathfinding.dir/build.make
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/pathfinding: /opt/ros/indigo/lib/libroscpp.so
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/pathfinding: /usr/lib/i386-linux-gnu/libboost_signals.so
@@ -106,7 +106,7 @@ pathfinding_EXTERNAL_OBJECTS =
 turtle5k/CMakeFiles/pathfinding.dir/build: /home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/pathfinding
 .PHONY : turtle5k/CMakeFiles/pathfinding.dir/build
 
-turtle5k/CMakeFiles/pathfinding.dir/requires: turtle5k/CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.o.requires
+turtle5k/CMakeFiles/pathfinding.dir/requires: turtle5k/CMakeFiles/pathfinding.dir/src/pathfinding.cpp.o.requires
 .PHONY : turtle5k/CMakeFiles/pathfinding.dir/requires
 
 turtle5k/CMakeFiles/pathfinding.dir/clean:

@@ -49,37 +49,37 @@ include turtle5k/CMakeFiles/wheelcontrol.dir/progress.make
 # Include the compile flags for this target's objects.
 include turtle5k/CMakeFiles/wheelcontrol.dir/flags.make
 
-turtle5k/CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.o: turtle5k/CMakeFiles/wheelcontrol.dir/flags.make
-turtle5k/CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.o: /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/WheelControl.cpp
+turtle5k/CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.o: turtle5k/CMakeFiles/wheelcontrol.dir/flags.make
+turtle5k/CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.o: /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/wheelcontrol.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object turtle5k/CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.o"
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.o -c /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/WheelControl.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object turtle5k/CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.o"
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.o -c /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/wheelcontrol.cpp
 
-turtle5k/CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.i"
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/WheelControl.cpp > CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.i
+turtle5k/CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.i"
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/wheelcontrol.cpp > CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.i
 
-turtle5k/CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.s"
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/WheelControl.cpp -o CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.s
+turtle5k/CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.s"
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/wheelcontrol.cpp -o CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.s
 
-turtle5k/CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.o.requires:
-.PHONY : turtle5k/CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.o.requires
+turtle5k/CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.o.requires:
+.PHONY : turtle5k/CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.o.requires
 
-turtle5k/CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.o.provides: turtle5k/CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.o.requires
-	$(MAKE) -f turtle5k/CMakeFiles/wheelcontrol.dir/build.make turtle5k/CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.o.provides.build
-.PHONY : turtle5k/CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.o.provides
+turtle5k/CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.o.provides: turtle5k/CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.o.requires
+	$(MAKE) -f turtle5k/CMakeFiles/wheelcontrol.dir/build.make turtle5k/CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.o.provides.build
+.PHONY : turtle5k/CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.o.provides
 
-turtle5k/CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.o.provides.build: turtle5k/CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.o
+turtle5k/CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.o.provides.build: turtle5k/CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.o
 
 # Object files for target wheelcontrol
 wheelcontrol_OBJECTS = \
-"CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.o"
+"CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.o"
 
 # External object files for target wheelcontrol
 wheelcontrol_EXTERNAL_OBJECTS =
 
-/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/wheelcontrol: turtle5k/CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.o
+/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/wheelcontrol: turtle5k/CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.o
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/wheelcontrol: turtle5k/CMakeFiles/wheelcontrol.dir/build.make
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/wheelcontrol: /opt/ros/indigo/lib/libroscpp.so
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/wheelcontrol: /usr/lib/i386-linux-gnu/libboost_signals.so
@@ -106,7 +106,7 @@ wheelcontrol_EXTERNAL_OBJECTS =
 turtle5k/CMakeFiles/wheelcontrol.dir/build: /home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/wheelcontrol
 .PHONY : turtle5k/CMakeFiles/wheelcontrol.dir/build
 
-turtle5k/CMakeFiles/wheelcontrol.dir/requires: turtle5k/CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.o.requires
+turtle5k/CMakeFiles/wheelcontrol.dir/requires: turtle5k/CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.o.requires
 .PHONY : turtle5k/CMakeFiles/wheelcontrol.dir/requires
 
 turtle5k/CMakeFiles/wheelcontrol.dir/clean:

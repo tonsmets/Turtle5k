@@ -1,5 +1,5 @@
 FILE(REMOVE_RECURSE
-  "CMakeFiles/world.dir/src/World.cpp.o"
+  "CMakeFiles/world.dir/src/world.cpp.o"
   "/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/world.pdb"
   "/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/world"
 )

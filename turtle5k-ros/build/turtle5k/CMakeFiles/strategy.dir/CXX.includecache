@@ -6,13 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/Strategy.cpp
+/home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/strategy.cpp
 ros/ros.h
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/ros/ros.h
 std_msgs/String.h
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/std_msgs/String.h
-sstream
--
 
 /opt/ros/indigo/include/XmlRpcDecl.h
 ros/macros.h

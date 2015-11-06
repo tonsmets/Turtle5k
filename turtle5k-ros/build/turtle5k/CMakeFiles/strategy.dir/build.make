@@ -49,37 +49,37 @@ include turtle5k/CMakeFiles/strategy.dir/progress.make
 # Include the compile flags for this target's objects.
 include turtle5k/CMakeFiles/strategy.dir/flags.make
 
-turtle5k/CMakeFiles/strategy.dir/src/Strategy.cpp.o: turtle5k/CMakeFiles/strategy.dir/flags.make
-turtle5k/CMakeFiles/strategy.dir/src/Strategy.cpp.o: /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/Strategy.cpp
+turtle5k/CMakeFiles/strategy.dir/src/strategy.cpp.o: turtle5k/CMakeFiles/strategy.dir/flags.make
+turtle5k/CMakeFiles/strategy.dir/src/strategy.cpp.o: /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/strategy.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object turtle5k/CMakeFiles/strategy.dir/src/Strategy.cpp.o"
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/strategy.dir/src/Strategy.cpp.o -c /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/Strategy.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object turtle5k/CMakeFiles/strategy.dir/src/strategy.cpp.o"
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/strategy.dir/src/strategy.cpp.o -c /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/strategy.cpp
 
-turtle5k/CMakeFiles/strategy.dir/src/Strategy.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/strategy.dir/src/Strategy.cpp.i"
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/Strategy.cpp > CMakeFiles/strategy.dir/src/Strategy.cpp.i
+turtle5k/CMakeFiles/strategy.dir/src/strategy.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/strategy.dir/src/strategy.cpp.i"
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/strategy.cpp > CMakeFiles/strategy.dir/src/strategy.cpp.i
 
-turtle5k/CMakeFiles/strategy.dir/src/Strategy.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/strategy.dir/src/Strategy.cpp.s"
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/Strategy.cpp -o CMakeFiles/strategy.dir/src/Strategy.cpp.s
+turtle5k/CMakeFiles/strategy.dir/src/strategy.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/strategy.dir/src/strategy.cpp.s"
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/strategy.cpp -o CMakeFiles/strategy.dir/src/strategy.cpp.s
 
-turtle5k/CMakeFiles/strategy.dir/src/Strategy.cpp.o.requires:
-.PHONY : turtle5k/CMakeFiles/strategy.dir/src/Strategy.cpp.o.requires
+turtle5k/CMakeFiles/strategy.dir/src/strategy.cpp.o.requires:
+.PHONY : turtle5k/CMakeFiles/strategy.dir/src/strategy.cpp.o.requires
 
-turtle5k/CMakeFiles/strategy.dir/src/Strategy.cpp.o.provides: turtle5k/CMakeFiles/strategy.dir/src/Strategy.cpp.o.requires
-	$(MAKE) -f turtle5k/CMakeFiles/strategy.dir/build.make turtle5k/CMakeFiles/strategy.dir/src/Strategy.cpp.o.provides.build
-.PHONY : turtle5k/CMakeFiles/strategy.dir/src/Strategy.cpp.o.provides
+turtle5k/CMakeFiles/strategy.dir/src/strategy.cpp.o.provides: turtle5k/CMakeFiles/strategy.dir/src/strategy.cpp.o.requires
+	$(MAKE) -f turtle5k/CMakeFiles/strategy.dir/build.make turtle5k/CMakeFiles/strategy.dir/src/strategy.cpp.o.provides.build
+.PHONY : turtle5k/CMakeFiles/strategy.dir/src/strategy.cpp.o.provides
 
-turtle5k/CMakeFiles/strategy.dir/src/Strategy.cpp.o.provides.build: turtle5k/CMakeFiles/strategy.dir/src/Strategy.cpp.o
+turtle5k/CMakeFiles/strategy.dir/src/strategy.cpp.o.provides.build: turtle5k/CMakeFiles/strategy.dir/src/strategy.cpp.o
 
 # Object files for target strategy
 strategy_OBJECTS = \
-"CMakeFiles/strategy.dir/src/Strategy.cpp.o"
+"CMakeFiles/strategy.dir/src/strategy.cpp.o"
 
 # External object files for target strategy
 strategy_EXTERNAL_OBJECTS =
 
-/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/strategy: turtle5k/CMakeFiles/strategy.dir/src/Strategy.cpp.o
+/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/strategy: turtle5k/CMakeFiles/strategy.dir/src/strategy.cpp.o
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/strategy: turtle5k/CMakeFiles/strategy.dir/build.make
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/strategy: /opt/ros/indigo/lib/libroscpp.so
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/strategy: /usr/lib/i386-linux-gnu/libboost_signals.so
@@ -106,7 +106,7 @@ strategy_EXTERNAL_OBJECTS =
 turtle5k/CMakeFiles/strategy.dir/build: /home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/strategy
 .PHONY : turtle5k/CMakeFiles/strategy.dir/build
 
-turtle5k/CMakeFiles/strategy.dir/requires: turtle5k/CMakeFiles/strategy.dir/src/Strategy.cpp.o.requires
+turtle5k/CMakeFiles/strategy.dir/requires: turtle5k/CMakeFiles/strategy.dir/src/strategy.cpp.o.requires
 .PHONY : turtle5k/CMakeFiles/strategy.dir/requires
 
 turtle5k/CMakeFiles/strategy.dir/clean:

@@ -49,37 +49,37 @@ include turtle5k/CMakeFiles/ballhandling.dir/progress.make
 # Include the compile flags for this target's objects.
 include turtle5k/CMakeFiles/ballhandling.dir/flags.make
 
-turtle5k/CMakeFiles/ballhandling.dir/src/BallHandling.cpp.o: turtle5k/CMakeFiles/ballhandling.dir/flags.make
-turtle5k/CMakeFiles/ballhandling.dir/src/BallHandling.cpp.o: /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/BallHandling.cpp
+turtle5k/CMakeFiles/ballhandling.dir/src/positioning.cpp.o: turtle5k/CMakeFiles/ballhandling.dir/flags.make
+turtle5k/CMakeFiles/ballhandling.dir/src/positioning.cpp.o: /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/positioning.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object turtle5k/CMakeFiles/ballhandling.dir/src/BallHandling.cpp.o"
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ballhandling.dir/src/BallHandling.cpp.o -c /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/BallHandling.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object turtle5k/CMakeFiles/ballhandling.dir/src/positioning.cpp.o"
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ballhandling.dir/src/positioning.cpp.o -c /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/positioning.cpp
 
-turtle5k/CMakeFiles/ballhandling.dir/src/BallHandling.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ballhandling.dir/src/BallHandling.cpp.i"
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/BallHandling.cpp > CMakeFiles/ballhandling.dir/src/BallHandling.cpp.i
+turtle5k/CMakeFiles/ballhandling.dir/src/positioning.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ballhandling.dir/src/positioning.cpp.i"
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/positioning.cpp > CMakeFiles/ballhandling.dir/src/positioning.cpp.i
 
-turtle5k/CMakeFiles/ballhandling.dir/src/BallHandling.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ballhandling.dir/src/BallHandling.cpp.s"
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/BallHandling.cpp -o CMakeFiles/ballhandling.dir/src/BallHandling.cpp.s
+turtle5k/CMakeFiles/ballhandling.dir/src/positioning.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ballhandling.dir/src/positioning.cpp.s"
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/student/turtle5k-git/Turtle5k/turtle5k-ros/src/turtle5k/src/positioning.cpp -o CMakeFiles/ballhandling.dir/src/positioning.cpp.s
 
-turtle5k/CMakeFiles/ballhandling.dir/src/BallHandling.cpp.o.requires:
-.PHONY : turtle5k/CMakeFiles/ballhandling.dir/src/BallHandling.cpp.o.requires
+turtle5k/CMakeFiles/ballhandling.dir/src/positioning.cpp.o.requires:
+.PHONY : turtle5k/CMakeFiles/ballhandling.dir/src/positioning.cpp.o.requires
 
-turtle5k/CMakeFiles/ballhandling.dir/src/BallHandling.cpp.o.provides: turtle5k/CMakeFiles/ballhandling.dir/src/BallHandling.cpp.o.requires
-	$(MAKE) -f turtle5k/CMakeFiles/ballhandling.dir/build.make turtle5k/CMakeFiles/ballhandling.dir/src/BallHandling.cpp.o.provides.build
-.PHONY : turtle5k/CMakeFiles/ballhandling.dir/src/BallHandling.cpp.o.provides
+turtle5k/CMakeFiles/ballhandling.dir/src/positioning.cpp.o.provides: turtle5k/CMakeFiles/ballhandling.dir/src/positioning.cpp.o.requires
+	$(MAKE) -f turtle5k/CMakeFiles/ballhandling.dir/build.make turtle5k/CMakeFiles/ballhandling.dir/src/positioning.cpp.o.provides.build
+.PHONY : turtle5k/CMakeFiles/ballhandling.dir/src/positioning.cpp.o.provides
 
-turtle5k/CMakeFiles/ballhandling.dir/src/BallHandling.cpp.o.provides.build: turtle5k/CMakeFiles/ballhandling.dir/src/BallHandling.cpp.o
+turtle5k/CMakeFiles/ballhandling.dir/src/positioning.cpp.o.provides.build: turtle5k/CMakeFiles/ballhandling.dir/src/positioning.cpp.o
 
 # Object files for target ballhandling
 ballhandling_OBJECTS = \
-"CMakeFiles/ballhandling.dir/src/BallHandling.cpp.o"
+"CMakeFiles/ballhandling.dir/src/positioning.cpp.o"
 
 # External object files for target ballhandling
 ballhandling_EXTERNAL_OBJECTS =
 
-/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/ballhandling: turtle5k/CMakeFiles/ballhandling.dir/src/BallHandling.cpp.o
+/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/ballhandling: turtle5k/CMakeFiles/ballhandling.dir/src/positioning.cpp.o
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/ballhandling: turtle5k/CMakeFiles/ballhandling.dir/build.make
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/ballhandling: /opt/ros/indigo/lib/libroscpp.so
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/ballhandling: /usr/lib/i386-linux-gnu/libboost_signals.so
@@ -106,7 +106,7 @@ ballhandling_EXTERNAL_OBJECTS =
 turtle5k/CMakeFiles/ballhandling.dir/build: /home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/ballhandling
 .PHONY : turtle5k/CMakeFiles/ballhandling.dir/build
 
-turtle5k/CMakeFiles/ballhandling.dir/requires: turtle5k/CMakeFiles/ballhandling.dir/src/BallHandling.cpp.o.requires
+turtle5k/CMakeFiles/ballhandling.dir/requires: turtle5k/CMakeFiles/ballhandling.dir/src/positioning.cpp.o.requires
 .PHONY : turtle5k/CMakeFiles/ballhandling.dir/requires
 
 turtle5k/CMakeFiles/ballhandling.dir/clean:

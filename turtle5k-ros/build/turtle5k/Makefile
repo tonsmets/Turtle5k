@@ -150,18 +150,32 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-turtle5k/CMakeFiles/ball_detection.dir/rule:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f CMakeFiles/Makefile2 turtle5k/CMakeFiles/ball_detection.dir/rule
-.PHONY : turtle5k/CMakeFiles/ball_detection.dir/rule
+turtle5k/CMakeFiles/ballcontrol.dir/rule:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f CMakeFiles/Makefile2 turtle5k/CMakeFiles/ballcontrol.dir/rule
+.PHONY : turtle5k/CMakeFiles/ballcontrol.dir/rule
 
 # Convenience name for target.
-ball_detection: turtle5k/CMakeFiles/ball_detection.dir/rule
-.PHONY : ball_detection
+ballcontrol: turtle5k/CMakeFiles/ballcontrol.dir/rule
+.PHONY : ballcontrol
 
 # fast build rule for target.
-ball_detection/fast:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/ball_detection.dir/build.make turtle5k/CMakeFiles/ball_detection.dir/build
-.PHONY : ball_detection/fast
+ballcontrol/fast:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/ballcontrol.dir/build.make turtle5k/CMakeFiles/ballcontrol.dir/build
+.PHONY : ballcontrol/fast
+
+# Convenience name for target.
+turtle5k/CMakeFiles/balldetector.dir/rule:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f CMakeFiles/Makefile2 turtle5k/CMakeFiles/balldetector.dir/rule
+.PHONY : turtle5k/CMakeFiles/balldetector.dir/rule
+
+# Convenience name for target.
+balldetector: turtle5k/CMakeFiles/balldetector.dir/rule
+.PHONY : balldetector
+
+# fast build rule for target.
+balldetector/fast:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/balldetector.dir/build.make turtle5k/CMakeFiles/balldetector.dir/build
+.PHONY : balldetector/fast
 
 # Convenience name for target.
 turtle5k/CMakeFiles/ballhandling.dir/rule:
@@ -178,18 +192,60 @@ ballhandling/fast:
 .PHONY : ballhandling/fast
 
 # Convenience name for target.
-turtle5k/CMakeFiles/localisation.dir/rule:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f CMakeFiles/Makefile2 turtle5k/CMakeFiles/localisation.dir/rule
-.PHONY : turtle5k/CMakeFiles/localisation.dir/rule
+turtle5k/CMakeFiles/camera.dir/rule:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f CMakeFiles/Makefile2 turtle5k/CMakeFiles/camera.dir/rule
+.PHONY : turtle5k/CMakeFiles/camera.dir/rule
 
 # Convenience name for target.
-localisation: turtle5k/CMakeFiles/localisation.dir/rule
-.PHONY : localisation
+camera: turtle5k/CMakeFiles/camera.dir/rule
+.PHONY : camera
 
 # fast build rule for target.
-localisation/fast:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/localisation.dir/build.make turtle5k/CMakeFiles/localisation.dir/build
-.PHONY : localisation/fast
+camera/fast:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/camera.dir/build.make turtle5k/CMakeFiles/camera.dir/build
+.PHONY : camera/fast
+
+# Convenience name for target.
+turtle5k/CMakeFiles/commands.dir/rule:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f CMakeFiles/Makefile2 turtle5k/CMakeFiles/commands.dir/rule
+.PHONY : turtle5k/CMakeFiles/commands.dir/rule
+
+# Convenience name for target.
+commands: turtle5k/CMakeFiles/commands.dir/rule
+.PHONY : commands
+
+# fast build rule for target.
+commands/fast:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/commands.dir/build.make turtle5k/CMakeFiles/commands.dir/build
+.PHONY : commands/fast
+
+# Convenience name for target.
+turtle5k/CMakeFiles/compass.dir/rule:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f CMakeFiles/Makefile2 turtle5k/CMakeFiles/compass.dir/rule
+.PHONY : turtle5k/CMakeFiles/compass.dir/rule
+
+# Convenience name for target.
+compass: turtle5k/CMakeFiles/compass.dir/rule
+.PHONY : compass
+
+# fast build rule for target.
+compass/fast:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/compass.dir/build.make turtle5k/CMakeFiles/compass.dir/build
+.PHONY : compass/fast
+
+# Convenience name for target.
+turtle5k/CMakeFiles/goaldetector.dir/rule:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f CMakeFiles/Makefile2 turtle5k/CMakeFiles/goaldetector.dir/rule
+.PHONY : turtle5k/CMakeFiles/goaldetector.dir/rule
+
+# Convenience name for target.
+goaldetector: turtle5k/CMakeFiles/goaldetector.dir/rule
+.PHONY : goaldetector
+
+# fast build rule for target.
+goaldetector/fast:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/goaldetector.dir/build.make turtle5k/CMakeFiles/goaldetector.dir/build
+.PHONY : goaldetector/fast
 
 # Convenience name for target.
 turtle5k/CMakeFiles/pathfinding.dir/rule:
@@ -204,6 +260,20 @@ pathfinding: turtle5k/CMakeFiles/pathfinding.dir/rule
 pathfinding/fast:
 	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/pathfinding.dir/build.make turtle5k/CMakeFiles/pathfinding.dir/build
 .PHONY : pathfinding/fast
+
+# Convenience name for target.
+turtle5k/CMakeFiles/positioning.dir/rule:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f CMakeFiles/Makefile2 turtle5k/CMakeFiles/positioning.dir/rule
+.PHONY : turtle5k/CMakeFiles/positioning.dir/rule
+
+# Convenience name for target.
+positioning: turtle5k/CMakeFiles/positioning.dir/rule
+.PHONY : positioning
+
+# fast build rule for target.
+positioning/fast:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/positioning.dir/build.make turtle5k/CMakeFiles/positioning.dir/build
+.PHONY : positioning/fast
 
 # Convenience name for target.
 turtle5k/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
@@ -360,6 +430,20 @@ strategy/fast:
 .PHONY : strategy/fast
 
 # Convenience name for target.
+turtle5k/CMakeFiles/tactics.dir/rule:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f CMakeFiles/Makefile2 turtle5k/CMakeFiles/tactics.dir/rule
+.PHONY : turtle5k/CMakeFiles/tactics.dir/rule
+
+# Convenience name for target.
+tactics: turtle5k/CMakeFiles/tactics.dir/rule
+.PHONY : tactics
+
+# fast build rule for target.
+tactics/fast:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/tactics.dir/build.make turtle5k/CMakeFiles/tactics.dir/build
+.PHONY : tactics/fast
+
+# Convenience name for target.
 turtle5k/CMakeFiles/wheelcontrol.dir/rule:
 	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f CMakeFiles/Makefile2 turtle5k/CMakeFiles/wheelcontrol.dir/rule
 .PHONY : turtle5k/CMakeFiles/wheelcontrol.dir/rule
@@ -387,197 +471,320 @@ world/fast:
 	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/world.dir/build.make turtle5k/CMakeFiles/world.dir/build
 .PHONY : world/fast
 
-src/BallHandling.o: src/BallHandling.cpp.o
-.PHONY : src/BallHandling.o
+src/ballcontrol.o: src/ballcontrol.cpp.o
+.PHONY : src/ballcontrol.o
 
 # target to build an object file
-src/BallHandling.cpp.o:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/ballhandling.dir/build.make turtle5k/CMakeFiles/ballhandling.dir/src/BallHandling.cpp.o
-.PHONY : src/BallHandling.cpp.o
+src/ballcontrol.cpp.o:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/ballcontrol.dir/build.make turtle5k/CMakeFiles/ballcontrol.dir/src/ballcontrol.cpp.o
+.PHONY : src/ballcontrol.cpp.o
 
-src/BallHandling.i: src/BallHandling.cpp.i
-.PHONY : src/BallHandling.i
+src/ballcontrol.i: src/ballcontrol.cpp.i
+.PHONY : src/ballcontrol.i
 
 # target to preprocess a source file
-src/BallHandling.cpp.i:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/ballhandling.dir/build.make turtle5k/CMakeFiles/ballhandling.dir/src/BallHandling.cpp.i
-.PHONY : src/BallHandling.cpp.i
+src/ballcontrol.cpp.i:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/ballcontrol.dir/build.make turtle5k/CMakeFiles/ballcontrol.dir/src/ballcontrol.cpp.i
+.PHONY : src/ballcontrol.cpp.i
 
-src/BallHandling.s: src/BallHandling.cpp.s
-.PHONY : src/BallHandling.s
+src/ballcontrol.s: src/ballcontrol.cpp.s
+.PHONY : src/ballcontrol.s
 
 # target to generate assembly for a file
-src/BallHandling.cpp.s:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/ballhandling.dir/build.make turtle5k/CMakeFiles/ballhandling.dir/src/BallHandling.cpp.s
-.PHONY : src/BallHandling.cpp.s
+src/ballcontrol.cpp.s:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/ballcontrol.dir/build.make turtle5k/CMakeFiles/ballcontrol.dir/src/ballcontrol.cpp.s
+.PHONY : src/ballcontrol.cpp.s
 
-src/Ball_Detection.o: src/Ball_Detection.cpp.o
-.PHONY : src/Ball_Detection.o
+src/balldetector.o: src/balldetector.cpp.o
+.PHONY : src/balldetector.o
 
 # target to build an object file
-src/Ball_Detection.cpp.o:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/ball_detection.dir/build.make turtle5k/CMakeFiles/ball_detection.dir/src/Ball_Detection.cpp.o
-.PHONY : src/Ball_Detection.cpp.o
+src/balldetector.cpp.o:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/balldetector.dir/build.make turtle5k/CMakeFiles/balldetector.dir/src/balldetector.cpp.o
+.PHONY : src/balldetector.cpp.o
 
-src/Ball_Detection.i: src/Ball_Detection.cpp.i
-.PHONY : src/Ball_Detection.i
+src/balldetector.i: src/balldetector.cpp.i
+.PHONY : src/balldetector.i
 
 # target to preprocess a source file
-src/Ball_Detection.cpp.i:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/ball_detection.dir/build.make turtle5k/CMakeFiles/ball_detection.dir/src/Ball_Detection.cpp.i
-.PHONY : src/Ball_Detection.cpp.i
+src/balldetector.cpp.i:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/balldetector.dir/build.make turtle5k/CMakeFiles/balldetector.dir/src/balldetector.cpp.i
+.PHONY : src/balldetector.cpp.i
 
-src/Ball_Detection.s: src/Ball_Detection.cpp.s
-.PHONY : src/Ball_Detection.s
+src/balldetector.s: src/balldetector.cpp.s
+.PHONY : src/balldetector.s
 
 # target to generate assembly for a file
-src/Ball_Detection.cpp.s:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/ball_detection.dir/build.make turtle5k/CMakeFiles/ball_detection.dir/src/Ball_Detection.cpp.s
-.PHONY : src/Ball_Detection.cpp.s
+src/balldetector.cpp.s:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/balldetector.dir/build.make turtle5k/CMakeFiles/balldetector.dir/src/balldetector.cpp.s
+.PHONY : src/balldetector.cpp.s
 
-src/Localisation.o: src/Localisation.cpp.o
-.PHONY : src/Localisation.o
+src/camera.o: src/camera.cpp.o
+.PHONY : src/camera.o
 
 # target to build an object file
-src/Localisation.cpp.o:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/localisation.dir/build.make turtle5k/CMakeFiles/localisation.dir/src/Localisation.cpp.o
-.PHONY : src/Localisation.cpp.o
+src/camera.cpp.o:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/camera.dir/build.make turtle5k/CMakeFiles/camera.dir/src/camera.cpp.o
+.PHONY : src/camera.cpp.o
 
-src/Localisation.i: src/Localisation.cpp.i
-.PHONY : src/Localisation.i
+src/camera.i: src/camera.cpp.i
+.PHONY : src/camera.i
 
 # target to preprocess a source file
-src/Localisation.cpp.i:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/localisation.dir/build.make turtle5k/CMakeFiles/localisation.dir/src/Localisation.cpp.i
-.PHONY : src/Localisation.cpp.i
+src/camera.cpp.i:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/camera.dir/build.make turtle5k/CMakeFiles/camera.dir/src/camera.cpp.i
+.PHONY : src/camera.cpp.i
 
-src/Localisation.s: src/Localisation.cpp.s
-.PHONY : src/Localisation.s
+src/camera.s: src/camera.cpp.s
+.PHONY : src/camera.s
 
 # target to generate assembly for a file
-src/Localisation.cpp.s:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/localisation.dir/build.make turtle5k/CMakeFiles/localisation.dir/src/Localisation.cpp.s
-.PHONY : src/Localisation.cpp.s
+src/camera.cpp.s:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/camera.dir/build.make turtle5k/CMakeFiles/camera.dir/src/camera.cpp.s
+.PHONY : src/camera.cpp.s
 
-src/Pathfinding.o: src/Pathfinding.cpp.o
-.PHONY : src/Pathfinding.o
+src/commands.o: src/commands.cpp.o
+.PHONY : src/commands.o
 
 # target to build an object file
-src/Pathfinding.cpp.o:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/pathfinding.dir/build.make turtle5k/CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.o
-.PHONY : src/Pathfinding.cpp.o
+src/commands.cpp.o:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/commands.dir/build.make turtle5k/CMakeFiles/commands.dir/src/commands.cpp.o
+.PHONY : src/commands.cpp.o
 
-src/Pathfinding.i: src/Pathfinding.cpp.i
-.PHONY : src/Pathfinding.i
+src/commands.i: src/commands.cpp.i
+.PHONY : src/commands.i
 
 # target to preprocess a source file
-src/Pathfinding.cpp.i:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/pathfinding.dir/build.make turtle5k/CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.i
-.PHONY : src/Pathfinding.cpp.i
+src/commands.cpp.i:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/commands.dir/build.make turtle5k/CMakeFiles/commands.dir/src/commands.cpp.i
+.PHONY : src/commands.cpp.i
 
-src/Pathfinding.s: src/Pathfinding.cpp.s
-.PHONY : src/Pathfinding.s
+src/commands.s: src/commands.cpp.s
+.PHONY : src/commands.s
 
 # target to generate assembly for a file
-src/Pathfinding.cpp.s:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/pathfinding.dir/build.make turtle5k/CMakeFiles/pathfinding.dir/src/Pathfinding.cpp.s
-.PHONY : src/Pathfinding.cpp.s
+src/commands.cpp.s:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/commands.dir/build.make turtle5k/CMakeFiles/commands.dir/src/commands.cpp.s
+.PHONY : src/commands.cpp.s
 
-src/Shooting.o: src/Shooting.cpp.o
-.PHONY : src/Shooting.o
+src/compass.o: src/compass.cpp.o
+.PHONY : src/compass.o
 
 # target to build an object file
-src/Shooting.cpp.o:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/shooting.dir/build.make turtle5k/CMakeFiles/shooting.dir/src/Shooting.cpp.o
-.PHONY : src/Shooting.cpp.o
+src/compass.cpp.o:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/compass.dir/build.make turtle5k/CMakeFiles/compass.dir/src/compass.cpp.o
+.PHONY : src/compass.cpp.o
 
-src/Shooting.i: src/Shooting.cpp.i
-.PHONY : src/Shooting.i
+src/compass.i: src/compass.cpp.i
+.PHONY : src/compass.i
 
 # target to preprocess a source file
-src/Shooting.cpp.i:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/shooting.dir/build.make turtle5k/CMakeFiles/shooting.dir/src/Shooting.cpp.i
-.PHONY : src/Shooting.cpp.i
+src/compass.cpp.i:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/compass.dir/build.make turtle5k/CMakeFiles/compass.dir/src/compass.cpp.i
+.PHONY : src/compass.cpp.i
 
-src/Shooting.s: src/Shooting.cpp.s
-.PHONY : src/Shooting.s
+src/compass.s: src/compass.cpp.s
+.PHONY : src/compass.s
 
 # target to generate assembly for a file
-src/Shooting.cpp.s:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/shooting.dir/build.make turtle5k/CMakeFiles/shooting.dir/src/Shooting.cpp.s
-.PHONY : src/Shooting.cpp.s
+src/compass.cpp.s:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/compass.dir/build.make turtle5k/CMakeFiles/compass.dir/src/compass.cpp.s
+.PHONY : src/compass.cpp.s
 
-src/Strategy.o: src/Strategy.cpp.o
-.PHONY : src/Strategy.o
+src/goaldetector.o: src/goaldetector.cpp.o
+.PHONY : src/goaldetector.o
 
 # target to build an object file
-src/Strategy.cpp.o:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/strategy.dir/build.make turtle5k/CMakeFiles/strategy.dir/src/Strategy.cpp.o
-.PHONY : src/Strategy.cpp.o
+src/goaldetector.cpp.o:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/goaldetector.dir/build.make turtle5k/CMakeFiles/goaldetector.dir/src/goaldetector.cpp.o
+.PHONY : src/goaldetector.cpp.o
 
-src/Strategy.i: src/Strategy.cpp.i
-.PHONY : src/Strategy.i
+src/goaldetector.i: src/goaldetector.cpp.i
+.PHONY : src/goaldetector.i
 
 # target to preprocess a source file
-src/Strategy.cpp.i:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/strategy.dir/build.make turtle5k/CMakeFiles/strategy.dir/src/Strategy.cpp.i
-.PHONY : src/Strategy.cpp.i
+src/goaldetector.cpp.i:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/goaldetector.dir/build.make turtle5k/CMakeFiles/goaldetector.dir/src/goaldetector.cpp.i
+.PHONY : src/goaldetector.cpp.i
 
-src/Strategy.s: src/Strategy.cpp.s
-.PHONY : src/Strategy.s
+src/goaldetector.s: src/goaldetector.cpp.s
+.PHONY : src/goaldetector.s
 
 # target to generate assembly for a file
-src/Strategy.cpp.s:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/strategy.dir/build.make turtle5k/CMakeFiles/strategy.dir/src/Strategy.cpp.s
-.PHONY : src/Strategy.cpp.s
+src/goaldetector.cpp.s:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/goaldetector.dir/build.make turtle5k/CMakeFiles/goaldetector.dir/src/goaldetector.cpp.s
+.PHONY : src/goaldetector.cpp.s
 
-src/WheelControl.o: src/WheelControl.cpp.o
-.PHONY : src/WheelControl.o
+src/pathfinding.o: src/pathfinding.cpp.o
+.PHONY : src/pathfinding.o
 
 # target to build an object file
-src/WheelControl.cpp.o:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/wheelcontrol.dir/build.make turtle5k/CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.o
-.PHONY : src/WheelControl.cpp.o
+src/pathfinding.cpp.o:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/pathfinding.dir/build.make turtle5k/CMakeFiles/pathfinding.dir/src/pathfinding.cpp.o
+.PHONY : src/pathfinding.cpp.o
 
-src/WheelControl.i: src/WheelControl.cpp.i
-.PHONY : src/WheelControl.i
+src/pathfinding.i: src/pathfinding.cpp.i
+.PHONY : src/pathfinding.i
 
 # target to preprocess a source file
-src/WheelControl.cpp.i:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/wheelcontrol.dir/build.make turtle5k/CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.i
-.PHONY : src/WheelControl.cpp.i
+src/pathfinding.cpp.i:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/pathfinding.dir/build.make turtle5k/CMakeFiles/pathfinding.dir/src/pathfinding.cpp.i
+.PHONY : src/pathfinding.cpp.i
 
-src/WheelControl.s: src/WheelControl.cpp.s
-.PHONY : src/WheelControl.s
+src/pathfinding.s: src/pathfinding.cpp.s
+.PHONY : src/pathfinding.s
 
 # target to generate assembly for a file
-src/WheelControl.cpp.s:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/wheelcontrol.dir/build.make turtle5k/CMakeFiles/wheelcontrol.dir/src/WheelControl.cpp.s
-.PHONY : src/WheelControl.cpp.s
+src/pathfinding.cpp.s:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/pathfinding.dir/build.make turtle5k/CMakeFiles/pathfinding.dir/src/pathfinding.cpp.s
+.PHONY : src/pathfinding.cpp.s
 
-src/World.o: src/World.cpp.o
-.PHONY : src/World.o
+src/positioning.o: src/positioning.cpp.o
+.PHONY : src/positioning.o
 
 # target to build an object file
-src/World.cpp.o:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/world.dir/build.make turtle5k/CMakeFiles/world.dir/src/World.cpp.o
-.PHONY : src/World.cpp.o
+src/positioning.cpp.o:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/ballhandling.dir/build.make turtle5k/CMakeFiles/ballhandling.dir/src/positioning.cpp.o
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/positioning.dir/build.make turtle5k/CMakeFiles/positioning.dir/src/positioning.cpp.o
+.PHONY : src/positioning.cpp.o
 
-src/World.i: src/World.cpp.i
-.PHONY : src/World.i
+src/positioning.i: src/positioning.cpp.i
+.PHONY : src/positioning.i
 
 # target to preprocess a source file
-src/World.cpp.i:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/world.dir/build.make turtle5k/CMakeFiles/world.dir/src/World.cpp.i
-.PHONY : src/World.cpp.i
+src/positioning.cpp.i:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/ballhandling.dir/build.make turtle5k/CMakeFiles/ballhandling.dir/src/positioning.cpp.i
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/positioning.dir/build.make turtle5k/CMakeFiles/positioning.dir/src/positioning.cpp.i
+.PHONY : src/positioning.cpp.i
 
-src/World.s: src/World.cpp.s
-.PHONY : src/World.s
+src/positioning.s: src/positioning.cpp.s
+.PHONY : src/positioning.s
 
 # target to generate assembly for a file
-src/World.cpp.s:
-	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/world.dir/build.make turtle5k/CMakeFiles/world.dir/src/World.cpp.s
-.PHONY : src/World.cpp.s
+src/positioning.cpp.s:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/ballhandling.dir/build.make turtle5k/CMakeFiles/ballhandling.dir/src/positioning.cpp.s
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/positioning.dir/build.make turtle5k/CMakeFiles/positioning.dir/src/positioning.cpp.s
+.PHONY : src/positioning.cpp.s
+
+src/shooting.o: src/shooting.cpp.o
+.PHONY : src/shooting.o
+
+# target to build an object file
+src/shooting.cpp.o:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/shooting.dir/build.make turtle5k/CMakeFiles/shooting.dir/src/shooting.cpp.o
+.PHONY : src/shooting.cpp.o
+
+src/shooting.i: src/shooting.cpp.i
+.PHONY : src/shooting.i
+
+# target to preprocess a source file
+src/shooting.cpp.i:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/shooting.dir/build.make turtle5k/CMakeFiles/shooting.dir/src/shooting.cpp.i
+.PHONY : src/shooting.cpp.i
+
+src/shooting.s: src/shooting.cpp.s
+.PHONY : src/shooting.s
+
+# target to generate assembly for a file
+src/shooting.cpp.s:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/shooting.dir/build.make turtle5k/CMakeFiles/shooting.dir/src/shooting.cpp.s
+.PHONY : src/shooting.cpp.s
+
+src/strategy.o: src/strategy.cpp.o
+.PHONY : src/strategy.o
+
+# target to build an object file
+src/strategy.cpp.o:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/strategy.dir/build.make turtle5k/CMakeFiles/strategy.dir/src/strategy.cpp.o
+.PHONY : src/strategy.cpp.o
+
+src/strategy.i: src/strategy.cpp.i
+.PHONY : src/strategy.i
+
+# target to preprocess a source file
+src/strategy.cpp.i:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/strategy.dir/build.make turtle5k/CMakeFiles/strategy.dir/src/strategy.cpp.i
+.PHONY : src/strategy.cpp.i
+
+src/strategy.s: src/strategy.cpp.s
+.PHONY : src/strategy.s
+
+# target to generate assembly for a file
+src/strategy.cpp.s:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/strategy.dir/build.make turtle5k/CMakeFiles/strategy.dir/src/strategy.cpp.s
+.PHONY : src/strategy.cpp.s
+
+src/tactics.o: src/tactics.cpp.o
+.PHONY : src/tactics.o
+
+# target to build an object file
+src/tactics.cpp.o:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/tactics.dir/build.make turtle5k/CMakeFiles/tactics.dir/src/tactics.cpp.o
+.PHONY : src/tactics.cpp.o
+
+src/tactics.i: src/tactics.cpp.i
+.PHONY : src/tactics.i
+
+# target to preprocess a source file
+src/tactics.cpp.i:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/tactics.dir/build.make turtle5k/CMakeFiles/tactics.dir/src/tactics.cpp.i
+.PHONY : src/tactics.cpp.i
+
+src/tactics.s: src/tactics.cpp.s
+.PHONY : src/tactics.s
+
+# target to generate assembly for a file
+src/tactics.cpp.s:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/tactics.dir/build.make turtle5k/CMakeFiles/tactics.dir/src/tactics.cpp.s
+.PHONY : src/tactics.cpp.s
+
+src/wheelcontrol.o: src/wheelcontrol.cpp.o
+.PHONY : src/wheelcontrol.o
+
+# target to build an object file
+src/wheelcontrol.cpp.o:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/wheelcontrol.dir/build.make turtle5k/CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.o
+.PHONY : src/wheelcontrol.cpp.o
+
+src/wheelcontrol.i: src/wheelcontrol.cpp.i
+.PHONY : src/wheelcontrol.i
+
+# target to preprocess a source file
+src/wheelcontrol.cpp.i:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/wheelcontrol.dir/build.make turtle5k/CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.i
+.PHONY : src/wheelcontrol.cpp.i
+
+src/wheelcontrol.s: src/wheelcontrol.cpp.s
+.PHONY : src/wheelcontrol.s
+
+# target to generate assembly for a file
+src/wheelcontrol.cpp.s:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/wheelcontrol.dir/build.make turtle5k/CMakeFiles/wheelcontrol.dir/src/wheelcontrol.cpp.s
+.PHONY : src/wheelcontrol.cpp.s
+
+src/world.o: src/world.cpp.o
+.PHONY : src/world.o
+
+# target to build an object file
+src/world.cpp.o:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/world.dir/build.make turtle5k/CMakeFiles/world.dir/src/world.cpp.o
+.PHONY : src/world.cpp.o
+
+src/world.i: src/world.cpp.i
+.PHONY : src/world.i
+
+# target to preprocess a source file
+src/world.cpp.i:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/world.dir/build.make turtle5k/CMakeFiles/world.dir/src/world.cpp.i
+.PHONY : src/world.cpp.i
+
+src/world.s: src/world.cpp.s
+.PHONY : src/world.s
+
+# target to generate assembly for a file
+src/world.cpp.s:
+	cd /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build && $(MAKE) -f turtle5k/CMakeFiles/world.dir/build.make turtle5k/CMakeFiles/world.dir/src/world.cpp.s
+.PHONY : src/world.cpp.s
 
 # Help Target
 help:
@@ -585,15 +792,20 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... ball_detection"
+	@echo "... ballcontrol"
+	@echo "... balldetector"
 	@echo "... ballhandling"
+	@echo "... camera"
+	@echo "... commands"
+	@echo "... compass"
 	@echo "... edit_cache"
+	@echo "... goaldetector"
 	@echo "... install"
 	@echo "... install/local"
 	@echo "... install/strip"
 	@echo "... list_install_components"
-	@echo "... localisation"
 	@echo "... pathfinding"
+	@echo "... positioning"
 	@echo "... rebuild_cache"
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... roscpp_generate_messages_lisp"
@@ -606,33 +818,49 @@ help:
 	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... strategy"
+	@echo "... tactics"
 	@echo "... test"
 	@echo "... wheelcontrol"
 	@echo "... world"
-	@echo "... src/BallHandling.o"
-	@echo "... src/BallHandling.i"
-	@echo "... src/BallHandling.s"
-	@echo "... src/Ball_Detection.o"
-	@echo "... src/Ball_Detection.i"
-	@echo "... src/Ball_Detection.s"
-	@echo "... src/Localisation.o"
-	@echo "... src/Localisation.i"
-	@echo "... src/Localisation.s"
-	@echo "... src/Pathfinding.o"
-	@echo "... src/Pathfinding.i"
-	@echo "... src/Pathfinding.s"
-	@echo "... src/Shooting.o"
-	@echo "... src/Shooting.i"
-	@echo "... src/Shooting.s"
-	@echo "... src/Strategy.o"
-	@echo "... src/Strategy.i"
-	@echo "... src/Strategy.s"
-	@echo "... src/WheelControl.o"
-	@echo "... src/WheelControl.i"
-	@echo "... src/WheelControl.s"
-	@echo "... src/World.o"
-	@echo "... src/World.i"
-	@echo "... src/World.s"
+	@echo "... src/ballcontrol.o"
+	@echo "... src/ballcontrol.i"
+	@echo "... src/ballcontrol.s"
+	@echo "... src/balldetector.o"
+	@echo "... src/balldetector.i"
+	@echo "... src/balldetector.s"
+	@echo "... src/camera.o"
+	@echo "... src/camera.i"
+	@echo "... src/camera.s"
+	@echo "... src/commands.o"
+	@echo "... src/commands.i"
+	@echo "... src/commands.s"
+	@echo "... src/compass.o"
+	@echo "... src/compass.i"
+	@echo "... src/compass.s"
+	@echo "... src/goaldetector.o"
+	@echo "... src/goaldetector.i"
+	@echo "... src/goaldetector.s"
+	@echo "... src/pathfinding.o"
+	@echo "... src/pathfinding.i"
+	@echo "... src/pathfinding.s"
+	@echo "... src/positioning.o"
+	@echo "... src/positioning.i"
+	@echo "... src/positioning.s"
+	@echo "... src/shooting.o"
+	@echo "... src/shooting.i"
+	@echo "... src/shooting.s"
+	@echo "... src/strategy.o"
+	@echo "... src/strategy.i"
+	@echo "... src/strategy.s"
+	@echo "... src/tactics.o"
+	@echo "... src/tactics.i"
+	@echo "... src/tactics.s"
+	@echo "... src/wheelcontrol.o"
+	@echo "... src/wheelcontrol.i"
+	@echo "... src/wheelcontrol.s"
+	@echo "... src/world.o"
+	@echo "... src/world.i"
+	@echo "... src/world.s"
 .PHONY : help
 
 

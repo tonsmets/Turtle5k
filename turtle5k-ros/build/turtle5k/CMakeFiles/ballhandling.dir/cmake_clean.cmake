@@ -1,5 +1,5 @@
 FILE(REMOVE_RECURSE
-  "CMakeFiles/ballhandling.dir/src/BallHandling.cpp.o"
+  "CMakeFiles/ballhandling.dir/src/positioning.cpp.o"
   "/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/ballhandling.pdb"
   "/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib/turtle5k/ballhandling"
 )

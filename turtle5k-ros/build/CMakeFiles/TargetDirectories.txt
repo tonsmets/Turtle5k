@@ -1,10 +1,15 @@
-/home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k/CMakeFiles/ball_detection.dir
+/home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k/CMakeFiles/ballcontrol.dir
+/home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k/CMakeFiles/balldetector.dir
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k/CMakeFiles/ballhandling.dir
+/home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k/CMakeFiles/camera.dir
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles/clean_test_results.dir
+/home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k/CMakeFiles/commands.dir
+/home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k/CMakeFiles/compass.dir
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles/download_extra_data.dir
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles/doxygen.dir
-/home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k/CMakeFiles/localisation.dir
+/home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k/CMakeFiles/goaldetector.dir
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k/CMakeFiles/pathfinding.dir
+/home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k/CMakeFiles/positioning.dir
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k/CMakeFiles/roscpp_generate_messages_cpp.dir
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k/CMakeFiles/roscpp_generate_messages_lisp.dir
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k/CMakeFiles/roscpp_generate_messages_py.dir
@@ -17,6 +22,7 @@
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k/CMakeFiles/std_msgs_generate_messages_lisp.dir
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k/CMakeFiles/std_msgs_generate_messages_py.dir
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k/CMakeFiles/strategy.dir
+/home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k/CMakeFiles/tactics.dir
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/CMakeFiles/tests.dir
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k/CMakeFiles/wheelcontrol.dir
 /home/student/turtle5k-git/Turtle5k/turtle5k-ros/build/turtle5k/CMakeFiles/world.dir
