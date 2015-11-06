@@ -1,0 +1,2 @@
+turtle5k
+-DCATKIN_DEVEL_PREFIX=/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel -DCMAKE_INSTALL_PREFIX=/home/student/turtle5k-git/Turtle5k/turtle5k-ros/install -G Unix Makefiles
