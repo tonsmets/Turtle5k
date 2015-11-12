@@ -1,8 +1,0 @@
-prefix=/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel
-
-Name: turtle5k
-Description: Description of turtle5k
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/student/turtle5k-git/Turtle5k/turtle5k-ros/devel/lib 
-Requires: 
