@@ -25,29 +25,20 @@ int main(int argc, char** argv) {
 	   ros::console::notifyLoggerLevelsChanged();
 	}
 
-	ROS_INFO_STREAM("Hello, world!");
-	ROS_INFO("Hello %s", "World");
-	ROS_DEBUG("Hello %s", "World");
-	ROS_DEBUG_STREAM("Hello " << "World");
-
-	std::cout << "test" << std::endl;
-	ROS_INFO_STREAM("Start2" << std::endl);
-
 	ros::init(argc, argv, "t5ktactics");
 	ros::NodeHandle pHandle;
-	
-	ROS_INFO_STREAM("Start" << std::endl);
 
 	pBallHandlingInfoPub = pHandle.advertise<std_msgs::String>("/t5k/ballhandlinginfo", 1000);
 	pBallHandlingCmdSub = pHandle.subscribe("/t5k/ballhandlingcommands", 1000, frameCallback);
 	
 	ros::Rate loop_rate(10);
 
+	ballHandler.setRotationSpeed(10);
+
 	while (ros::ok()) {
 		std_msgs::String msg;
 		msg.data = std::to_string(ballHandler.getRotationSpeed());
 		ROS_INFO("Process: %s", msg.data.c_str());
-
 		ROS_INFO_STREAM("Data: " << msg.data << std::endl);
 
 		pBallHandlingInfoPub.publish(msg);
