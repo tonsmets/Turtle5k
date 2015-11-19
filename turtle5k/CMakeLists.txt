@@ -10,14 +10,29 @@ find_package(
 	message_generation
 )
 
-catkin_package(
 
+
+add_message_files(
+	FILES
+	BallHandling.msg
+	Compass.msg
+	ShootingLever.msg
+)
+
+generate_messages()
+
+catkin_package(
+	CATKIN_DEPENDS message_runtime
 )
 
 include_directories(
 	${catkin_INCLUDE_DIRS}
 )
 
+
+
+
+###############################Nodes##############################
 add_executable(strategy src/strategy.cpp)
 target_link_libraries(strategy ${catkin_LIBRARIES})
 add_dependencies(strategy turtle5k_generate_messages_cpp)

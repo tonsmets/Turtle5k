@@ -1,2 +1,2 @@
-float64 speed
-float64 angle
+float64 pSpeed
+float64 pRadians

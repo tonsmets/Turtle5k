@@ -17,7 +17,7 @@ void frameCallback(const std_msgs::String::ConstPtr& aMessage)
 }
 
 int main(int argc, char** argv) {
-	ros::init(argc, argv, "t5k-tactics");
+	ros::init(argc, argv, "t5k_goaldetector");
 	ros::NodeHandle pHandle;
 	
 	pGoalLocationPub = pHandle.advertise<std_msgs::String>("/t5k/ballLocation", 1000);

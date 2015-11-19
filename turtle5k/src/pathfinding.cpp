@@ -19,7 +19,7 @@ void worldCallback(const std_msgs::String::ConstPtr& aMessage)
 }
 
 int main(int argc, char** argv) {
-	ros::init(argc, argv, "t5k-pathfinding");
+	ros::init(argc, argv, "t5k_pathfinding");
 	ros::NodeHandle pHandle;
 	
 	pWorldSub = pHandle.subscribe("/t5k/world", 1000, worldCallback);
