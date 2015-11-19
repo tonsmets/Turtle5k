@@ -10,7 +10,7 @@ find_package(
 	message_generation
 )
 
-
+find_package(OpenCV REQUIRED)
 
 add_message_files(
 	FILES
@@ -27,6 +27,7 @@ catkin_package(
 
 include_directories(
 	${catkin_INCLUDE_DIRS}
+	${OpenCV_INCLUDE_DIRS}
 )
 
 
@@ -86,7 +87,7 @@ target_link_libraries(compass ${catkin_LIBRARIES})
 add_dependencies(compass turtle5k_generate_messages_cpp)
 
 add_executable(camera src/camera.cpp)
-target_link_libraries(camera ${catkin_LIBRARIES})
+target_link_libraries(camera ${OpenCV_LIBRARIES} ${catkin_LIBRARIES})
 add_dependencies(camera turtle5k_generate_messages_cpp)
 
 # Stubs
