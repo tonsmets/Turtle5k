@@ -1,0 +1,16 @@
+<launch>
+	<node name="ballhandlingStub" pkg="turtle5k" type="ballhandling" launch-prefix="xterm -e" />
+	<node name="shootingLeverStub" pkg="turtle5k" type="shooting" />
+	<node name="compassStub" pkg="turtle5k" type="compass" />
+	
+	<node name="tactics" pkg="turtle5k" type="tactics" launch-prefix="xterm -e" />
+	<node name="pathfinding" pkg="turtle5k" type="pathfinding" />
+	<node name="commands" pkg="turtle5k" type="commands" />
+	<node name="world" pkg="turtle5k" type="world" />
+	<node name="ballcontrol" pkg="turtle5k" type="ballcontrol" />
+	<node name="wheelcontrol" pkg="turtle5k" type="wheelcontrol" />
+	<node name="positioning" pkg="turtle5k" type="positioning"  />
+	<node name="balldetector" pkg="turtle5k" type="balldetector" />
+	<node name="goaldetector" pkg="turtle5k" type="goaldetector" />
+	<node name="camera" pkg="turtle5k" type="camera" />
+</launch>

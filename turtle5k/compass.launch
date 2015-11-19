@@ -1,0 +1,3 @@
+<launch>
+	<node name="compassStub" pkg="turtle5k" type="compassStub" output="screen" launch-prefix="xterm -e"/>
+</launch>

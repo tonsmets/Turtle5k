@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(turtle5k)
 
+set(CMAKE_CXX_FLAGS "-std=c++0x ${CMAKE_CXX_FLAGS}")
+
 find_package(
 	catkin REQUIRED COMPONENTS
 	roscpp
@@ -8,13 +10,12 @@ find_package(
 	message_generation
 )
 
-
-
 add_message_files(
 	FILES
 	BallHandlingMessage.msg
 	CompassMessage.msg
 	ShootingLeverMessage.msg
+	MovementMessage.msg
 )
 
 generate_messages()
@@ -86,4 +87,27 @@ add_dependencies(compass turtle5k_generate_messages_cpp)
 add_executable(camera src/camera.cpp)
 target_link_libraries(camera ${catkin_LIBRARIES})
 add_dependencies(camera turtle5k_generate_messages_cpp)
-###############################Nodes##############################
+
+# Hardware source
+file(GLOB Library_SOURCES src/hardware/*.cpp)
+file(GLOB Library_HEADER src/hardware/*.h)
+
+# Ball handling
+add_executable(ballhandlingStub src/stubs/ballhandlingStub.cpp ${Library_SOURCES} ${Library_HEADER})
+target_link_libraries(ballhandlingStub ${catkin_LIBRARIES})
+add_dependencies(ballhandlingStub turtle5k_generate_messages_cpp)
+
+# Compass
+add_executable(compassStub src/stubs/compassStub.cpp ${Library_SOURCES} ${Library_HEADER})
+target_link_libraries(compassStub ${catkin_LIBRARIES})
+add_dependencies(compassStub turtle5k_generate_messages_cpp)
+
+# Shooting
+add_executable(shootingLeverStub src/stubs/shootingLeverStub.cpp ${Library_SOURCES} ${Library_HEADER})
+target_link_libraries(shootingLeverStub ${catkin_LIBRARIES})
+add_dependencies(shootingLeverStub turtle5k_generate_messages_cpp)
+
+# Movement
+add_executable(movementStub src/stubs/movementStub.cpp ${Library_SOURCES} ${Library_HEADER})
+target_link_libraries(movementStub ${catkin_LIBRARIES})
+add_dependencies(shootingLeverStub turtle5k_generate_messages_cpp)
