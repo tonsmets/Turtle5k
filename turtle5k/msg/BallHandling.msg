@@ -1,1 +1,1 @@
-float64 rps
+float64 pRevolutionsPerSecond

@@ -20,7 +20,7 @@ void tacticsCallback(const std_msgs::String::ConstPtr& aMessage)
 
 
 int main(int argc, char** argv) {
-	ros::init(argc, argv, "t5k-tactics");
+	ros::init(argc, argv, "t5k_commands");
 	ros::NodeHandle pHandle;
 	
 	pWheelCmdPub = pHandle.advertise<std_msgs::String>("/t5k/wheelcontrolcommands", 1000);
