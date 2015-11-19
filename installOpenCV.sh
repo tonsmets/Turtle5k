@@ -3,6 +3,7 @@ version="2.4.11"
 echo "Installing OpenCV" $version
 mkdir OpenCV
 cd OpenCV
+cp ../turtle5k/src/binary_includes/Turtle-5K.png ~/
 echo "Removing any pre-installed ffmpeg and x264"
 sudo apt-get -qq remove ffmpeg x264 libx264-dev
 echo "Installing Dependenices"
