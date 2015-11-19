@@ -7,6 +7,7 @@
 
 ros::Publisher pShootingInfoPub;
 ros::Subscriber pShootingCmdSub;
+ros::Subscriber pShootCmdSub;
 
 ShootingLeverTestStub shootingLeverTestStub;
 
@@ -36,8 +37,7 @@ int main(int argc, char** argv) {
 
 	pShootingInfoPub = pHandle.advertise<std_msgs::String>("/t5k/shootinginfo", 1000);
 	pShootingCmdSub = pHandle.subscribe("/t5k/shootingcommands", 1000, frameCallback);
-	//pShootingCmdSub = pHandle.subscribe("/t5k/shootingshoot", 1000, frameCallbackShoot);
-
+	pShootCmdSub = pHandle.subscribe("/t5k/shootingshoot", 1000, frameCallbackShoot);
 
 	while(ros::ok()) {
 
@@ -46,7 +46,7 @@ int main(int argc, char** argv) {
 		std_msgs::String pMessage;
 		pMessage.data = std::to_string(angle);
 
-		//ROS_INFO_STREAM("Shooting angle: " << pMessage.data << std::endl);
+		ROS_INFO_STREAM("Shooting angle: " << pMessage.data << std::endl);
 
 		pShootingInfoPub.publish(pMessage);
 		ros::spinOnce();
