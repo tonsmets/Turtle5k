@@ -5,7 +5,7 @@ void Movement::setSpeed(double mps)
 	throw "not implemented";
 }
 
-void Movement::setAngle(double degrees)
+void Movement::setAngle(double radians)
 {
 	throw "not implemented";
 }

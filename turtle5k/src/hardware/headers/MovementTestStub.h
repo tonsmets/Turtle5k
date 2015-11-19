@@ -4,14 +4,14 @@
 class MovementTestStub : public IMovement {
 private:
 	double mps;
-	double degrees;
+	double radians;
 
 public:
 
 	MovementTestStub();
 
 	void setSpeed(double mps) override;
-	void setAngle(double degrees) override;
+	void setAngle(double radians) override;
 	double getAngle() override;
 	double getSpeed() override;
 };

@@ -10,12 +10,11 @@ find_package(
 	message_generation
 )
 
-
-
 add_message_files(
 	FILES
 	BallHandling.msg
 	Compass.msg
+	Movement.msg
 	ShootingLever.msg
 )
 

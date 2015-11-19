@@ -1,6 +1,6 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
-
+#include "turtle5k/Movement.h"
 #include "../hardware/headers/MovementTestStub.h"
 
 ros::Publisher pVelocityPub;
@@ -10,23 +10,30 @@ ros::Subscriber pEncoderDataSub;
 
 MovementTestStub movement;
 
-void wheelcontrolcommandsCallback(const std_msgs::Movement::ConstPtr& aMessage)
+void wheelcontrolcommandsCallback(const turtle5k::Movement movementMsg)
 {
-	ROS_INFO("[WHEELCONTROL] Got %f %f, From: COMMANDS", aMessage->speed, aMessage->angle);
+	ROS_INFO("[WHEELCONTROL] Got %f %f, From: COMMANDS", movementMsg.pSpeed, movementMsg.pRadians);
 
-	double newSpeed = atof(aMessage->data.c_str());
-	movement.setSpeed(newSpeed);
-	ROS_INFO("setSpeed: [%f]", newSpeed);
+	movement.setAngle(movementMsg.pRadians);
+	ROS_INFO("setAngle: [%f]", movementMsg.pRadians);
+
+	movement.setSpeed(movementMsg.pSpeed);
+	ROS_INFO("setSpeed: [%f]", movementMsg.pSpeed);
 }
 
 void encoderDataCallback(const std_msgs::String::ConstPtr& aMessage)
 {
 	ROS_INFO("[WHEELCONTROL] Got %s, From: WHEELDRIVER", aMessage->data.c_str());
-	std_msgs::String pMessage = getVelocity();
-	pVelocityPub.publish(pMessage);
+	//std_msgs::String pMessage = getVelocity();
+	//pVelocityPub.publish(pMessage);
 }
 
 int main(int argc, char** argv) {
+
+	if( ros::console::set_logger_level(ROSCONSOLE_DEFAULT_NAME, ros::console::levels::Info) ) {
+	   ros::console::notifyLoggerLevelsChanged();
+	}
+
 	ros::init(argc, argv, "t5k-wheelcontrol");
 	ros::NodeHandle pHandle;
 	
@@ -35,7 +42,12 @@ int main(int argc, char** argv) {
 	pWheelControlCmdSub = pHandle.subscribe("/t5k/wheelcontrolcommands", 1000, wheelcontrolcommandsCallback);
 	pEncoderDataSub = pHandle.subscribe("/t5k/encoderdata", 1000, encoderDataCallback);
 	
-	ros::spin();
-	
+	ros::Rate loop_rate(10);
+
+	while (ros::ok()) {
+		ros::spinOnce();
+		loop_rate.sleep();
+	}
+		
 	return 0;
 }
