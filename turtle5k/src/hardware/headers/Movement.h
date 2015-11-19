@@ -11,5 +11,5 @@ public:
 	void setSpeed(double mps) override;
 	void setAngle(double degrees) override;
 	double getAngle() override;
-	double getSeed() override;
+	double getSpeed() override;
 };

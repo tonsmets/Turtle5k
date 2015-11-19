@@ -15,7 +15,7 @@ double Movement::getAngle()
 	throw "not implemented";
 }
 
-double Movement::getSeed()
+double Movement::getSpeed()
 {
 	throw "not implemented";
 }

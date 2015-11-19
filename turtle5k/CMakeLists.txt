@@ -7,6 +7,7 @@ find_package(
 	catkin REQUIRED COMPONENTS
 	roscpp
 	std_msgs
+	message_generation
 )
 
 catkin_package(
@@ -90,4 +91,9 @@ add_dependencies(compassStub turtle5k_generate_messages_cpp)
 # Shooting
 add_executable(shootingLeverStub src/stubs/shootingLeverStub.cpp ${Library_SOURCES} ${Library_HEADER})
 target_link_libraries(shootingLeverStub ${catkin_LIBRARIES})
+add_dependencies(shootingLeverStub turtle5k_generate_messages_cpp)
+
+# Movement
+add_executable(movementStub src/stubs/movementStub.cpp ${Library_SOURCES} ${Library_HEADER})
+target_link_libraries(movementStub ${catkin_LIBRARIES})
 add_dependencies(shootingLeverStub turtle5k_generate_messages_cpp)
