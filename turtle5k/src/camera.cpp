@@ -1,11 +1,11 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
+#include "opencv2/core/core.hpp"
 
 ros::Publisher pFramePub;
 
-
 int main(int argc, char** argv) {
-	ros::init(argc, argv, "t5k-tactics");
+	ros::init(argc, argv, "t5k-camera");
 	ros::NodeHandle pHandle;
 	ros::Rate pRate(24);
 	
