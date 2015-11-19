@@ -22,7 +22,7 @@ double MovementTestStub::getAngle()
 	return this->degrees;
 }
 
-double MovementTestStub::getSeed()
+double MovementTestStub::getSpeed()
 {
 	return this->mps * (rand() % 10 / 10);
 }

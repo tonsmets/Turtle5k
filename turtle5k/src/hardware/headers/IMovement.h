@@ -9,5 +9,5 @@ public:
 	virtual void setAngle(double degrees) = 0;
 
 	virtual double getAngle() = 0;
-	virtual double getSeed() = 0;
+	virtual double getSpeed() = 0;
 };
