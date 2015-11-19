@@ -3,9 +3,9 @@
 
 
 int main(int argc, char** argv) {
+	ros::init(argc, argv, "t5k_strategy");
 	ros::NodeHandle pHandle;
 	
-	ros::init(argc, argv, "t5k_strategy");
 	ros::Publisher pStrategyPub = pHandle.advertise<std_msgs::String>("/t5k/strategy", 1000);
 	ros::Rate pRate(10);
 	

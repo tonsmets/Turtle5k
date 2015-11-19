@@ -5,16 +5,32 @@ find_package(
 	catkin REQUIRED COMPONENTS
 	roscpp
 	std_msgs
+	message_generation
 )
 
-catkin_package(
 
+
+add_message_files(
+	FILES
+	BallHandling.msg
+	Compass.msg
+	ShootingLever.msg
+)
+
+generate_messages()
+
+catkin_package(
+	CATKIN_DEPENDS message_runtime
 )
 
 include_directories(
 	${catkin_INCLUDE_DIRS}
 )
 
+
+
+
+###############################Nodes##############################
 add_executable(strategy src/strategy.cpp)
 target_link_libraries(strategy ${catkin_LIBRARIES})
 add_dependencies(strategy turtle5k_generate_messages_cpp)
@@ -70,3 +86,4 @@ add_dependencies(compass turtle5k_generate_messages_cpp)
 add_executable(camera src/camera.cpp)
 target_link_libraries(camera ${catkin_LIBRARIES})
 add_dependencies(camera turtle5k_generate_messages_cpp)
+###############################Nodes##############################
