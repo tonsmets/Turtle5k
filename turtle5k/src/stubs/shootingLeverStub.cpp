@@ -2,7 +2,9 @@
 
 #include "ros/ros.h"
 #include "std_msgs/String.h"
+#include "std_msgs/Int32.h"
 
+#include "turtle5k/ShootingLever.h"
 #include "../hardware/headers/ShootingLeverTestStub.h"
 
 ros::Publisher pShootingInfoPub;
@@ -11,22 +13,20 @@ ros::Subscriber pShootCmdSub;
 
 ShootingLeverTestStub shootingLeverTestStub;
 
-void frameCallback(const std_msgs::String::ConstPtr& aMessage)
+void frameCallback(const turtle5k::ShootingLever &aMessage)
 {
-	ROS_INFO("[SHOOTING] Got %s, For: Shooting", aMessage->data.c_str());
+	ROS_INFO("[SHOOTING] Got %i, For: Shooting", (int)aMessage.pShootingAngle);
 
-	int newAngle = atoi(aMessage->data.c_str());
-	shootingLeverTestStub.setAngle(newAngle);
-	ROS_INFO("setShootingAngle: [%i]", newAngle);
+	shootingLeverTestStub.setAngle(aMessage.pShootingAngle);
+	ROS_INFO("setShootingAngle: [%i]", (int)aMessage.pShootingAngle);
 }
 
-void frameCallbackShoot(const std_msgs::String::ConstPtr& aMessage)
+void frameCallbackShoot(const std_msgs::Int32 &aMessage)
 {
-	ROS_INFO("[SHOOTING] Got %s, For: Shoot", aMessage->data.c_str());
+	ROS_INFO("[SHOOTING] Got %s, For: Shoot", std::to_string(aMessage.data).c_str());
 
-	int meters = atoi(aMessage->data.c_str());
-	shootingLeverTestStub.shoot(meters);
-	ROS_INFO("shoot: [%i]", meters);
+	shootingLeverTestStub.shoot((int)aMessage.data);
+	ROS_INFO("shoot: [%i]", (int)aMessage.data);
 }
 
 int main(int argc, char** argv) {
@@ -35,7 +35,7 @@ int main(int argc, char** argv) {
 	ros::NodeHandle pHandle;
 	ros::Rate pRate(24);
 
-	pShootingInfoPub = pHandle.advertise<std_msgs::String>("/t5k/shootinginfo", 1000);
+	pShootingInfoPub = pHandle.advertise<turtle5k::ShootingLever>("/t5k/shootinginfo", 1000);
 	pShootingCmdSub = pHandle.subscribe("/t5k/shootingcommands", 1000, frameCallback);
 	pShootCmdSub = pHandle.subscribe("/t5k/shootingshoot", 1000, frameCallbackShoot);
 
@@ -43,10 +43,10 @@ int main(int argc, char** argv) {
 
 		double angle = shootingLeverTestStub.getAngle();
 
-		std_msgs::String pMessage;
-		pMessage.data = std::to_string(angle);
+		turtle5k::ShootingLever pMessage;
+		pMessage.pShootingAngle = angle;
 
-		ROS_INFO_STREAM("Shooting angle: " << pMessage.data << std::endl);
+		ROS_INFO_STREAM("Shooting angle: " << pMessage.pShootingAngle << std::endl);
 
 		pShootingInfoPub.publish(pMessage);
 		ros::spinOnce();
