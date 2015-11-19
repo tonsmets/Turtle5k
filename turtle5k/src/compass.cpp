@@ -5,7 +5,7 @@ ros::Publisher pCompassDataPub;
 
 
 int main(int argc, char** argv) {
-	ros::init(argc, argv, "t5k-tactics");
+	ros::init(argc, argv, "t5k_compass");
 	ros::NodeHandle pHandle;
 	ros::Rate pRate(24);
 	
