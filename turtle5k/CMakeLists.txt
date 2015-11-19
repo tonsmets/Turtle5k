@@ -86,3 +86,8 @@ add_dependencies(ballhandlingStub turtle5k_generate_messages_cpp)
 add_executable(compassStub src/stubs/compassStub.cpp ${Library_SOURCES} ${Library_HEADER})
 target_link_libraries(compassStub ${catkin_LIBRARIES})
 add_dependencies(compassStub turtle5k_generate_messages_cpp)
+
+# Shooting
+add_executable(shootingLeverStub src/stubs/shootingLeverStub.cpp ${Library_SOURCES} ${Library_HEADER})
+target_link_libraries(shootingLeverStub ${catkin_LIBRARIES})
+add_dependencies(shootingLeverStub turtle5k_generate_messages_cpp)
