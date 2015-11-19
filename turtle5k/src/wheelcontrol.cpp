@@ -32,7 +32,7 @@ void encoderDataCallback(const std_msgs::String::ConstPtr& aMessage)
 }
 
 int main(int argc, char** argv) {
-	ros::init(argc, argv, "t5k-wheelcontrol");
+	ros::init(argc, argv, "t5k_wheelcontrol");
 	ros::NodeHandle pHandle;
 	
 	pVelocityPub = pHandle.advertise<std_msgs::String>("/t5k/velocity", 1000);

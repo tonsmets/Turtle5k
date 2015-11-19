@@ -1,1 +1,1 @@
-float64 degrees
+float64 pRadiansFromNorth

@@ -9,7 +9,7 @@ ros::Publisher pFramePub;
 using namespace cv;
 
 int main(int argc, char** argv) {
-	ros::init(argc, argv, "t5k-camera");
+	ros::init(argc, argv, "t5k_camera");
 	ros::NodeHandle pHandle;
 	ros::Rate pRate(24);
 

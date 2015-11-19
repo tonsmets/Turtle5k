@@ -1,16 +1,28 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(turtle5k)
 
+set(CMAKE_CXX_FLAGS "-std=c++0x ${CMAKE_CXX_FLAGS}")
+
 find_package(
 	catkin REQUIRED COMPONENTS
 	roscpp
 	std_msgs
+	message_generation
 )
 
 find_package(OpenCV REQUIRED)
 
-catkin_package(
+add_message_files(
+	FILES
+	BallHandling.msg
+	Compass.msg
+	ShootingLever.msg
+)
 
+generate_messages()
+
+catkin_package(
+	CATKIN_DEPENDS message_runtime
 )
 
 include_directories(
@@ -18,6 +30,10 @@ include_directories(
 	${OpenCV_INCLUDE_DIRS}
 )
 
+
+
+
+###############################Nodes##############################
 add_executable(strategy src/strategy.cpp)
 target_link_libraries(strategy ${catkin_LIBRARIES})
 add_dependencies(strategy turtle5k_generate_messages_cpp)
@@ -73,3 +89,11 @@ add_dependencies(compass turtle5k_generate_messages_cpp)
 add_executable(camera src/camera.cpp)
 target_link_libraries(camera ${OpenCV_LIBRARIES} ${catkin_LIBRARIES})
 add_dependencies(camera turtle5k_generate_messages_cpp)
+
+# Stubs
+file(GLOB Library_SOURCES src/hardware/*.cpp)
+file(GLOB Library_HEADER src/hardware/*.h)
+
+add_executable(ballhandlingStub src/stubs/ballhandlingStub.cpp ${Library_SOURCES} ${Library_HEADER})
+target_link_libraries(ballhandlingStub ${catkin_LIBRARIES})
+add_dependencies(ballhandlingStub turtle5k_generate_messages_cpp)
