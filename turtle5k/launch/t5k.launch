@@ -1,0 +1,16 @@
+<launch>
+<node name="ballcontrol" pkg="turtle5k" type="ballcontrol" />
+<node name="balldetector" pkg="turtle5k" type="balldetector" />
+<node name="ballhandling" pkg="turtle5k" type="ballhandling" />
+<node name="camera" pkg="turtle5k" type="camera" />
+<node name="commands" pkg="turtle5k" type="commands" />
+<node name="compass" pkg="turtle5k" type="compass" />
+<node name="goaldetector" pkg="turtle5k" type="goaldetector" />
+<node name="pathfinding" pkg="turtle5k" type="pathfinding" />
+<node name="positioning" pkg="turtle5k" type="positioning" />
+<node name="shooting" pkg="turtle5k" type="shooting" />
+<node name="strategy" pkg="turtle5k" type="strategy" />
+<node name="tactics" pkg="turtle5k" type="tactics" />
+<node name="wheelcontrol" pkg="turtle5k" type="wheelcontrol" />
+<node name="world" pkg="turtle5k" type="world" />
+</launch>

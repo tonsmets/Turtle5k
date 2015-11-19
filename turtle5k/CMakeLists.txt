@@ -12,10 +12,10 @@ find_package(
 
 add_message_files(
 	FILES
-	BallHandling.msg
-	Compass.msg
-	Movement.msg
-	ShootingLever.msg
+	BallHandlingMessage.msg
+	CompassMessage.msg
+	ShootingLeverMessage.msg
+	MovementMessage.msg
 )
 
 generate_messages()
@@ -72,7 +72,7 @@ add_executable(goaldetector src/goaldetector.cpp)
 target_link_libraries(goaldetector ${catkin_LIBRARIES})
 add_dependencies(goaldetector turtle5k_generate_messages_cpp)
 
-add_executable(ballhandling src/positioning.cpp)
+add_executable(ballhandling src/ballhandling.cpp)
 target_link_libraries(ballhandling ${catkin_LIBRARIES})
 add_dependencies(ballhandling turtle5k_generate_messages_cpp)
 
