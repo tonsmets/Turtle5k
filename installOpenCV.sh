@@ -19,4 +19,5 @@ make -j2
 sudo checkinstall
 sudo sh -c 'echo "/usr/local/lib" > /etc/ld.so.conf.d/opencv.conf'
 sudo ldconfig
+export OpenCV_DIR=/usr/local/share/OpenCV/
 echo "OpenCV" $version "ready to be used"
