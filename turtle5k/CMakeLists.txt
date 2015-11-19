@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(turtle5k)
 
+set(CMAKE_CXX_FLAGS "-std=c++0x ${CMAKE_CXX_FLAGS}")
+
 find_package(
 	catkin REQUIRED COMPONENTS
 	roscpp
@@ -70,3 +72,11 @@ add_dependencies(compass turtle5k_generate_messages_cpp)
 add_executable(camera src/camera.cpp)
 target_link_libraries(camera ${catkin_LIBRARIES})
 add_dependencies(camera turtle5k_generate_messages_cpp)
+
+# Stubs
+file(GLOB Library_SOURCES src/hardware/*.cpp)
+file(GLOB Library_HEADER src/hardware/*.h)
+
+add_executable(ballhandlingStub src/stubs/ballhandlingStub.cpp ${Library_SOURCES} ${Library_HEADER})
+target_link_libraries(ballhandlingStub ${catkin_LIBRARIES})
+add_dependencies(ballhandlingStub turtle5k_generate_messages_cpp)
