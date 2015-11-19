@@ -13,7 +13,12 @@ void ShootingLeverTestStub::setAngle(int angle)
 
 int ShootingLeverTestStub::getAngle()
 {
-	this->lastAngleDisplayed += (this->lastAngleDisplayed > this->angle ? -(this->angle * 0.01) : (this->angle * 0.01));
+	if(this->lastAngleDisplayed < this->angle) {
+		this->lastAngleDisplayed += this->angle * 0.01;
+	} else {
+		this->lastAngleDisplayed = this->angle;
+	}
+
 	return this->lastAngleDisplayed;
 }
 
