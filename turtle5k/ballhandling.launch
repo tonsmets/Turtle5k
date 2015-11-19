@@ -1,0 +1,3 @@
+<launch>
+	<node name="ballhandling" pkg="turtle5k" type="ballhandling" output="screen" launch-prefix="xterm -e"/>
+</launch>
