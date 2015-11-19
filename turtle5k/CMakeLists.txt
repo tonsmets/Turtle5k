@@ -73,10 +73,16 @@ add_executable(camera src/camera.cpp)
 target_link_libraries(camera ${catkin_LIBRARIES})
 add_dependencies(camera turtle5k_generate_messages_cpp)
 
-# Stubs
+# Hardware source
 file(GLOB Library_SOURCES src/hardware/*.cpp)
 file(GLOB Library_HEADER src/hardware/*.h)
 
+# Ball handling
 add_executable(ballhandlingStub src/stubs/ballhandlingStub.cpp ${Library_SOURCES} ${Library_HEADER})
 target_link_libraries(ballhandlingStub ${catkin_LIBRARIES})
 add_dependencies(ballhandlingStub turtle5k_generate_messages_cpp)
+
+# Compass
+add_executable(compassStub src/stubs/compassStub.cpp ${Library_SOURCES} ${Library_HEADER})
+target_link_libraries(compassStub ${catkin_LIBRARIES})
+add_dependencies(compassStub turtle5k_generate_messages_cpp)
