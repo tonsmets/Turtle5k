@@ -34,6 +34,10 @@ include_directories(
 	${OpenCV_INCLUDE_DIRS}
 )
 
+# Hardware source
+file(GLOB Library_SOURCES src/hardware/*.cpp)
+file(GLOB Library_HEADER src/hardware/*.h)
+
 ###############################Nodes##############################
 add_executable(strategy src/strategy.cpp)
 target_link_libraries(strategy ${catkin_LIBRARIES})
@@ -79,9 +83,10 @@ add_executable(ballhandling src/ballhandling.cpp)
 target_link_libraries(ballhandling ${catkin_LIBRARIES})
 add_dependencies(ballhandling turtle5k_generate_messages_cpp)
 
-add_executable(shooting src/shooting.cpp)
-target_link_libraries(shooting ${catkin_LIBRARIES})
-add_dependencies(shooting turtle5k_generate_messages_cpp)
+# ShootingLever
+add_executable(shootingLever src/shootingLever.cpp ${Library_SOURCES} ${Library_HEADER})
+target_link_libraries(shootingLever ${catkin_LIBRARIES})
+add_dependencies(shootingLever turtle5k_generate_messages_cpp)
 
 add_executable(compass src/compass.cpp)
 target_link_libraries(compass ${catkin_LIBRARIES})
@@ -90,10 +95,6 @@ add_dependencies(compass turtle5k_generate_messages_cpp)
 add_executable(camera src/camera.cpp)
 target_link_libraries(camera ${OpenCV_LIBRARIES} ${catkin_LIBRARIES})
 add_dependencies(camera turtle5k_generate_messages_cpp)
-
-# Hardware source
-file(GLOB Library_SOURCES src/hardware/*.cpp)
-file(GLOB Library_HEADER src/hardware/*.h)
 
 # Ball handling
 add_executable(ballhandlingStub src/stubs/ballhandlingStub.cpp ${Library_SOURCES} ${Library_HEADER})
