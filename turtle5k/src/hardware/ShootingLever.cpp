@@ -1,16 +1,23 @@
+#include <ros/console.h>
+
 #include "headers/ShootingLever.h"
+
+ShootingLever::ShootingLever() {
+	ROS_ERROR("ShootingLever is not implemented");
+}
 
 void ShootingLever::setAngle(int angle)
 {
-	throw "not implemented";
+	ROS_ERROR("ShootingLever setAngle is not implemented");
 }
 
 int ShootingLever::getAngle()
 {
-	throw "not implemented";
+	ROS_ERROR("ShootingLever getAngle is not implemented");
+	return 0;
 }
 
 void ShootingLever::shoot(int meters)
 {
-	throw "not implemented";
+	ROS_ERROR("ShootingLever shoot is not implemented");
 }
