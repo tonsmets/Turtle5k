@@ -4,6 +4,7 @@
 class ShootingLeverTestStub : public IShootingLever {
 private:
 	int angle;
+	int lastAngleDisplayed;
 
 public:
 

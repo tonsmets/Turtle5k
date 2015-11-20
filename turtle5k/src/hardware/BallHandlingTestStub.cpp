@@ -5,6 +5,7 @@
 BallHandlingTestStub::BallHandlingTestStub()
 {
 	this->rps = 0;
+	this->lastRpsSend = 0;
 }
 
 void BallHandlingTestStub::setRotationSpeed(double rps)
@@ -14,5 +15,6 @@ void BallHandlingTestStub::setRotationSpeed(double rps)
 
 double BallHandlingTestStub::getRotationSpeed()
 {
-	return ((double)(rand() % 100) / 100.0) * this->rps;
+	this->lastRpsSend += (this->lastRpsSend > this->rps ? -(this->rps * 0.01) : (this->rps * 0.01));
+	return this->lastRpsSend;
 }

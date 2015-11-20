@@ -1,21 +1,24 @@
 #include "headers/Movement.h"
+#include "ros/console.h"
 
 void Movement::setSpeed(double mps)
 {
-	throw "not implemented";
+	ROS_ERROR("Not Implemented");
 }
 
-void Movement::setAngle(double degrees)
+void Movement::setAngle(double radians)
 {
-	throw "not implemented";
+	ROS_ERROR("Not Implemented");
 }
 
 double Movement::getAngle()
 {
-	throw "not implemented";
+	ROS_ERROR("Not Implemented");
+	return 0.0;
 }
 
-double Movement::getSeed()
+double Movement::getSpeed()
 {
-	throw "not implemented";
+	ROS_ERROR("Not Implemented");
+	return 0.0;
 }

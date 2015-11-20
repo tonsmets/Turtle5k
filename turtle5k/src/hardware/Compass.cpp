@@ -1,6 +1,8 @@
 #include "headers/Compass.h"
+#include "ros/console.h"
 
 double Compass::getDegrees()
 {
-	throw "not implemented";
+	ROS_ERROR("Not Implemented");
+	return 0.0;
 }

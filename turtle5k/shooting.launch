@@ -1,0 +1,3 @@
+<launch>
+	<node name="shootingLeverStub" pkg="turtle5k" type="shootingLeverStub" output="screen" launch-prefix="xterm -e"/>
+</launch>

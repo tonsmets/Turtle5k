@@ -14,12 +14,16 @@ find_package(OpenCV REQUIRED)
 
 add_message_files(
 	FILES
-	BallHandling.msg
-	Compass.msg
-	ShootingLever.msg
+	BallHandlingMessage.msg
+	CompassMessage.msg
+	ShootingLeverMessage.msg
+	MovementMessage.msg
 )
 
-generate_messages()
+generate_messages(
+	DEPENDENCIES
+	std_msgs
+)
 
 catkin_package(
 	CATKIN_DEPENDS message_runtime
@@ -29,9 +33,6 @@ include_directories(
 	${catkin_INCLUDE_DIRS}
 	${OpenCV_INCLUDE_DIRS}
 )
-
-
-
 
 ###############################Nodes##############################
 add_executable(strategy src/strategy.cpp)
@@ -74,7 +75,7 @@ add_executable(goaldetector src/goaldetector.cpp)
 target_link_libraries(goaldetector ${catkin_LIBRARIES})
 add_dependencies(goaldetector turtle5k_generate_messages_cpp)
 
-add_executable(ballhandling src/positioning.cpp)
+add_executable(ballhandling src/ballhandling.cpp)
 target_link_libraries(ballhandling ${catkin_LIBRARIES})
 add_dependencies(ballhandling turtle5k_generate_messages_cpp)
 
@@ -90,10 +91,26 @@ add_executable(camera src/camera.cpp)
 target_link_libraries(camera ${OpenCV_LIBRARIES} ${catkin_LIBRARIES})
 add_dependencies(camera turtle5k_generate_messages_cpp)
 
-# Stubs
+# Hardware source
 file(GLOB Library_SOURCES src/hardware/*.cpp)
 file(GLOB Library_HEADER src/hardware/*.h)
 
+# Ball handling
 add_executable(ballhandlingStub src/stubs/ballhandlingStub.cpp ${Library_SOURCES} ${Library_HEADER})
 target_link_libraries(ballhandlingStub ${catkin_LIBRARIES})
 add_dependencies(ballhandlingStub turtle5k_generate_messages_cpp)
+
+# Compass
+add_executable(compassStub src/stubs/compassStub.cpp ${Library_SOURCES} ${Library_HEADER})
+target_link_libraries(compassStub ${catkin_LIBRARIES})
+add_dependencies(compassStub turtle5k_generate_messages_cpp)
+
+# Shooting
+add_executable(shootingLeverStub src/stubs/shootingLeverStub.cpp ${Library_SOURCES} ${Library_HEADER})
+target_link_libraries(shootingLeverStub ${catkin_LIBRARIES})
+add_dependencies(shootingLeverStub turtle5k_generate_messages_cpp)
+
+# Movement
+add_executable(movementStub src/stubs/movementStub.cpp ${Library_SOURCES} ${Library_HEADER})
+target_link_libraries(movementStub ${catkin_LIBRARIES})
+add_dependencies(shootingLeverStub turtle5k_generate_messages_cpp)

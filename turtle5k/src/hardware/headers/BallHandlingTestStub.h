@@ -3,8 +3,10 @@
 #include "IBallHandling.h"
 
 class BallHandlingTestStub : public IBallHandling {
+
 private:
 	double rps;
+	double lastRpsSend;
 
 public:
 

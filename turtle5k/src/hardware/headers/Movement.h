@@ -5,11 +5,11 @@
 class Movement : public IMovement {
 private:
 	double mps;
-	double degrees;
+	double radians;
 
 public:
 	void setSpeed(double mps) override;
-	void setAngle(double degrees) override;
+	void setAngle(double radians) override;
 	double getAngle() override;
-	double getSeed() override;
+	double getSpeed() override;
 };
