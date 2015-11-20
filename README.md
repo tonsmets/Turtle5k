@@ -18,7 +18,7 @@ Open Source soccer robot project
 - Someone else will eventually merge your branch to 'dev'
 - Don't screw up! If something is not clear, ask Ton!
 
-## Algemene regels
+## General rules
 - Don't commit and push non-working code! The code in your branches should always be able to run without errors
 - You're not allowed to merge your own branches. This defeats the purpose of a pull REQUEST.
 - Don't screw up! If something is not clear, ask Ton!
