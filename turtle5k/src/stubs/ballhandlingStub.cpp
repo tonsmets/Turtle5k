@@ -3,6 +3,7 @@
 #include <string>
 #include <ros/console.h>
 
+#include "turtle5k/BallHandling.h"
 #include "../hardware/headers/BallHandlingTestStub.h"
 
 ros::Publisher pBallHandlingInfoPub;
@@ -10,13 +11,12 @@ ros::Subscriber pBallHandlingCmdSub;
 
 BallHandlingTestStub ballHandler;
 
-void frameCallback(const std_msgs::String::ConstPtr& aMessage)
+void frameCallback(const turtle5k::BallHandling &aMessage)
 {
-	ROS_INFO("[BALLHANDLING] Got %s, From: BALLCONTROL", aMessage->data.c_str());
+	ROS_INFO("[BALLHANDLING] Got %s, From: BALLCONTROL", std::to_string(aMessage.pRevolutionsPerSecond).c_str());
 	
-	double newSpeed = atof(aMessage->data.c_str());
-	ballHandler.setRotationSpeed(newSpeed);
-	ROS_INFO("setRotationSpeed: [%f]", newSpeed);
+	ballHandler.setRotationSpeed(aMessage.pRevolutionsPerSecond);
+	ROS_INFO("setRotationSpeed: [%f]", aMessage.pRevolutionsPerSecond);
 }
 
 int main(int argc, char** argv) {
@@ -25,10 +25,10 @@ int main(int argc, char** argv) {
 	   ros::console::notifyLoggerLevelsChanged();
 	}
 
-	ros::init(argc, argv, "t5ktactics");
+	ros::init(argc, argv, "t5k_ballhandling");
 	ros::NodeHandle pHandle;
 
-	pBallHandlingInfoPub = pHandle.advertise<std_msgs::String>("/t5k/ballhandlinginfo", 1000);
+	pBallHandlingInfoPub = pHandle.advertise<turtle5k::BallHandling>("/t5k/ballhandlinginfo", 1000);
 	pBallHandlingCmdSub = pHandle.subscribe("/t5k/ballhandlingcommands", 1000, frameCallback);
 	
 	ros::Rate loop_rate(10);
@@ -36,10 +36,10 @@ int main(int argc, char** argv) {
 	ballHandler.setRotationSpeed(10);
 
 	while (ros::ok()) {
-		std_msgs::String msg;
-		msg.data = std::to_string(ballHandler.getRotationSpeed());
-		ROS_INFO("Process: %s", msg.data.c_str());
-		ROS_INFO_STREAM("Data: " << msg.data << std::endl);
+		turtle5k::BallHandling msg;
+		msg.pRevolutionsPerSecond = ballHandler.getRotationSpeed();
+		ROS_INFO("Process: %s", std::to_string(msg.pRevolutionsPerSecond).c_str());
+		ROS_INFO_STREAM("Data: " << msg.pRevolutionsPerSecond << std::endl);
 
 		pBallHandlingInfoPub.publish(msg);
 

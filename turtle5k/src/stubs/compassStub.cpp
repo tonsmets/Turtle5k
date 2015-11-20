@@ -3,6 +3,7 @@
 
 #include <string>
 
+#include "turtle5k/Compass.h"
 #include "../hardware/headers/CompassTestStub.h"
 
 ros::Publisher pCompassDataPub;
@@ -14,16 +15,16 @@ int main(int argc, char** argv) {
 	ros::NodeHandle pHandle;
 	ros::Rate pRate(24);
 	
-	pCompassDataPub = pHandle.advertise<std_msgs::String>("/t5k/compassdata", 1000);
+	pCompassDataPub = pHandle.advertise<turtle5k::Compass>("/t5k/compassdata", 1000);
 	
 	while(ros::ok()) {
-		std_msgs::String pMessage;
+		turtle5k::Compass pMessage;
 
 		double degress = compassTestStub.getDegrees();
 
-		pMessage.data = std::to_string(degress);
+		pMessage.pRadiansFromNorth = degress;
 
-		ROS_INFO_STREAM("Data: " << pMessage.data << std::endl);
+		ROS_INFO_STREAM("Data: " << pMessage.pRadiansFromNorth << std::endl);
 
 		pCompassDataPub.publish(pMessage);
 		ros::spinOnce();
