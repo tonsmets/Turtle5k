@@ -1,0 +1,213 @@
+interface iControl
+{
+	in void stub();
+	
+	behaviour
+	{
+	}
+}
+
+interface iTactics
+{
+	in void stub();
+	
+	behaviour
+  	{
+   
+  	}
+}
+
+interface iCommands
+{
+	in void stub();
+	
+	behaviour
+  	{
+   
+  	}
+}
+
+interface iBallHandling
+{
+	in void stub();
+	
+	behaviour
+  	{
+   
+  	}
+}
+
+interface iShooting
+{
+	in void stub();
+	
+	behaviour
+  	{
+   
+  	}
+}
+
+interface iWheelControl
+{
+	in void stub();
+	
+	behaviour
+  	{
+    
+  	}
+}
+
+interface iBallControl
+{	
+	in void stub();
+	
+	behaviour
+  	{
+    
+  	}
+}
+
+interface iWheelDriver
+{
+	in void stub();
+	
+	behaviour
+	{
+	  	
+	}
+}
+
+interface iPositioningControl
+{
+	in void stub();
+	
+	behaviour
+	{
+	  	
+	}
+}
+
+interface iWorldModel
+{
+	in void stub();
+	
+	behaviour
+	{
+	  	
+	}
+}
+
+interface iNavigation
+{
+	in void stub();
+	
+	behaviour
+	{
+	  	
+	}
+}
+
+component BallControl
+{
+	provides iBallControl BallControl;
+	
+	requires iBallHandling BallHandling;
+	requires iShooting Shooting;
+	
+}
+
+component Tactics
+{
+	provides iControl Control;
+	
+	requires iCommands Commands;
+}
+
+component Commands
+{
+	provides iCommands Commands;
+	
+	requires iBallControl BallControl;
+	requires iWheelControl WheelControl;
+	requires iPositioningControl PositioningControl;
+	
+}
+
+component Shooting
+{
+	provides iShooting Shooting;
+}
+
+component BallHandling
+{
+	provides iBallHandling BallHandling;
+}
+
+component WheelControl
+{
+	provides iWheelControl WheelControl;
+	
+	requires iWheelDriver WheelDriver;
+}
+
+component WheelDriver
+{
+  	provides iWheelDriver WheelDriver;
+}
+
+component PositioningControl
+{
+  	provides iPositioningControl PositioningControl;
+  	
+  	requires iWorldModel WorldModel;
+  	requires iNavigation Navigation;
+  	
+}
+
+component WorldModel
+{
+  	provides iWorldModel WorldModel;
+}
+
+component Navigation
+{
+  	provides iNavigation Navigation;
+}
+
+component Robot
+{
+  	provides iControl Control;
+
+  	system
+  	{
+  		Tactics tactics;
+  		
+  		Commands commands;
+  		
+	    BallControl ballcontrol;
+	    WheelControl wheelcontrol;
+	    PositioningControl positioningcontrol;
+	    
+	    WheelDriver wheeldriver;
+	    Shooting shooting;
+	    BallHandling ballhandling;
+	    Navigation navigation;
+	    WorldModel worldmodel;
+	
+	    Control <=> tactics.Control;
+	    
+	    tactics.Commands <=> commands.Commands;
+	    
+	    commands.BallControl <=> ballcontrol.BallControl;
+	    commands.WheelControl <=> wheelcontrol.WheelControl;
+	    commands.PositioningControl <=> positioningcontrol.PositioningControl;
+	    
+	    ballcontrol.BallHandling <=> ballhandling.BallHandling;
+	    ballcontrol.Shooting <=> shooting.Shooting;
+	    
+	    wheelcontrol.WheelDriver <=> wheeldriver.WheelDriver;
+	    
+	    positioningcontrol.WorldModel <=> worldmodel.WorldModel;
+	    positioningcontrol.Navigation <=> navigation.Navigation;
+  	}
+}

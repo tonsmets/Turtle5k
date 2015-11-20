@@ -1,0 +1,42 @@
+extern string $std::string$;
+
+interface HelloWorldSupplier {
+	in void RequestString(out string value);
+	
+	behaviour {
+		on RequestString : {}
+	}
+}
+
+interface HelloWorldPrinter {
+	in void PrintString(string value);
+	
+	behaviour {
+		on PrintString : {
+			
+		}
+	}
+}
+
+interface HelloWorldApp {
+	in void start();
+	
+	behaviour {
+		on start : {}
+	}
+}
+
+component HelloWorldApplication {
+	provides HelloWorldApp app;
+	
+	requires HelloWorldSupplier supplier;
+	requires HelloWorldPrinter printer;
+	
+	behaviour {
+		on app.start() : {
+			string value;
+			supplier.RequestString(value);
+			printer.PrintString(value);
+		}
+	}
+}

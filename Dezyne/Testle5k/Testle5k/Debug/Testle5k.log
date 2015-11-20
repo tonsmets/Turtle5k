@@ -1,0 +1,11 @@
+﻿Build started 19-11-2015 14:09:55.
+     1>Project "C:\Users\Bart\Documents\Fontys\Testle5k\Testle5k\Testle5k\Testle5k.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt HelloWorldPrinter.cpp
+         HelloWorldPrinter.cpp
+     1>c:\users\bart\documents\fontys\testle5k\testle5k\testle5k\helloworldprinter.cpp(23): error C2660: 'IHelloWorldPrinterImpl::PrintString': function does not take 0 arguments
+     1>Done Building Project "C:\Users\Bart\Documents\Fontys\Testle5k\Testle5k\Testle5k\Testle5k.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:01.33

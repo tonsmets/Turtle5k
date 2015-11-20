@@ -1,0 +1,330 @@
+enum returnResult
+{
+	busy,
+	succes,
+	fail,
+	yes,
+	no,
+	stub
+};
+
+interface iControl
+{
+	in returnResult tac_getTheBall();
+  	in returnResult tac_shootBall();
+  	in returnResult tac_attack();
+
+  	behaviour
+  	{
+  		on tac_getTheBall:{
+  			reply(returnResult.busy);
+  		}
+  		on tac_getTheBall:{
+  			reply(returnResult.succes);
+  		}
+  		on tac_getTheBall:{
+  			reply(returnResult.fail);
+  		}
+  		on tac_shootBall:{
+  			reply(returnResult.busy);
+  		}
+  		on tac_shootBall:{
+  			reply(returnResult.succes);
+  		}
+  		on tac_shootBall:{
+  			reply(returnResult.fail);
+  		}
+  		on tac_attack:{
+  			reply(returnResult.busy);
+  		}
+  		on tac_attack:{
+  			reply(returnResult.succes);
+  		}
+  		on tac_attack:{
+  			reply(returnResult.fail);
+  		}
+	}
+}
+
+interface iCommands
+{
+	in returnResult findTheBall();
+	in returnResult getToTheBall();
+	in returnResult shootTheBall();
+	
+	behaviour
+  	{
+    	on findTheBall:{
+  			reply(returnResult.succes);
+  		}
+  		on getToTheBall:{
+  			reply(returnResult.succes);
+  		}
+  		on shootTheBall:{
+  			reply(returnResult.succes);
+  		}
+  		
+  	}
+}
+
+interface iBallHandling
+{
+	in void stub();
+	
+	behaviour
+  	{
+   
+  	}
+}
+
+interface iShooting
+{
+	in void stub();
+	
+	behaviour
+  	{
+   
+  	}
+}
+
+interface iWheelControl
+{
+	in void stub();
+	
+	behaviour
+  	{
+    
+  	}
+}
+
+interface iBallControl
+{	
+	in void stub();
+	
+	behaviour
+  	{
+    
+  	}
+}
+
+interface iWheelDriver
+{
+	in void stub();
+	
+	behaviour
+	{
+	  	
+	}
+}
+
+interface iPositioningControl
+{
+	in void stub();
+	
+	behaviour
+	{
+	  	
+	}
+}
+
+interface iWorldModel
+{
+	in void stub();
+	
+	behaviour
+	{
+	  	
+	}
+}
+
+interface iNavigation
+{
+	in void stub();
+	
+	behaviour
+	{
+	  	
+	}
+}
+
+component BallControl
+{
+	provides iBallControl BallControl;
+	
+	requires iBallHandling BallHandling;
+	requires iShooting Shooting;
+	
+}
+
+component Tactics
+{
+	provides iControl Control;
+	
+	requires iCommands Commands;
+	
+	behaviour 
+	{
+		bool busy = false;
+		bool failure = false;
+		returnResult returnCheck1 = returnResult.succes;
+		returnResult returnCheck2 = returnResult.succes;
+		returnResult returnCheck3 = returnResult.succes;
+		
+    	[busy] on Control.tac_getTheBall(): 
+    	{
+    		reply(returnResult.busy);
+    	}
+    	[busy] on Control.tac_shootBall(): 
+    	{
+    		reply(returnResult.busy);
+    	}
+    	[busy] on Control.tac_attack(): 
+    	{
+    		reply(returnResult.busy);
+    	}
+    	[!busy] on Control.tac_getTheBall():
+    	{
+    		returnCheck1 = Commands.findTheBall();
+    		returnCheck2 = Commands.getToTheBall();
+    		if((returnCheck1 == returnResult.succes) && (returnCheck2 == returnResult.succes) && (returnCheck3 == returnResult.succes))
+	    	{
+	    		reply(returnResult.succes);
+	    	}
+	    	else
+	    	{
+	    		reply(returnResult.fail);
+	    	}
+    	}
+    	[!busy] on Control.tac_shootBall():
+    	{
+    		returnCheck1 = Commands.shootTheBall();
+    		if((returnCheck1 == returnResult.succes) && (returnCheck2 == returnResult.succes) && (returnCheck3 == returnResult.succes))
+	    	{
+	    		reply(returnResult.succes);
+	    	}
+	    	else
+	    	{
+	    		reply(returnResult.fail);
+	    	}
+    	}
+    	[!busy] on Control.tac_attack():
+    	{
+    		returnCheck1 = Commands.findTheBall();
+    		returnCheck2 = Commands.getToTheBall();
+    		returnCheck3 = Commands.shootTheBall();
+    		if((returnCheck1 == returnResult.succes) && (returnCheck2 == returnResult.succes) && (returnCheck3 == returnResult.succes))
+	    	{
+	    		reply(returnResult.succes);
+	    	}
+	    	else
+	    	{
+	    		reply(returnResult.fail);
+	    	}
+    	}   
+    	
+	}
+}
+
+component Commands
+{
+	provides iCommands Commands;
+	
+	requires iBallControl BallControl;
+	requires iWheelControl WheelControl;
+	requires iPositioningControl PositioningControl;
+	
+	behaviour
+	{
+		on Commands.getToTheBall():
+		{
+			if(true)
+			{
+				reply(returnResult.fail);
+			}
+			else
+			{
+				reply(returnResult.succes);
+			}
+			
+		}
+	}
+}
+
+component Shooting
+{
+	provides iShooting Shooting;
+}
+
+component BallHandling
+{
+	provides iBallHandling BallHandling;
+}
+
+component WheelControl
+{
+	provides iWheelControl WheelControl;
+	
+	requires iWheelDriver WheelDriver;
+}
+
+component WheelDriver
+{
+  	provides iWheelDriver WheelDriver;
+}
+
+component PositioningControl
+{
+  	provides iPositioningControl PositioningControl;
+  	
+  	requires iWorldModel WorldModel;
+  	requires iNavigation Navigation;
+  	
+}
+
+component WorldModel
+{
+  	provides iWorldModel WorldModel;
+}
+
+component Navigation
+{
+  	provides iNavigation Navigation;
+}
+
+component Robot
+{
+  	provides iControl Control;
+
+  	system
+  	{
+  		Tactics tactics;
+  		
+  		Commands commands;
+  		
+	    BallControl ballcontrol;
+	    WheelControl wheelcontrol;
+	    PositioningControl positioningcontrol;
+	    
+	    WheelDriver wheeldriver;
+	    Shooting shooting;
+	    BallHandling ballhandling;
+	    Navigation navigation;
+	    WorldModel worldmodel;
+	
+	    Control <=> tactics.Control;
+	    
+	    tactics.Commands <=> commands.Commands;
+	    
+	    commands.BallControl <=> ballcontrol.BallControl;
+	    commands.WheelControl <=> wheelcontrol.WheelControl;
+	    commands.PositioningControl <=> positioningcontrol.PositioningControl;
+	    
+	    ballcontrol.BallHandling <=> ballhandling.BallHandling;
+	    ballcontrol.Shooting <=> shooting.Shooting;
+	    
+	    wheelcontrol.WheelDriver <=> wheeldriver.WheelDriver;
+	    
+	    positioningcontrol.WorldModel <=> worldmodel.WorldModel;
+	    positioningcontrol.Navigation <=> navigation.Navigation;
+  	}
+}
