@@ -1,4 +1,5 @@
-#pragma once
+#ifndef HELLOWORLDPRINTER_H
+#define HELLOWORLDPRINTER_H
 
 #include "IHelloWorldPrinter.hh"
 
@@ -19,6 +20,7 @@ namespace dezyne
 		HelloWorldPrinter(const locator&);
 
 		private:
-			void port_Print(std::string& value);
+			void port_Print(std::string value);
 	};
 }
+#endif

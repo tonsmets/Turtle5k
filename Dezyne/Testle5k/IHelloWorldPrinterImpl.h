@@ -5,7 +5,7 @@
 
 struct IHelloWorldPrinterImpl
 {
-	void virtual PrintString(std::string& value) = 0;
+	void virtual PrintString(std::string value) = 0;
 };
 
 #endif

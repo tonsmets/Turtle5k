@@ -19,7 +19,7 @@ struct HelloWorldPrinterImpl : public IHelloWorldPrinterImpl
 		: id(0)
 		, port(l.get<IHelloWorldPrinter>())
 	{}
-	void PrintString(std::string& value)
+	void PrintString(std::string value)
 	{
 		std::cout << value << std::endl;
 	}

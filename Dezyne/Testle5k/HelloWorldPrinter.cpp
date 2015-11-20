@@ -20,6 +20,6 @@ namespace dezyne
 		locator tmp(l.clone());
 		tmp.set(port);
 		auto pimpl = l.get<std::function<std::shared_ptr<IHelloWorldPrinterImpl>(const locator&)>>()(tmp);
-		port.in.PrintString = [=] {pimpl->PrintString(); };
+		port.in.PrintString = [=] (std::string value) {pimpl->PrintString(value); };
 	}
 }
