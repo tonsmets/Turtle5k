@@ -1,6 +1,7 @@
 #include <ros/console.h>
 
 #include "headers/ShootingLever.h"
+#include "ros/console.h"
 
 ShootingLever::ShootingLever() {
 	ROS_ERROR("ShootingLever is not implemented");

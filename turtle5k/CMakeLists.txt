@@ -10,6 +10,8 @@ find_package(
 	message_generation
 )
 
+find_package(OpenCV REQUIRED)
+
 add_message_files(
 	FILES
 	BallHandlingMessage.msg
@@ -18,7 +20,10 @@ add_message_files(
 	MovementMessage.msg
 )
 
-generate_messages()
+generate_messages(
+	DEPENDENCIES
+	std_msgs
+)
 
 catkin_package(
 	CATKIN_DEPENDS message_runtime
@@ -26,6 +31,7 @@ catkin_package(
 
 include_directories(
 	${catkin_INCLUDE_DIRS}
+	${OpenCV_INCLUDE_DIRS}
 )
 
 # Hardware source
@@ -87,7 +93,7 @@ target_link_libraries(compass ${catkin_LIBRARIES})
 add_dependencies(compass turtle5k_generate_messages_cpp)
 
 add_executable(camera src/camera.cpp)
-target_link_libraries(camera ${catkin_LIBRARIES})
+target_link_libraries(camera ${OpenCV_LIBRARIES} ${catkin_LIBRARIES})
 add_dependencies(camera turtle5k_generate_messages_cpp)
 
 # Ball handling
