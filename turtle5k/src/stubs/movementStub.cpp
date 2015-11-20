@@ -1,6 +1,8 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
-#include "turtle5k/Movement.h"
+
+#include "turtle5k/MovementMessage.h"
+
 #include "../hardware/headers/MovementTestStub.h"
 
 ros::Publisher pVelocityPub;
@@ -10,7 +12,7 @@ ros::Subscriber pEncoderDataSub;
 
 MovementTestStub movement;
 
-void wheelcontrolcommandsCallback(const turtle5k::Movement movementMsg)
+void wheelcontrolcommandsCallback(const turtle5k::MovementMessage movementMsg)
 {
 	ROS_INFO("[WHEELCONTROL] Got %f %f, From: COMMANDS", movementMsg.pSpeed, movementMsg.pRadians);
 
