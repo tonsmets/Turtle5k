@@ -1,0 +1,49 @@
+Compiling main
+g++ ./HelloWorldApplication.cc ./main.cc ./runtime.cc ./HelloWorldPrinter.cpp ./HelloWorldPrinterImpl.cpp -o main.o -std=c++11 -I .
+./HelloWorldPrinter.cpp: In lambda function:
+./HelloWorldPrinter.cpp:23:49: error: no matching function for call to ‘IHelloWorldPrinterImpl::PrintString()’
+   port.in.PrintString = [=] {pimpl->PrintString(); };
+                                                 ^
+./HelloWorldPrinter.cpp:23:49: note: candidate is:
+In file included from ./HelloWorldPrinter.cpp:7:0:
+./IHelloWorldPrinterImpl.h:8:15: note: virtual void IHelloWorldPrinterImpl::PrintString(std::string&)
+  void virtual PrintString(std::string& value) = 0;
+               ^
+./IHelloWorldPrinterImpl.h:8:15: note:   candidate expects 1 argument, 0 provided
+./HelloWorldPrinter.cpp: In constructor ‘dezyne::HelloWorldPrinter::HelloWorldPrinter(const dezyne::locator&)’:
+./HelloWorldPrinter.cpp:23:23: error: no match for ‘operator=’ (operand types are ‘std::function<void(std::basic_string<char>)>’ and ‘dezyne::HelloWorldPrinter::HelloWorldPrinter(const dezyne::locator&)::<lambda()>’)
+   port.in.PrintString = [=] {pimpl->PrintString(); };
+                       ^
+./HelloWorldPrinter.cpp:23:23: note: candidates are:
+In file included from ./meta.hh:5:0,
+                 from ./IHelloWorldPrinter.hh:16,
+                 from ./HelloWorldPrinter.h:3,
+                 from ./HelloWorldPrinter.cpp:1:
+/usr/include/c++/4.9/functional:2241:7: note: std::function<_Res(_ArgTypes ...)>& std::function<_Res(_ArgTypes ...)>::operator=(const std::function<_Res(_ArgTypes ...)>&) [with _Res = void; _ArgTypes = {std::basic_string<char, std::char_traits<char>, std::allocator<char> >}]
+       operator=(const function& __x)
+       ^
+/usr/include/c++/4.9/functional:2241:7: note:   no known conversion for argument 1 from ‘dezyne::HelloWorldPrinter::HelloWorldPrinter(const dezyne::locator&)::<lambda()>’ to ‘const std::function<void(std::basic_string<char>)>&’
+/usr/include/c++/4.9/functional:2259:7: note: std::function<_Res(_ArgTypes ...)>& std::function<_Res(_ArgTypes ...)>::operator=(std::function<_Res(_ArgTypes ...)>&&) [with _Res = void; _ArgTypes = {std::basic_string<char, std::char_traits<char>, std::allocator<char> >}]
+       operator=(function&& __x)
+       ^
+/usr/include/c++/4.9/functional:2259:7: note:   no known conversion for argument 1 from ‘dezyne::HelloWorldPrinter::HelloWorldPrinter(const dezyne::locator&)::<lambda()>’ to ‘std::function<void(std::basic_string<char>)>&&’
+/usr/include/c++/4.9/functional:2273:7: note: std::function<_Res(_ArgTypes ...)>& std::function<_Res(_ArgTypes ...)>::operator=(std::nullptr_t) [with _Res = void; _ArgTypes = {std::basic_string<char, std::char_traits<char>, std::allocator<char> >}; std::nullptr_t = std::nullptr_t]
+       operator=(nullptr_t)
+       ^
+/usr/include/c++/4.9/functional:2273:7: note:   no known conversion for argument 1 from ‘dezyne::HelloWorldPrinter::HelloWorldPrinter(const dezyne::locator&)::<lambda()>’ to ‘std::nullptr_t’
+/usr/include/c++/4.9/functional:2302:2: note: template<class _Functor> std::function<_Res(_ArgTypes ...)>::_Requires<std::__and_<std::__not_<std::is_same<typename std::decay<_Tp>::type, std::function<_Res(_ArgTypes ...)> > >, std::__or_<std::is_void<_Tp>, std::is_convertible<std::function<_Res(_ArgTypes ...)>::_Invoke<typename std::decay<_Tp>::type>, _Res> > >, std::function<_Res(_ArgTypes ...)>&> std::function<_Res(_ArgTypes ...)>::operator=(_Functor&&) [with _Functor = _Functor; _Res = void; _ArgTypes = {std::basic_string<char, std::char_traits<char>, std::allocator<char> >}]
+  operator=(_Functor&& __f)
+  ^
+/usr/include/c++/4.9/functional:2302:2: note:   template argument deduction/substitution failed:
+/usr/include/c++/4.9/functional:2311:2: note: template<class _Functor> std::function<_Res(_ArgTypes ...)>& std::function<_Res(_ArgTypes ...)>::operator=(std::reference_wrapper<_Tp>) [with _Functor = _Functor; _Res = void; _ArgTypes = {std::basic_string<char, std::char_traits<char>, std::allocator<char> >}]
+  operator=(reference_wrapper<_Functor> __f) noexcept
+  ^
+/usr/include/c++/4.9/functional:2311:2: note:   template argument deduction/substitution failed:
+./HelloWorldPrinter.cpp:23:23: note:   ‘dezyne::HelloWorldPrinter::HelloWorldPrinter(const dezyne::locator&)::<lambda()>’ is not derived from ‘std::reference_wrapper<_Tp>’
+   port.in.PrintString = [=] {pimpl->PrintString(); };
+                       ^
+./HelloWorldPrinterImpl.cpp:1:9: warning: #pragma once in main file
+ #pragma once
+         ^
+makefile:21: recipe for target 'main' failed
+make: *** [main] Error 1
