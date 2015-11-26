@@ -25,7 +25,7 @@ struct returnResult
 {
   enum type
   {
-    busy, succes, fail, yes, no, stub
+    busy, success, fail, yes, no, stub
   };
 };
 #endif // ENUM__returnResult
@@ -73,7 +73,7 @@ inline const char* to_string(::returnResult::type v)
   switch(v)
   {
     case ::returnResult::busy: return "returnResult_busy";
-    case ::returnResult::succes: return "returnResult_succes";
+    case ::returnResult::success: return "returnResult_success";
     case ::returnResult::fail: return "returnResult_fail";
     case ::returnResult::yes: return "returnResult_yes";
     case ::returnResult::no: return "returnResult_no";
@@ -91,7 +91,7 @@ inline ::returnResult::type to__returnResult(std::string s)
 {
   static std::map<std::string, ::returnResult::type> m = {
     {"returnResult_busy",::returnResult::busy},
-    {"returnResult_succes",::returnResult::succes},
+    {"returnResult_success",::returnResult::success},
     {"returnResult_fail",::returnResult::fail},
     {"returnResult_yes",::returnResult::yes},
     {"returnResult_no",::returnResult::no},

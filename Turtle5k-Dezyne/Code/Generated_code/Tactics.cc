@@ -24,9 +24,9 @@ Tactics::Tactics(const dezyne::locator& dezyne_locator)
 , dzn_locator(dezyne_locator)
 , busy(false)
 , failure(false)
-, returnCheck1(returnResult::succes)
-, returnCheck2(returnResult::succes)
-, returnCheck3(returnResult::succes)
+, returnCheck1(returnResult::success)
+, returnCheck2(returnResult::success)
+, returnCheck3(returnResult::success)
 , My_Control{{{"My_Control",this},{"",0}}}
 , My_Commands{{{"",0},{"My_Commands",this}}}
 {
@@ -55,10 +55,9 @@ returnResult::type Tactics::My_Control_tac_getTheBall()
     {
       returnCheck1 = this->My_Commands.in.findTheBall ();
       returnCheck2 = this->My_Commands.in.getToTheBall ();
-      if (returnCheck1 == returnResult::succes && returnCheck2 == returnResult::succes
-      && returnCheck3 == returnResult::succes
+      if (returnCheck1 == returnResult::success && returnCheck2 == returnResult::success
       )
-      reply__returnResult = returnResult::succes;
+      reply__returnResult = returnResult::success;
       else
       reply__returnResult = returnResult::fail;
     }
@@ -77,10 +76,8 @@ returnResult::type Tactics::My_Control_tac_shootBall()
   {
     {
       returnCheck1 = this->My_Commands.in.shootTheBall ();
-      if (returnCheck1 == returnResult::succes && returnCheck2 == returnResult::succes
-      && returnCheck3 == returnResult::succes
-      )
-      reply__returnResult = returnResult::succes;
+      if (returnCheck1 == returnResult::success)
+      reply__returnResult = returnResult::success;
       else
       reply__returnResult = returnResult::fail;
     }
@@ -101,10 +98,10 @@ returnResult::type Tactics::My_Control_tac_attack()
       returnCheck1 = this->My_Commands.in.findTheBall ();
       returnCheck2 = this->My_Commands.in.getToTheBall ();
       returnCheck3 = this->My_Commands.in.shootTheBall ();
-      if (returnCheck1 == returnResult::succes && returnCheck2 == returnResult::succes
-      && returnCheck3 == returnResult::succes
+      if (returnCheck1 == returnResult::success && returnCheck2 == returnResult::success
+      && returnCheck3 == returnResult::success
       )
-      reply__returnResult = returnResult::succes;
+      reply__returnResult = returnResult::success;
       else
       reply__returnResult = returnResult::fail;
     }

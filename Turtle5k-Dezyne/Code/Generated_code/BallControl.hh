@@ -37,7 +37,7 @@ struct BallControl
   {
     enum type
     {
-      busy, succes, fail, yes, no, stub
+      busy, success, fail, yes, no, stub
     };
   };
 #endif // ENUM__returnResult

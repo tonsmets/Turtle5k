@@ -10,19 +10,19 @@ interface iCommands
 	behaviour
   	{
   		on findTheBall:{
-  			reply(returnResult.succes);
+  			reply(returnResult.success);
   		}
   		on findTheBall:{
   			reply(returnResult.fail);
   		}
   		on getToTheBall:{
-  			reply(returnResult.succes);
+  			reply(returnResult.success);
   		}
   		on getToTheBall:{
   			reply(returnResult.fail);
   		}
   		on shootTheBall:{
-  			reply(returnResult.succes);
+  			reply(returnResult.success);
   		}
   		on shootTheBall:{
   			reply(returnResult.fail);
@@ -39,7 +39,7 @@ interface iWheelControl
   	{
     	on getToTheBall:
    		{
-   			reply(returnResult.succes);
+   			reply(returnResult.success);
    		}
    		on getToTheBall:
    		{
@@ -56,7 +56,7 @@ interface iBallControl
   	{
     	on shootTheBall:
    		{
-   			reply(returnResult.succes);
+   			reply(returnResult.success);
    		}
    		on shootTheBall:
    		{
@@ -73,7 +73,7 @@ interface iPositioningControl
 	{
 	  	on findTheBall:
    		{
-   			reply(returnResult.succes);
+   			reply(returnResult.success);
    		}
    		on findTheBall:
    		{
@@ -93,9 +93,9 @@ component Tactics
 	{
 		bool busy = false;
 		bool failure = false;
-		returnResult returnCheck1 = returnResult.succes;
-		returnResult returnCheck2 = returnResult.succes;
-		returnResult returnCheck3 = returnResult.succes;
+		returnResult returnCheck1 = returnResult.success;
+		returnResult returnCheck2 = returnResult.success;
+		returnResult returnCheck3 = returnResult.success;
 		
     	[busy] on My_Control.tac_getTheBall(): 
     	{
@@ -113,9 +113,9 @@ component Tactics
     	{
     		returnCheck1 = My_Commands.findTheBall();
     		returnCheck2 = My_Commands.getToTheBall();
-    		if((returnCheck1 == returnResult.succes) && (returnCheck2 == returnResult.succes) && (returnCheck3 == returnResult.succes))
+    		if((returnCheck1 == returnResult.success) && (returnCheck2 == returnResult.success))
 	    	{
-	    		reply(returnResult.succes);
+	    		reply(returnResult.success);
 	    	}
 	    	else
 	    	{
@@ -125,9 +125,9 @@ component Tactics
     	[!busy] on My_Control.tac_shootBall():
     	{
     		returnCheck1 = My_Commands.shootTheBall();
-    		if((returnCheck1 == returnResult.succes) && (returnCheck2 == returnResult.succes) && (returnCheck3 == returnResult.succes))
+    		if((returnCheck1 == returnResult.success))
 	    	{
-	    		reply(returnResult.succes);
+	    		reply(returnResult.success);
 	    	}
 	    	else
 	    	{
@@ -139,9 +139,9 @@ component Tactics
     		returnCheck1 = My_Commands.findTheBall();
     		returnCheck2 = My_Commands.getToTheBall();
     		returnCheck3 = My_Commands.shootTheBall();
-    		if((returnCheck1 == returnResult.succes) && (returnCheck2 == returnResult.succes) && (returnCheck3 == returnResult.succes))
+    		if((returnCheck1 == returnResult.success) && (returnCheck2 == returnResult.success) && (returnCheck3 == returnResult.success))
 	    	{
-	    		reply(returnResult.succes);
+	    		reply(returnResult.success);
 	    	}
 	    	else
 	    	{
@@ -166,9 +166,9 @@ component Commands
 		{
 			returnResult result = returnResult.fail;
 			result = My_BallControl.shootTheBall();
-			if(result == returnResult.succes)
+			if(result == returnResult.success)
 			{
-				reply(returnResult.succes);
+				reply(returnResult.success);
 			}
 			else
 			{
@@ -179,9 +179,9 @@ component Commands
 		{
 			returnResult x = returnResult.fail;
 			x = My_PositioningControl.findTheBall();
-			if(x == returnResult.succes)
+			if(x == returnResult.success)
 			{
-				reply(returnResult.succes);
+				reply(returnResult.success);
 			}
 			else
 			{
@@ -192,9 +192,9 @@ component Commands
 		{
 			returnResult result = returnResult.fail;
 			result = My_WheelControl.getToTheBall();
-			if(result == returnResult.succes)
+			if(result == returnResult.success)
 			{
-				reply(returnResult.succes);
+				reply(returnResult.success);
 			}
 			else
 			{

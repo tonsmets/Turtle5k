@@ -45,8 +45,8 @@ returnResult::type Commands::My_Commands_findTheBall()
   {
     returnResult::type x = returnResult::fail;
     x = this->My_PositioningControl.in.findTheBall ();
-    if (x == returnResult::succes)
-    reply__returnResult = returnResult::succes;
+    if (x == returnResult::success)
+    reply__returnResult = returnResult::success;
     else
     reply__returnResult = returnResult::fail;
   }
@@ -58,8 +58,8 @@ returnResult::type Commands::My_Commands_getToTheBall()
   {
     returnResult::type result = returnResult::fail;
     result = this->My_WheelControl.in.getToTheBall ();
-    if (result == returnResult::succes)
-    reply__returnResult = returnResult::succes;
+    if (result == returnResult::success)
+    reply__returnResult = returnResult::success;
     else
     reply__returnResult = returnResult::fail;
   }
@@ -71,8 +71,8 @@ returnResult::type Commands::My_Commands_shootTheBall()
   {
     returnResult::type result = returnResult::fail;
     result = this->My_BallControl.in.shootTheBall ();
-    if (result == returnResult::succes)
-    reply__returnResult = returnResult::succes;
+    if (result == returnResult::success)
+    reply__returnResult = returnResult::success;
     else
     reply__returnResult = returnResult::fail;
   }

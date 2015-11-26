@@ -12,7 +12,7 @@ interface iControl
   			reply(returnResult.busy);
   		}
   		on tac_getTheBall:{
-  			reply(returnResult.succes);
+  			reply(returnResult.success);
   		}
   		on tac_getTheBall:{
   			reply(returnResult.fail);
@@ -21,7 +21,7 @@ interface iControl
   			reply(returnResult.busy);
   		}
   		on tac_shootBall:{
-  			reply(returnResult.succes);
+  			reply(returnResult.success);
   		}
   		on tac_shootBall:{
   			reply(returnResult.fail);
@@ -30,7 +30,7 @@ interface iControl
   			reply(returnResult.busy);
   		}
   		on tac_attack:{
-  			reply(returnResult.succes);
+  			reply(returnResult.success);
   		}
   		on tac_attack:{
   			reply(returnResult.fail);
@@ -46,7 +46,7 @@ interface iBallHandling
   	{
 		on handleTheBall:
 		{
-			reply(returnResult.succes);
+			reply(returnResult.success);
 		}   	
 		on handleTheBall:
 		{
@@ -63,7 +63,7 @@ interface iShooting
   	{
    		on shootTheBall:
    		{
-   			reply(returnResult.succes);
+   			reply(returnResult.success);
    		}
    		on shootTheBall:
    		{
@@ -83,7 +83,7 @@ interface iWheelDriver
 	{
 	  	on getToTheBall:
    		{
-   			reply(returnResult.succes);
+   			reply(returnResult.success);
    		}
    		on getToTheBall:
    		{
@@ -100,7 +100,7 @@ interface iWorldModel
 	{
 	  	on findTheBall:
    		{
-   			reply(returnResult.succes);
+   			reply(returnResult.success);
    		}
    		on findTheBall:
    		{
@@ -118,7 +118,7 @@ interface iNavigation
 	{
 	  	on Navigate:
    		{
-   			reply(returnResult.succes);
+   			reply(returnResult.success);
    		}
    		on Navigate:
    		{
