@@ -24,7 +24,7 @@ struct iWorldModel
 
   struct
   {
-    std::function<returnResult::type ()> findTheBall;
+    std::function<returnResult::type (float& x, float& y, float& z)> findTheBall;
   } in;
 
   struct

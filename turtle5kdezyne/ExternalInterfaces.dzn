@@ -94,7 +94,8 @@ interface iWheelDriver
 
 interface iWorldModel
 {
-	in returnResult findTheBall();
+  	extern FloatRef $float&$;	
+	in returnResult findTheBall(FloatRef x, FloatRef y, FloatRef z);
 	
 	behaviour
 	{
@@ -106,13 +107,13 @@ interface iWorldModel
    		{
    			reply(returnResult.fail);
    		}
-	  	
 	}
 }
 
 interface iNavigation
 {
-	in returnResult Navigate();
+  	extern FloatRef $float&$;																																																																																																																																																																																																																																																																																																																																																																			 
+	in returnResult Navigate(FloatRef x, FloatRef y, FloatRef z);
 	
 	behaviour
 	{

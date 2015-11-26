@@ -36,7 +36,7 @@ struct iNavigation
 
   struct
   {
-    std::function<returnResult::type ()> Navigate;
+    std::function<returnResult::type (float& x, float& y, float& z)> Navigate;
   } in;
 
   struct

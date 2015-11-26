@@ -6,7 +6,7 @@
 class Navigation_impl
 {
 	public:
-	static returnResult::type Navigate();
+	static returnResult::type Navigate(float& x, float& y, float& z);
 };
 
 #endif //NAVIGATION_IMPL_HH

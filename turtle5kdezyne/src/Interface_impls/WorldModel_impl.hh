@@ -6,7 +6,11 @@
 class WorldModel_impl
 {
 	public:
-	static returnResult::type findTheBall();
+	WorldModel_impl();
+	static returnResult::type findTheBall(float& x, float& y, float& z);
+	static float my_x;
+	static float my_y;
+	static float my_z;
 };
 
 #endif //WORLDMODEL_IMPL_HH

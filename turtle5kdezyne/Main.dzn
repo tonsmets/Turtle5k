@@ -1,6 +1,8 @@
 import ReturnResults.dzn;
 import ExternalInterfaces.dzn;
 
+extern Float $float$;
+
 interface iCommands
 {
 	in returnResult findTheBall();
@@ -241,7 +243,7 @@ component WheelControl
 }
 
 component PositioningControl
-{
+{ 	
   	provides iPositioningControl My_PositioningControl;
   	
   	requires iWorldModel My_WorldModel;
@@ -250,13 +252,16 @@ component PositioningControl
   	behaviour
 	{
 		on My_PositioningControl.findTheBall():
-		{
+		{			
 			returnResult result = returnResult.fail;
-			result = My_WorldModel.findTheBall();
+			Float x;
+			Float y;
+			Float z;
+			result = My_WorldModel.findTheBall(x, y, z);
+			result = My_Navigation.Navigate(x, y, z);
 			reply(result);
 		}
 	}
-  	
 }
 
 component Robot

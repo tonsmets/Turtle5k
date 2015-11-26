@@ -37,7 +37,11 @@ returnResult::type PositioningControl::My_PositioningControl_findTheBall()
 {
   {
     returnResult::type result = returnResult::fail;
-    result = this->My_WorldModel.in.findTheBall ();
+    float x;
+    float y;
+    float z;
+    result = this->My_WorldModel.in.findTheBall (x, y, z);
+    result = this->My_Navigation.in.Navigate (x, y, z);
     reply__returnResult = result;
   }
   return reply__returnResult;
