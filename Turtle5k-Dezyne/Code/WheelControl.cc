@@ -19,24 +19,24 @@
 
 
 WheelControl::WheelControl(const dezyne::locator& dezyne_locator)
-: dzn_meta{"","WheelControl",reinterpret_cast<const dezyne::component*>(this),0,{},{[this]{WheelControl.check_bindings();},[this]{WheelDriver.check_bindings();}}}
+: dzn_meta{"","WheelControl",reinterpret_cast<const dezyne::component*>(this),0,{},{[this]{My_WheelControl.check_bindings();},[this]{My_WheelDriver.check_bindings();}}}
 , dzn_rt(dezyne_locator.get<dezyne::runtime>())
 , dzn_locator(dezyne_locator)
-, WheelControl{{{"WheelControl",this},{"",0}}}
-, WheelDriver{{{"",0},{"WheelDriver",this}}}
+, My_WheelControl{{{"My_WheelControl",this},{"",0}}}
+, My_WheelDriver{{{"",0},{"My_WheelDriver",this}}}
 {
   dzn_rt.performs_flush(this) = true;
-  WheelControl.in.getToTheBall = [&] () {
-    return dezyne::call_in(this, std::function<returnResult::type()>([&] {return WheelControl_getToTheBall();}), std::make_tuple(&WheelControl, "getToTheBall", "return"));
+  My_WheelControl.in.getToTheBall = [&] () {
+    return dezyne::call_in(this, std::function<returnResult::type()>([&] {return My_WheelControl_getToTheBall();}), std::make_tuple(&My_WheelControl, "getToTheBall", "return"));
   };
 
 }
 
-returnResult::type WheelControl::WheelControl_getToTheBall()
+returnResult::type WheelControl::My_WheelControl_getToTheBall()
 {
   {
     returnResult::type result = returnResult::fail;
-    result = this->WheelDriver.in.getToTheBall ();
+    result = this->My_WheelDriver.in.getToTheBall ();
     reply__returnResult = result;
   }
   return reply__returnResult;

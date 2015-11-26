@@ -46,17 +46,17 @@ struct Tactics
   returnResult::type returnCheck2;
   returnResult::type returnCheck3;
   ::returnResult::type reply__returnResult;
-  iControl Control;
-  iCommands Commands;
+  iControl My_Control;
+  iCommands My_Commands;
 
   Tactics(const dezyne::locator&);
   void check_bindings() const;
   void dump_tree() const;
 
   private:
-  returnResult::type Control_tac_getTheBall();
-  returnResult::type Control_tac_shootBall();
-  returnResult::type Control_tac_attack();
+  returnResult::type My_Control_tac_getTheBall();
+  returnResult::type My_Control_tac_shootBall();
+  returnResult::type My_Control_tac_attack();
 };
 
 #endif // TACTICS_HH

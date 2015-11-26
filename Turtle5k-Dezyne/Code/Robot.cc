@@ -25,7 +25,7 @@ Robot::Robot(const dezyne::locator& dezyne_locator)
 , ballhandling(dezyne_locator)
 , navigation(dezyne_locator)
 , worldmodel(dezyne_locator)
-, Control(tactics.Control)
+, My_Control(tactics.My_Control)
 {
   tactics.dzn_meta.parent = reinterpret_cast<dezyne::component*>(this);
   tactics.dzn_meta.address = reinterpret_cast<dezyne::component*>(&tactics);
@@ -57,15 +57,15 @@ Robot::Robot(const dezyne::locator& dezyne_locator)
   worldmodel.dzn_meta.parent = reinterpret_cast<dezyne::component*>(this);
   worldmodel.dzn_meta.address = reinterpret_cast<dezyne::component*>(&worldmodel);
   worldmodel.dzn_meta.name = "worldmodel";
-  connect(commands.Commands, tactics.Commands);
-  connect(ballcontrol.BallControl, commands.BallControl);
-  connect(wheelcontrol.WheelControl, commands.WheelControl);
-  connect(positioningcontrol.PositioningControl, commands.PositioningControl);
-  connect(ballhandling.BallHandling, ballcontrol.BallHandling);
-  connect(shooting.Shooting, ballcontrol.Shooting);
-  connect(wheeldriver.WheelDriver, wheelcontrol.WheelDriver);
-  connect(worldmodel.WorldModel, positioningcontrol.WorldModel);
-  connect(navigation.Navigation, positioningcontrol.Navigation);
+  connect(commands.My_Commands, tactics.My_Commands);
+  connect(ballcontrol.My_BallControl, commands.My_BallControl);
+  connect(wheelcontrol.My_WheelControl, commands.My_WheelControl);
+  connect(positioningcontrol.My_PositioningControl, commands.My_PositioningControl);
+  connect(ballhandling.My_BallHandling, ballcontrol.My_BallHandling);
+  connect(shooting.My_Shooting, ballcontrol.My_Shooting);
+  connect(wheeldriver.My_WheelDriver, wheelcontrol.My_WheelDriver);
+  connect(worldmodel.My_WorldModel, positioningcontrol.My_WorldModel);
+  connect(navigation.My_Navigation, positioningcontrol.My_Navigation);
 }
 
 void Robot::check_bindings() const

@@ -39,14 +39,14 @@ struct BallHandling
     };
   };
 #endif // ENUM__returnResult
-  iBallHandling BallHandling;
+  iBallHandling My_BallHandling;
 
   BallHandling(const dezyne::locator&);
   void check_bindings() const;
   void dump_tree() const;
 
   private:
-  void BallHandling_stub();
+  void My_BallHandling_stub();
 };
 
 #endif // BALLHANDLING_HH

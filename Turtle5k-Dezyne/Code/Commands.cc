@@ -19,32 +19,32 @@
 
 
 Commands::Commands(const dezyne::locator& dezyne_locator)
-: dzn_meta{"","Commands",reinterpret_cast<const dezyne::component*>(this),0,{},{[this]{Commands.check_bindings();},[this]{BallControl.check_bindings();},[this]{WheelControl.check_bindings();},[this]{PositioningControl.check_bindings();}}}
+: dzn_meta{"","Commands",reinterpret_cast<const dezyne::component*>(this),0,{},{[this]{My_Commands.check_bindings();},[this]{My_BallControl.check_bindings();},[this]{My_WheelControl.check_bindings();},[this]{My_PositioningControl.check_bindings();}}}
 , dzn_rt(dezyne_locator.get<dezyne::runtime>())
 , dzn_locator(dezyne_locator)
-, Commands{{{"Commands",this},{"",0}}}
-, BallControl{{{"",0},{"BallControl",this}}}
-, WheelControl{{{"",0},{"WheelControl",this}}}
-, PositioningControl{{{"",0},{"PositioningControl",this}}}
+, My_Commands{{{"My_Commands",this},{"",0}}}
+, My_BallControl{{{"",0},{"My_BallControl",this}}}
+, My_WheelControl{{{"",0},{"My_WheelControl",this}}}
+, My_PositioningControl{{{"",0},{"My_PositioningControl",this}}}
 {
   dzn_rt.performs_flush(this) = true;
-  Commands.in.findTheBall = [&] () {
-    return dezyne::call_in(this, std::function<returnResult::type()>([&] {return Commands_findTheBall();}), std::make_tuple(&Commands, "findTheBall", "return"));
+  My_Commands.in.findTheBall = [&] () {
+    return dezyne::call_in(this, std::function<returnResult::type()>([&] {return My_Commands_findTheBall();}), std::make_tuple(&My_Commands, "findTheBall", "return"));
   };
-  Commands.in.getToTheBall = [&] () {
-    return dezyne::call_in(this, std::function<returnResult::type()>([&] {return Commands_getToTheBall();}), std::make_tuple(&Commands, "getToTheBall", "return"));
+  My_Commands.in.getToTheBall = [&] () {
+    return dezyne::call_in(this, std::function<returnResult::type()>([&] {return My_Commands_getToTheBall();}), std::make_tuple(&My_Commands, "getToTheBall", "return"));
   };
-  Commands.in.shootTheBall = [&] () {
-    return dezyne::call_in(this, std::function<returnResult::type()>([&] {return Commands_shootTheBall();}), std::make_tuple(&Commands, "shootTheBall", "return"));
+  My_Commands.in.shootTheBall = [&] () {
+    return dezyne::call_in(this, std::function<returnResult::type()>([&] {return My_Commands_shootTheBall();}), std::make_tuple(&My_Commands, "shootTheBall", "return"));
   };
 
 }
 
-returnResult::type Commands::Commands_findTheBall()
+returnResult::type Commands::My_Commands_findTheBall()
 {
   {
     returnResult::type x = returnResult::fail;
-    x = this->PositioningControl.in.findTheBall ();
+    x = this->My_PositioningControl.in.findTheBall ();
     if (x == returnResult::succes)
     reply__returnResult = returnResult::succes;
     else
@@ -53,11 +53,11 @@ returnResult::type Commands::Commands_findTheBall()
   return reply__returnResult;
 }
 
-returnResult::type Commands::Commands_getToTheBall()
+returnResult::type Commands::My_Commands_getToTheBall()
 {
   {
     returnResult::type result = returnResult::fail;
-    result = this->WheelControl.in.getToTheBall ();
+    result = this->My_WheelControl.in.getToTheBall ();
     if (result == returnResult::succes)
     reply__returnResult = returnResult::succes;
     else
@@ -66,11 +66,11 @@ returnResult::type Commands::Commands_getToTheBall()
   return reply__returnResult;
 }
 
-returnResult::type Commands::Commands_shootTheBall()
+returnResult::type Commands::My_Commands_shootTheBall()
 {
   {
     returnResult::type result = returnResult::fail;
-    result = this->BallControl.in.shootTheBall ();
+    result = this->My_BallControl.in.shootTheBall ();
     if (result == returnResult::succes)
     reply__returnResult = returnResult::succes;
     else

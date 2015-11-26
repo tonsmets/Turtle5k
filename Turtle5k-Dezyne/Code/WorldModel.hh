@@ -40,14 +40,14 @@ struct WorldModel
   };
 #endif // ENUM__returnResult
   ::returnResult::type reply__returnResult;
-  iWorldModel WorldModel;
+  iWorldModel My_WorldModel;
 
   WorldModel(const dezyne::locator&);
   void check_bindings() const;
   void dump_tree() const;
 
   private:
-  returnResult::type WorldModel_findTheBall();
+  returnResult::type My_WorldModel_findTheBall();
 };
 
 #endif // WORLDMODEL_HH

@@ -48,7 +48,7 @@ struct Robot
   Navigation navigation;
   WorldModel worldmodel;
 
-  iControl& Control;
+  iControl& My_Control;
 
   Robot(const dezyne::locator&);
   void check_bindings() const;

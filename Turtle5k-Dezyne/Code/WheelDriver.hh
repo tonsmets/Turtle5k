@@ -40,14 +40,14 @@ struct WheelDriver
   };
 #endif // ENUM__returnResult
   ::returnResult::type reply__returnResult;
-  iWheelDriver WheelDriver;
+  iWheelDriver My_WheelDriver;
 
   WheelDriver(const dezyne::locator&);
   void check_bindings() const;
   void dump_tree() const;
 
   private:
-  returnResult::type WheelDriver_getToTheBall();
+  returnResult::type My_WheelDriver_getToTheBall();
 };
 
 #endif // WHEELDRIVER_HH

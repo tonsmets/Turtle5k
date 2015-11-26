@@ -202,9 +202,9 @@ interface iNavigation
 
 component Tactics
 {
-	provides iControl Control;
+	provides iControl My_Control;
 	
-	requires iCommands Commands;
+	requires iCommands My_Commands;
 	
 	behaviour 
 	{
@@ -214,22 +214,22 @@ component Tactics
 		returnResult returnCheck2 = returnResult.succes;
 		returnResult returnCheck3 = returnResult.succes;
 		
-    	[busy] on Control.tac_getTheBall(): 
+    	[busy] on My_Control.tac_getTheBall(): 
     	{
     		reply(returnResult.busy);
     	}
-    	[busy] on Control.tac_shootBall(): 
+    	[busy] on My_Control.tac_shootBall(): 
     	{
     		reply(returnResult.busy);
     	}
-    	[busy] on Control.tac_attack(): 
+    	[busy] on My_Control.tac_attack(): 
     	{
     		reply(returnResult.busy);
     	}
-    	[!busy] on Control.tac_getTheBall():
+    	[!busy] on My_Control.tac_getTheBall():
     	{
-    		returnCheck1 = Commands.findTheBall();
-    		returnCheck2 = Commands.getToTheBall();
+    		returnCheck1 = My_Commands.findTheBall();
+    		returnCheck2 = My_Commands.getToTheBall();
     		if((returnCheck1 == returnResult.succes) && (returnCheck2 == returnResult.succes) && (returnCheck3 == returnResult.succes))
 	    	{
 	    		reply(returnResult.succes);
@@ -239,9 +239,9 @@ component Tactics
 	    		reply(returnResult.fail);
 	    	}
     	}
-    	[!busy] on Control.tac_shootBall():
+    	[!busy] on My_Control.tac_shootBall():
     	{
-    		returnCheck1 = Commands.shootTheBall();
+    		returnCheck1 = My_Commands.shootTheBall();
     		if((returnCheck1 == returnResult.succes) && (returnCheck2 == returnResult.succes) && (returnCheck3 == returnResult.succes))
 	    	{
 	    		reply(returnResult.succes);
@@ -251,11 +251,11 @@ component Tactics
 	    		reply(returnResult.fail);
 	    	}
     	}
-    	[!busy] on Control.tac_attack():
+    	[!busy] on My_Control.tac_attack():
     	{
-    		returnCheck1 = Commands.findTheBall();
-    		returnCheck2 = Commands.getToTheBall();
-    		returnCheck3 = Commands.shootTheBall();
+    		returnCheck1 = My_Commands.findTheBall();
+    		returnCheck2 = My_Commands.getToTheBall();
+    		returnCheck3 = My_Commands.shootTheBall();
     		if((returnCheck1 == returnResult.succes) && (returnCheck2 == returnResult.succes) && (returnCheck3 == returnResult.succes))
 	    	{
 	    		reply(returnResult.succes);
@@ -271,18 +271,18 @@ component Tactics
 
 component Commands
 {
-	provides iCommands Commands;
+	provides iCommands My_Commands;
 	
-	requires iBallControl BallControl;
-	requires iWheelControl WheelControl;
-	requires iPositioningControl PositioningControl;
+	requires iBallControl My_BallControl;
+	requires iWheelControl My_WheelControl;
+	requires iPositioningControl My_PositioningControl;
 	      
 	behaviour
 	{
-		on Commands.shootTheBall():
+		on My_Commands.shootTheBall():
 		{
 			returnResult result = returnResult.fail;
-			result = BallControl.shootTheBall();
+			result = My_BallControl.shootTheBall();
 			if(result == returnResult.succes)
 			{
 				reply(returnResult.succes);
@@ -292,10 +292,10 @@ component Commands
 				reply(returnResult.fail);
 			}	
 		}
-		on Commands.findTheBall():
+		on My_Commands.findTheBall():
 		{
 			returnResult x = returnResult.fail;
-			x = PositioningControl.findTheBall();
+			x = My_PositioningControl.findTheBall();
 			if(x == returnResult.succes)
 			{
 				reply(returnResult.succes);
@@ -305,10 +305,10 @@ component Commands
 				reply(returnResult.fail);
 			}
 		}
-		on Commands.getToTheBall():
+		on My_Commands.getToTheBall():
 		{
 			returnResult result = returnResult.fail;
-			result = WheelControl.getToTheBall();
+			result = My_WheelControl.getToTheBall();
 			if(result == returnResult.succes)
 			{
 				reply(returnResult.succes);
@@ -323,17 +323,17 @@ component Commands
 
 component BallControl
 {
-	provides iBallControl BallControl;
+	provides iBallControl My_BallControl;
 	
-	requires iBallHandling BallHandling;
-	requires iShooting Shooting;
+	requires iBallHandling My_BallHandling;
+	requires iShooting My_Shooting;
 	
 	behaviour
 	{
-		on BallControl.shootTheBall():
+		on My_BallControl.shootTheBall():
 		{
 			returnResult result = returnResult.fail;
-			result = Shooting.shootTheBall();
+			result = My_Shooting.shootTheBall();
 			reply(result);
 		}
 	}
@@ -342,16 +342,16 @@ component BallControl
 
 component WheelControl
 {
-	provides iWheelControl WheelControl;
+	provides iWheelControl My_WheelControl;
 	
-	requires iWheelDriver WheelDriver;
+	requires iWheelDriver My_WheelDriver;
 	
 	behaviour
 	{
-		on WheelControl.getToTheBall():
+		on My_WheelControl.getToTheBall():
 		{
 			returnResult result = returnResult.fail;
-			result = WheelDriver.getToTheBall();
+			result = My_WheelDriver.getToTheBall();
 			reply(result);
 		}	
 	}
@@ -359,17 +359,17 @@ component WheelControl
 
 component PositioningControl
 {
-  	provides iPositioningControl PositioningControl;
+  	provides iPositioningControl My_PositioningControl;
   	
-  	requires iWorldModel WorldModel;
-  	requires iNavigation Navigation;
+  	requires iWorldModel My_WorldModel;
+  	requires iNavigation My_Navigation;
   	
   	behaviour
 	{
-		on PositioningControl.findTheBall():
+		on My_PositioningControl.findTheBall():
 		{
 			returnResult result = returnResult.fail;
-			result = WorldModel.findTheBall();
+			result = My_WorldModel.findTheBall();
 			reply(result);
 		}
 	}
@@ -378,32 +378,32 @@ component PositioningControl
 
 component WheelDriver
 {
-  	provides iWheelDriver WheelDriver;
+  	provides iWheelDriver My_WheelDriver;
 }
 
 component Shooting
 {
-	provides iShooting Shooting;
+	provides iShooting My_Shooting;
 }
 
 component BallHandling
 {
-	provides iBallHandling BallHandling;
+	provides iBallHandling My_BallHandling;
 }
 
 component WorldModel
 {
-  	provides iWorldModel WorldModel;
+  	provides iWorldModel My_WorldModel;
 }
 
 component Navigation
 {
-  	provides iNavigation Navigation;
+  	provides iNavigation My_Navigation;
 }
 
 component Robot
 {
-  	provides iControl Control;
+  	provides iControl My_Control;
 
   	system
   	{
@@ -421,20 +421,20 @@ component Robot
 	    Navigation navigation;
 	    WorldModel worldmodel;
 	
-	    Control <=> tactics.Control;
+	    My_Control <=> tactics.My_Control;
 	    
-	    tactics.Commands <=> commands.Commands;
+	    tactics.My_Commands <=> commands.My_Commands;
 	    
-	    commands.BallControl <=> ballcontrol.BallControl;
-	    commands.WheelControl <=> wheelcontrol.WheelControl;
-	    commands.PositioningControl <=> positioningcontrol.PositioningControl;
+	    commands.My_BallControl <=> ballcontrol.My_BallControl;
+	    commands.My_WheelControl <=> wheelcontrol.My_WheelControl;
+	    commands.My_PositioningControl <=> positioningcontrol.My_PositioningControl;
 	    
-	    ballcontrol.BallHandling <=> ballhandling.BallHandling;
-	    ballcontrol.Shooting <=> shooting.Shooting;
+	    ballcontrol.My_BallHandling <=> ballhandling.My_BallHandling;
+	    ballcontrol.My_Shooting <=> shooting.My_Shooting;
 	    
-	    wheelcontrol.WheelDriver <=> wheeldriver.WheelDriver;
+	    wheelcontrol.My_WheelDriver <=> wheeldriver.My_WheelDriver;
 	    
-	    positioningcontrol.WorldModel <=> worldmodel.WorldModel;
-	    positioningcontrol.Navigation <=> navigation.Navigation;
+	    positioningcontrol.My_WorldModel <=> worldmodel.My_WorldModel;
+	    positioningcontrol.My_Navigation <=> navigation.My_Navigation;
   	}
 }

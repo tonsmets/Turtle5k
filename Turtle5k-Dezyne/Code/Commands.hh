@@ -43,19 +43,19 @@ struct Commands
   };
 #endif // ENUM__returnResult
   ::returnResult::type reply__returnResult;
-  iCommands Commands;
-  iBallControl BallControl;
-  iWheelControl WheelControl;
-  iPositioningControl PositioningControl;
+  iCommands My_Commands;
+  iBallControl My_BallControl;
+  iWheelControl My_WheelControl;
+  iPositioningControl My_PositioningControl;
 
   Commands(const dezyne::locator&);
   void check_bindings() const;
   void dump_tree() const;
 
   private:
-  returnResult::type Commands_findTheBall();
-  returnResult::type Commands_getToTheBall();
-  returnResult::type Commands_shootTheBall();
+  returnResult::type My_Commands_findTheBall();
+  returnResult::type My_Commands_getToTheBall();
+  returnResult::type My_Commands_shootTheBall();
 };
 
 #endif // COMMANDS_HH

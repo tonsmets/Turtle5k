@@ -40,14 +40,14 @@ struct Shooting
   };
 #endif // ENUM__returnResult
   ::returnResult::type reply__returnResult;
-  iShooting Shooting;
+  iShooting My_Shooting;
 
   Shooting(const dezyne::locator&);
   void check_bindings() const;
   void dump_tree() const;
 
   private:
-  returnResult::type Shooting_shootTheBall();
+  returnResult::type My_Shooting_shootTheBall();
 };
 
 #endif // SHOOTING_HH

@@ -42,16 +42,16 @@ struct BallControl
   };
 #endif // ENUM__returnResult
   ::returnResult::type reply__returnResult;
-  iBallControl BallControl;
-  iBallHandling BallHandling;
-  iShooting Shooting;
+  iBallControl My_BallControl;
+  iBallHandling My_BallHandling;
+  iShooting My_Shooting;
 
   BallControl(const dezyne::locator&);
   void check_bindings() const;
   void dump_tree() const;
 
   private:
-  returnResult::type BallControl_shootTheBall();
+  returnResult::type My_BallControl_shootTheBall();
 };
 
 #endif // BALLCONTROL_HH

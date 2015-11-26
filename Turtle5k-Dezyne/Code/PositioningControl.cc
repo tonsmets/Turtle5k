@@ -19,25 +19,25 @@
 
 
 PositioningControl::PositioningControl(const dezyne::locator& dezyne_locator)
-: dzn_meta{"","PositioningControl",reinterpret_cast<const dezyne::component*>(this),0,{},{[this]{PositioningControl.check_bindings();},[this]{WorldModel.check_bindings();},[this]{Navigation.check_bindings();}}}
+: dzn_meta{"","PositioningControl",reinterpret_cast<const dezyne::component*>(this),0,{},{[this]{My_PositioningControl.check_bindings();},[this]{My_WorldModel.check_bindings();},[this]{My_Navigation.check_bindings();}}}
 , dzn_rt(dezyne_locator.get<dezyne::runtime>())
 , dzn_locator(dezyne_locator)
-, PositioningControl{{{"PositioningControl",this},{"",0}}}
-, WorldModel{{{"",0},{"WorldModel",this}}}
-, Navigation{{{"",0},{"Navigation",this}}}
+, My_PositioningControl{{{"My_PositioningControl",this},{"",0}}}
+, My_WorldModel{{{"",0},{"My_WorldModel",this}}}
+, My_Navigation{{{"",0},{"My_Navigation",this}}}
 {
   dzn_rt.performs_flush(this) = true;
-  PositioningControl.in.findTheBall = [&] () {
-    return dezyne::call_in(this, std::function<returnResult::type()>([&] {return PositioningControl_findTheBall();}), std::make_tuple(&PositioningControl, "findTheBall", "return"));
+  My_PositioningControl.in.findTheBall = [&] () {
+    return dezyne::call_in(this, std::function<returnResult::type()>([&] {return My_PositioningControl_findTheBall();}), std::make_tuple(&My_PositioningControl, "findTheBall", "return"));
   };
 
 }
 
-returnResult::type PositioningControl::PositioningControl_findTheBall()
+returnResult::type PositioningControl::My_PositioningControl_findTheBall()
 {
   {
     returnResult::type result = returnResult::fail;
-    result = this->WorldModel.in.findTheBall ();
+    result = this->My_WorldModel.in.findTheBall ();
     reply__returnResult = result;
   }
   return reply__returnResult;

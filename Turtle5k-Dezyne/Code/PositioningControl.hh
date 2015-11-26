@@ -42,16 +42,16 @@ struct PositioningControl
   };
 #endif // ENUM__returnResult
   ::returnResult::type reply__returnResult;
-  iPositioningControl PositioningControl;
-  iWorldModel WorldModel;
-  iNavigation Navigation;
+  iPositioningControl My_PositioningControl;
+  iWorldModel My_WorldModel;
+  iNavigation My_Navigation;
 
   PositioningControl(const dezyne::locator&);
   void check_bindings() const;
   void dump_tree() const;
 
   private:
-  returnResult::type PositioningControl_findTheBall();
+  returnResult::type My_PositioningControl_findTheBall();
 };
 
 #endif // POSITIONINGCONTROL_HH

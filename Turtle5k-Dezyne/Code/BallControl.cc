@@ -19,25 +19,25 @@
 
 
 BallControl::BallControl(const dezyne::locator& dezyne_locator)
-: dzn_meta{"","BallControl",reinterpret_cast<const dezyne::component*>(this),0,{},{[this]{BallControl.check_bindings();},[this]{BallHandling.check_bindings();},[this]{Shooting.check_bindings();}}}
+: dzn_meta{"","BallControl",reinterpret_cast<const dezyne::component*>(this),0,{},{[this]{My_BallControl.check_bindings();},[this]{My_BallHandling.check_bindings();},[this]{My_Shooting.check_bindings();}}}
 , dzn_rt(dezyne_locator.get<dezyne::runtime>())
 , dzn_locator(dezyne_locator)
-, BallControl{{{"BallControl",this},{"",0}}}
-, BallHandling{{{"",0},{"BallHandling",this}}}
-, Shooting{{{"",0},{"Shooting",this}}}
+, My_BallControl{{{"My_BallControl",this},{"",0}}}
+, My_BallHandling{{{"",0},{"My_BallHandling",this}}}
+, My_Shooting{{{"",0},{"My_Shooting",this}}}
 {
   dzn_rt.performs_flush(this) = true;
-  BallControl.in.shootTheBall = [&] () {
-    return dezyne::call_in(this, std::function<returnResult::type()>([&] {return BallControl_shootTheBall();}), std::make_tuple(&BallControl, "shootTheBall", "return"));
+  My_BallControl.in.shootTheBall = [&] () {
+    return dezyne::call_in(this, std::function<returnResult::type()>([&] {return My_BallControl_shootTheBall();}), std::make_tuple(&My_BallControl, "shootTheBall", "return"));
   };
 
 }
 
-returnResult::type BallControl::BallControl_shootTheBall()
+returnResult::type BallControl::My_BallControl_shootTheBall()
 {
   {
     returnResult::type result = returnResult::fail;
-    result = this->Shooting.in.shootTheBall ();
+    result = this->My_Shooting.in.shootTheBall ();
     reply__returnResult = result;
   }
   return reply__returnResult;

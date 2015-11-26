@@ -39,14 +39,14 @@ struct Navigation
     };
   };
 #endif // ENUM__returnResult
-  iNavigation Navigation;
+  iNavigation My_Navigation;
 
   Navigation(const dezyne::locator&);
   void check_bindings() const;
   void dump_tree() const;
 
   private:
-  void Navigation_stub();
+  void My_Navigation_stub();
 };
 
 #endif // NAVIGATION_HH

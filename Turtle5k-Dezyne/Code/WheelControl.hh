@@ -41,15 +41,15 @@ struct WheelControl
   };
 #endif // ENUM__returnResult
   ::returnResult::type reply__returnResult;
-  iWheelControl WheelControl;
-  iWheelDriver WheelDriver;
+  iWheelControl My_WheelControl;
+  iWheelDriver My_WheelDriver;
 
   WheelControl(const dezyne::locator&);
   void check_bindings() const;
   void dump_tree() const;
 
   private:
-  returnResult::type WheelControl_getToTheBall();
+  returnResult::type My_WheelControl_getToTheBall();
 };
 
 #endif // WHEELCONTROL_HH
