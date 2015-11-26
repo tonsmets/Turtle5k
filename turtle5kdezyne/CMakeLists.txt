@@ -4,7 +4,10 @@ project(turtle5kdezyne)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED)
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  std_msgs
+)
 
 #Setting to c++0x instead of c++11 because ROS hydro and indigo only guarantee that it works with c++0x and it's the minimum version for the Dezyne stuff we use
 set(T5K_CXX_FLAGS "-std=c++0x")
@@ -114,6 +117,7 @@ catkin_package(
 ## Your package locations should be listed before other locations
 # include_directories(include)
 
+include_directories(${catkin_INCLUDE_DIRS})
 include_directories(src/Dezyne_framework)
 include_directories(src/Generated_code)
 include_directories(src/Interface_impls)
