@@ -36,7 +36,7 @@ struct iBallHandling
 
   struct
   {
-    std::function<void ()> stub;
+    std::function<returnResult::type ()> handleTheBall;
   } in;
 
   struct
@@ -48,7 +48,7 @@ struct iBallHandling
 
   void check_bindings() const
   {
-    if (! in.stub) throw dezyne::binding_error_in(meta, "in.stub");
+    if (! in.handleTheBall) throw dezyne::binding_error_in(meta, "in.handleTheBall");
 
 
   }

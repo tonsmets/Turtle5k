@@ -1,0 +1,9 @@
+enum returnResult
+{
+	busy,
+	succes,
+	fail,
+	yes,
+	no,
+	stub
+};

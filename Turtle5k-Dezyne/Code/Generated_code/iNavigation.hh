@@ -36,7 +36,7 @@ struct iNavigation
 
   struct
   {
-    std::function<void ()> stub;
+    std::function<returnResult::type ()> Navigate;
   } in;
 
   struct
@@ -48,7 +48,7 @@ struct iNavigation
 
   void check_bindings() const
   {
-    if (! in.stub) throw dezyne::binding_error_in(meta, "in.stub");
+    if (! in.Navigate) throw dezyne::binding_error_in(meta, "in.Navigate");
 
 
   }

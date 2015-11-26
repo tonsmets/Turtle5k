@@ -1,50 +1,5 @@
-enum returnResult
-{
-	busy,
-	succes,
-	fail,
-	yes,
-	no,
-	stub
-};
-
-interface iControl
-{
-	in returnResult tac_getTheBall();
-  	in returnResult tac_shootBall();
-  	in returnResult tac_attack();
-
-  	behaviour
-  	{
-  		on tac_getTheBall:{
-  			reply(returnResult.busy);
-  		}
-  		on tac_getTheBall:{
-  			reply(returnResult.succes);
-  		}
-  		on tac_getTheBall:{
-  			reply(returnResult.fail);
-  		}
-  		on tac_shootBall:{
-  			reply(returnResult.busy);
-  		}
-  		on tac_shootBall:{
-  			reply(returnResult.succes);
-  		}
-  		on tac_shootBall:{
-  			reply(returnResult.fail);
-  		}
-  		on tac_attack:{
-  			reply(returnResult.busy);
-  		}
-  		on tac_attack:{
-  			reply(returnResult.succes);
-  		}
-  		on tac_attack:{
-  			reply(returnResult.fail);
-  		}
-	}
-}
+import ReturnResults.dzn;
+import ExternalInterfaces.dzn;
 
 interface iCommands
 {
@@ -73,34 +28,6 @@ interface iCommands
   			reply(returnResult.fail);
   		}
   		
-  	}
-}
-
-interface iBallHandling
-{
-	in void stub();
-	
-	behaviour
-  	{
-   		
-  	}
-}
-
-interface iShooting
-{
-	in returnResult shootTheBall();
-	
-	behaviour
-  	{
-   		on shootTheBall:
-   		{
-   			reply(returnResult.succes);
-   		}
-   		on shootTheBall:
-   		{
-   			reply(returnResult.fail);
-   		}
-   		
   	}
 }
 
@@ -155,50 +82,6 @@ interface iPositioningControl
 	}
 }
 
-interface iWheelDriver
-{
-	in returnResult getToTheBall();
-	
-	behaviour
-	{
-	  	on getToTheBall:
-   		{
-   			reply(returnResult.succes);
-   		}
-   		on getToTheBall:
-   		{
-   			reply(returnResult.fail);
-   		}
-	}
-}
-
-interface iWorldModel
-{
-	in returnResult findTheBall();
-	
-	behaviour
-	{
-	  	on findTheBall:
-   		{
-   			reply(returnResult.succes);
-   		}
-   		on findTheBall:
-   		{
-   			reply(returnResult.fail);
-   		}
-	  	
-	}
-}
-
-interface iNavigation
-{
-	in void stub();
-	
-	behaviour
-	{
-	  	
-	}
-}
 
 component Tactics
 {
