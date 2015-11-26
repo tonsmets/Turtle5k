@@ -10,44 +10,49 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#ifndef WHEELDRIVER_HH
-#define WHEELDRIVER_HH
+#ifndef ROBOT_HH
+#define ROBOT_HH
 
+#include "Tactics.hh"
+#include "Commands.hh"
+#include "BallControl.hh"
+#include "WheelControl.hh"
+#include "PositioningControl.hh"
+
+
+#include "iControl.hh"
+#include "iBallHandling.hh"
+#include "iShooting.hh"
 #include "iWheelDriver.hh"
+#include "iWorldModel.hh"
+#include "iNavigation.hh"
 
 
-#include "runtime.hh"
-
-namespace dezyne {
+namespace dezyne
+{
   struct locator;
-  struct runtime;
 }
 
 
-struct WheelDriver
+struct Robot
 {
   dezyne::meta dzn_meta;
-  dezyne::runtime& dzn_rt;
-  dezyne::locator const& dzn_locator;
-#ifndef ENUM__returnResult
-#define ENUM__returnResult 1
-  struct returnResult
-  {
-    enum type
-    {
-      busy, succes, fail, yes, no, stub
-    };
-  };
-#endif // ENUM__returnResult
-  ::returnResult::type reply__returnResult;
-  iWheelDriver My_WheelDriver;
+  Tactics tactics;
+  Commands commands;
+  BallControl ballcontrol;
+  WheelControl wheelcontrol;
+  PositioningControl positioningcontrol;
 
-  WheelDriver(const dezyne::locator&);
+  iControl& My_Control;
+  iBallHandling& My_BallHandling;
+  iShooting& My_Shooting;
+  iWheelDriver& My_WheelDriver;
+  iWorldModel& My_WorldModel;
+  iNavigation& My_Navigation;
+
+  Robot(const dezyne::locator&);
   void check_bindings() const;
   void dump_tree() const;
-
-  private:
-  returnResult::type My_WheelDriver_getToTheBall();
 };
 
-#endif // WHEELDRIVER_HH
+#endif // ROBOT_HH

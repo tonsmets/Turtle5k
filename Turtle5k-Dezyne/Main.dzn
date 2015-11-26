@@ -376,34 +376,16 @@ component PositioningControl
   	
 }
 
-component WheelDriver
-{
-  	provides iWheelDriver My_WheelDriver;
-}
-
-component Shooting
-{
-	provides iShooting My_Shooting;
-}
-
-component BallHandling
-{
-	provides iBallHandling My_BallHandling;
-}
-
-component WorldModel
-{
-  	provides iWorldModel My_WorldModel;
-}
-
-component Navigation
-{
-  	provides iNavigation My_Navigation;
-}
-
 component Robot
 {
   	provides iControl My_Control;
+
+	requires iBallHandling My_BallHandling;
+	requires iShooting My_Shooting;
+  	requires iWheelDriver My_WheelDriver;
+  	requires iWorldModel My_WorldModel;
+  	requires iNavigation My_Navigation;
+
 
   	system
   	{
@@ -414,13 +396,7 @@ component Robot
 	    BallControl ballcontrol;
 	    WheelControl wheelcontrol;
 	    PositioningControl positioningcontrol;
-	    
-	    WheelDriver wheeldriver;
-	    Shooting shooting;
-	    BallHandling ballhandling;
-	    Navigation navigation;
-	    WorldModel worldmodel;
-	
+	    	
 	    My_Control <=> tactics.My_Control;
 	    
 	    tactics.My_Commands <=> commands.My_Commands;
@@ -429,12 +405,12 @@ component Robot
 	    commands.My_WheelControl <=> wheelcontrol.My_WheelControl;
 	    commands.My_PositioningControl <=> positioningcontrol.My_PositioningControl;
 	    
-	    ballcontrol.My_BallHandling <=> ballhandling.My_BallHandling;
-	    ballcontrol.My_Shooting <=> shooting.My_Shooting;
+	    ballcontrol.My_BallHandling <=> My_BallHandling;
+	    ballcontrol.My_Shooting <=> My_Shooting;
 	    
-	    wheelcontrol.My_WheelDriver <=> wheeldriver.My_WheelDriver;
+	    wheelcontrol.My_WheelDriver <=> My_WheelDriver;
 	    
-	    positioningcontrol.My_WorldModel <=> worldmodel.My_WorldModel;
-	    positioningcontrol.My_Navigation <=> navigation.My_Navigation;
+	    positioningcontrol.My_WorldModel <=> My_WorldModel;
+	    positioningcontrol.My_Navigation <=> My_Navigation;
   	}
 }
