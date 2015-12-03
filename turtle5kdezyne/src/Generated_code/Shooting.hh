@@ -1,9 +1,7 @@
-#ifndef POSITIONINGCONTROL_HH
-#define POSITIONINGCONTROL_HH
+#ifndef SHOOTING_HH
+#define SHOOTING_HH
 
-#include "iPositioningControl.hh"
-#include "iWorldModel.hh"
-#include "iNavigation.hh"
+#include "iShooting.hh"
 
 
 #include "runtime.hh"
@@ -14,7 +12,7 @@ namespace dezyne {
 }
 
 
-struct PositioningControl
+struct Shooting
 {
   dezyne::meta dzn_meta;
   dezyne::runtime& dzn_rt;
@@ -30,16 +28,14 @@ struct PositioningControl
   };
 #endif // ENUM__returnResult
   ::returnResult::type reply__returnResult;
-  iPositioningControl My_PositioningControl;
-  iWorldModel My_WorldModel;
-  iNavigation My_Navigation;
+  iShooting My_Shooting;
 
-  PositioningControl(const dezyne::locator&);
+  Shooting(const dezyne::locator&);
   void check_bindings() const;
   void dump_tree() const;
 
   private:
-  returnResult::type My_PositioningControl_findTheBall();
+  returnResult::type My_Shooting_shootTheBall();
 };
 
-#endif // POSITIONINGCONTROL_HH
+#endif // SHOOTING_HH

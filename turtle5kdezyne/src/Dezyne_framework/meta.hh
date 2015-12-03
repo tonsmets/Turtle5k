@@ -1,8 +1,11 @@
 #ifndef META_HH
 #define META_HH
 
+#include <boost/bind.hpp>
+#include <boost/bind/protect.hpp>
+#include <boost/function.hpp>
+
 #include <cassert>
-#include <functional>
 #include <string>
 #include <stdexcept>
 #include <vector>
@@ -13,17 +16,21 @@ namespace dezyne
   {
     struct meta
     {
-      struct
+      meta()
+      : provides()
+      , requires()
+      {}
+      struct detail
       {
+        detail()
+        : port()
+        , address()
+        {}
         std::string port;
         void*       address;
-      } provides;
-
-      struct
-      {
-        std::string port;
-        void*       address;
-      } requires;
+      };
+      detail provides;
+      detail requires;
     };
   }
 
@@ -31,12 +38,18 @@ namespace dezyne
 
   struct meta
   {
+    meta(const std::string& name, const std::string& type, const component* address, const component* parent)
+    : name(name)
+    , type(type)
+    , address(address)
+    , parent(parent)
+    {}
     std::string name;
     std::string type;
     const component* address;
     const component* parent;
     std::vector<const component*> children;
-    std::vector<std::function<void()>> ports_connected;
+    std::vector<boost::function<void()> > ports_connected;
   };
 
   struct component
@@ -44,16 +57,26 @@ namespace dezyne
     dezyne::meta dzn_meta;
   };
 
-  struct illegal_handler {std::function<void()> illegal = [] {assert(!"h:illegal");};};
+  struct illegal_handler
+  {
+    illegal_handler()
+    : illegal(boost::bind(&illegal_handler::throw_handler, this))
+    {}
+    void throw_handler()
+    {
+      throw std::runtime_error("illegal");
+    }
+    boost::function<void()> illegal;
+  };
 
-  inline std::string path(meta const& m, std::string p="")
+  inline std::string path(meta const& m, const std::string& p = "")
   {
     if(m.parent)
       return path(m.parent->dzn_meta, m.name + (p.empty() ? p : "." + p));
     return m.name + (p.empty() ? p : "." + p);
   }
 
-  inline std::string path(void* c, std::string p="")
+  inline std::string path(void* c, const std::string& p = "")
   {
     if (!c)
       return "<external>." + p;

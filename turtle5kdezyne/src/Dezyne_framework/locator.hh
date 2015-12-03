@@ -43,7 +43,7 @@ public:
   T* try_get(const Key& key = Key()) const
   {
     std::map<std::pair<Key,type_info>, void*>::const_iterator it = services.find(std::make_pair(key,type_info(typeid(T))));
-    if(it != services.end() && it->second)
+    if(it != services.end() and it->second)
       return reinterpret_cast<T*>(it->second);
     return 0;
   }

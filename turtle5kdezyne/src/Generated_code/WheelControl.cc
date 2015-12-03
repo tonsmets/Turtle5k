@@ -1,15 +1,3 @@
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "WheelControl.hh"
 
 #include "locator.hh"
@@ -19,16 +7,25 @@
 
 
 WheelControl::WheelControl(const dezyne::locator& dezyne_locator)
-: dzn_meta{"","WheelControl",reinterpret_cast<const dezyne::component*>(this),0,{},{[this]{My_WheelControl.check_bindings();},[this]{My_WheelDriver.check_bindings();}}}
+: dzn_meta("","WheelControl",reinterpret_cast<const dezyne::component*>(this),0)
 , dzn_rt(dezyne_locator.get<dezyne::runtime>())
 , dzn_locator(dezyne_locator)
-, My_WheelControl{{{"My_WheelControl",this},{"",0}}}
-, My_WheelDriver{{{"",0},{"My_WheelDriver",this}}}
+, My_WheelControl()
+, My_WheelDriver()
 {
+  dzn_meta.ports_connected.push_back(boost::function<void()>(boost::bind(&iWheelControl::check_bindings,&My_WheelControl)));
+  dzn_meta.ports_connected.push_back(boost::function<void()>(boost::bind(&iWheelDriver::check_bindings,&My_WheelDriver)));
+
+  My_WheelControl.meta.provides.port = "My_WheelControl";
+  My_WheelControl.meta.provides.address = this;
+
+
+  My_WheelDriver.meta.requires.port = "My_WheelDriver";
+  My_WheelDriver.meta.requires.address = this;
+
+
   dzn_rt.performs_flush(this) = true;
-  My_WheelControl.in.getToTheBall = [&] () {
-    return dezyne::call_in(this, std::function<returnResult::type()>([&] {return My_WheelControl_getToTheBall();}), std::make_tuple(&My_WheelControl, "getToTheBall", "return"));
-  };
+  My_WheelControl.in.getToTheBall = boost::bind(&dezyne::rcall_in< ::returnResult::type, WheelControl,iWheelControl>,this,boost::function< returnResult::type()>(boost::bind(&WheelControl::My_WheelControl_getToTheBall,this)),boost::make_tuple(&My_WheelControl, "getToTheBall", "return"));
 
 }
 

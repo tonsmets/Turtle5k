@@ -1,8 +1,6 @@
 import ReturnResults.dzn;
 import ExternalInterfaces.dzn;
 
-extern Float $float$;
-
 interface iCommands
 {
 	in returnResult findTheBall();
@@ -254,11 +252,8 @@ component PositioningControl
 		on My_PositioningControl.findTheBall():
 		{			
 			returnResult result = returnResult.fail;
-			Float x;
-			Float y;
-			Float z;
-			result = My_WorldModel.findTheBall(x, y, z);
-			result = My_Navigation.Navigate(x, y, z);
+			result = My_WorldModel.findTheBall();
+			result = My_Navigation.Navigate();
 			reply(result);
 		}
 	}
@@ -267,13 +262,6 @@ component PositioningControl
 component Robot
 {
   	provides iControl My_Control;
-
-	requires iBallHandling My_BallHandling;
-	requires iShooting My_Shooting;
-  	requires iWheelDriver My_WheelDriver;
-  	requires iWorldModel My_WorldModel;
-  	requires iNavigation My_Navigation;
-
 
   	system
   	{
@@ -284,6 +272,13 @@ component Robot
 	    BallControl ballcontrol;
 	    WheelControl wheelcontrol;
 	    PositioningControl positioningcontrol;
+	    
+	    BallHandling ballhandling;
+	    Shooting shooting;
+	    WheelDriver wheeldriver;
+	    WorldModel worldmodel;
+	    Navigation navigation;
+	   
 	    	
 	    My_Control <=> tactics.My_Control;
 	    
@@ -293,12 +288,12 @@ component Robot
 	    commands.My_WheelControl <=> wheelcontrol.My_WheelControl;
 	    commands.My_PositioningControl <=> positioningcontrol.My_PositioningControl;
 	    
-	    ballcontrol.My_BallHandling <=> My_BallHandling;
-	    ballcontrol.My_Shooting <=> My_Shooting;
+	    ballcontrol.My_BallHandling <=> ballhandling.My_BallHandling;
+	    ballcontrol.My_Shooting <=> shooting.My_Shooting;
 	    
-	    wheelcontrol.My_WheelDriver <=> My_WheelDriver;
+	    wheelcontrol.My_WheelDriver <=> wheeldriver.My_WheelDriver;
 	    
-	    positioningcontrol.My_WorldModel <=> My_WorldModel;
-	    positioningcontrol.My_Navigation <=> My_Navigation;
+	    positioningcontrol.My_WorldModel <=> worldmodel.My_WorldModel;
+	    positioningcontrol.My_Navigation <=> navigation.My_Navigation;
   	}
 }

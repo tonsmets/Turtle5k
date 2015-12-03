@@ -25,22 +25,22 @@ bool runtime::external(void* scope) {
 
 bool& runtime::handling(void* scope)
 {
-  return std::get<0>(queues[scope]);
+  return boost::get<0>(queues[scope]);
 }
 
 void*& runtime::deferred(void* scope)
 {
-  return std::get<1>(queues[scope]);
+  return boost::get<1>(queues[scope]);
 }
 
-std::queue<std::function<void()> >& runtime::queue(void* scope)
+std::queue<boost::function<void()> >& runtime::queue(void* scope)
 {
-  return std::get<2>(queues[scope]);
+  return boost::get<2>(queues[scope]);
 }
 
 bool& runtime::performs_flush(void* scope)
 {
-  return std::get<3>(queues[scope]);
+  return boost::get<3>(queues[scope]);
 }
 
 void runtime::flush(void* scope)
@@ -50,10 +50,10 @@ void runtime::flush(void* scope)
 #endif
   if(!external(scope))
   {
-    std::queue<std::function<void()> >& q = queue(scope);
-    while(! q.empty())
+    std::queue<boost::function<void()> >& q = queue(scope);
+    while(not q.empty())
     {
-      std::function<void()> event = q.front();
+      boost::function<void()> event = q.front();
       q.pop();
       handle(scope, event);
     }
@@ -67,7 +67,7 @@ void runtime::flush(void* scope)
   }
 }
 
-void runtime::defer(void* src, void* tgt, const std::function<void()>& event)
+void runtime::defer(void* src, void* tgt, const boost::function<void()>& event)
 {
 #ifdef DEBUG_RUNTIME
   std::cout << path(tgt) << " defer" << std::endl;
@@ -84,7 +84,7 @@ void runtime::defer(void* src, void* tgt, const std::function<void()>& event)
   }
 }
 
-void runtime::handle(void* scope, const std::function<void()>& event)
+void runtime::handle(void* scope, const boost::function<void()>& event)
 {
   bool& handle = handling(scope);
 
@@ -92,7 +92,7 @@ void runtime::handle(void* scope, const std::function<void()>& event)
   std::cout << path(scope) << " handle " << std::boolalpha << handle << std::endl;
 #endif
 
-  if(! handle)
+  if(not handle)
   {
     {
       scoped_value<bool> sv(handle, true);

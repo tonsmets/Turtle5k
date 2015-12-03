@@ -94,8 +94,7 @@ interface iWheelDriver
 
 interface iWorldModel
 {
-  	extern FloatRef $float&$;	
-	in returnResult findTheBall(FloatRef x, FloatRef y, FloatRef z);
+	in returnResult findTheBall();
 	
 	behaviour
 	{
@@ -112,8 +111,7 @@ interface iWorldModel
 
 interface iNavigation
 {
-  	extern FloatRef $float&$;																																																																																																																																																																																																																																																																																																																																																																			 
-	in returnResult Navigate(FloatRef x, FloatRef y, FloatRef z);
+	in returnResult Navigate();
 	
 	behaviour
 	{
@@ -127,3 +125,29 @@ interface iNavigation
    		}
 	}
 }
+
+component WheelDriver
+{
+	provides iWheelDriver My_WheelDriver;
+}
+
+component WorldModel
+{
+	provides iWorldModel My_WorldModel;
+}
+
+component Navigation
+{
+	provides iNavigation My_Navigation;
+}
+
+component Shooting
+{
+	provides iShooting My_Shooting;
+}
+
+component BallHandling
+{
+	provides iBallHandling My_BallHandling;
+}
+

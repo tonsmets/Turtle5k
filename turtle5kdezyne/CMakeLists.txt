@@ -9,8 +9,8 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
 )
 
-#Setting to c++0x instead of c++11 because ROS hydro and indigo only guarantee that it works with c++0x and it's the minimum version for the Dezyne stuff we use
-set(T5K_CXX_FLAGS "-std=c++0x")
+#Setting to c++03 instead of c++11 because ROS hydro and indigo only guarantee that it works with c++03 and it's the minimum version for the Dezyne stuff we use
+set(T5K_CXX_FLAGS "-std=c++03")
 set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} ${T5K_CXX_FLAGS})
 
 ## System dependencies are found with CMake's conventions

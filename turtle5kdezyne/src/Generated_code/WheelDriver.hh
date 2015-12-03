@@ -1,9 +1,7 @@
-#ifndef POSITIONINGCONTROL_HH
-#define POSITIONINGCONTROL_HH
+#ifndef WHEELDRIVER_HH
+#define WHEELDRIVER_HH
 
-#include "iPositioningControl.hh"
-#include "iWorldModel.hh"
-#include "iNavigation.hh"
+#include "iWheelDriver.hh"
 
 
 #include "runtime.hh"
@@ -14,7 +12,7 @@ namespace dezyne {
 }
 
 
-struct PositioningControl
+struct WheelDriver
 {
   dezyne::meta dzn_meta;
   dezyne::runtime& dzn_rt;
@@ -30,16 +28,14 @@ struct PositioningControl
   };
 #endif // ENUM__returnResult
   ::returnResult::type reply__returnResult;
-  iPositioningControl My_PositioningControl;
-  iWorldModel My_WorldModel;
-  iNavigation My_Navigation;
+  iWheelDriver My_WheelDriver;
 
-  PositioningControl(const dezyne::locator&);
+  WheelDriver(const dezyne::locator&);
   void check_bindings() const;
   void dump_tree() const;
 
   private:
-  returnResult::type My_PositioningControl_findTheBall();
+  returnResult::type My_WheelDriver_getToTheBall();
 };
 
-#endif // POSITIONINGCONTROL_HH
+#endif // WHEELDRIVER_HH

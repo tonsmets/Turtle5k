@@ -1,15 +1,3 @@
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef INAVIGATION_HH
 #define INAVIGATION_HH
 
@@ -36,7 +24,7 @@ struct iNavigation
 
   struct
   {
-    std::function<returnResult::type (float& x, float& y, float& z)> Navigate;
+    boost::function<returnResult::type ()> Navigate;
   } in;
 
   struct
@@ -44,11 +32,10 @@ struct iNavigation
   } out;
 
   dezyne::port::meta meta;
-  inline iNavigation(dezyne::port::meta m) : meta(m) {}
 
   void check_bindings() const
   {
-    if (! in.Navigate) throw dezyne::binding_error_in(meta, "in.Navigate");
+    if (not in.Navigate) throw dezyne::binding_error_in(meta, "in.Navigate");
 
 
   }
@@ -85,14 +72,17 @@ inline const char* to_string(::returnResult::type v)
 #define STRING_TO_ENUM__returnResult 1
 inline ::returnResult::type to__returnResult(std::string s)
 {
-  static std::map<std::string, ::returnResult::type> m = {
-    {"returnResult_busy",::returnResult::busy},
-    {"returnResult_success",::returnResult::success},
-    {"returnResult_fail",::returnResult::fail},
-    {"returnResult_yes",::returnResult::yes},
-    {"returnResult_no",::returnResult::no},
-    {"returnResult_stub",::returnResult::stub},
-  };
+  static std::map<std::string, ::returnResult::type> m;
+  if(m.empty())
+  {
+    m["returnResult_busy"] = ::returnResult::busy;
+    m["returnResult_success"] = ::returnResult::success;
+    m["returnResult_fail"] = ::returnResult::fail;
+    m["returnResult_yes"] = ::returnResult::yes;
+    m["returnResult_no"] = ::returnResult::no;
+    m["returnResult_stub"] = ::returnResult::stub;
+
+  }
   if (m.find(s) != m.end())
   {
     return m[s];

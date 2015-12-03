@@ -24,7 +24,7 @@ struct iWheelControl
 
   struct
   {
-    std::function<returnResult::type ()> getToTheBall;
+    boost::function<returnResult::type ()> getToTheBall;
   } in;
 
   struct
@@ -32,11 +32,10 @@ struct iWheelControl
   } out;
 
   dezyne::port::meta meta;
-  inline iWheelControl(dezyne::port::meta m) : meta(m) {}
 
   void check_bindings() const
   {
-    if (! in.getToTheBall) throw dezyne::binding_error_in(meta, "in.getToTheBall");
+    if (not in.getToTheBall) throw dezyne::binding_error_in(meta, "in.getToTheBall");
 
 
   }
@@ -73,14 +72,17 @@ inline const char* to_string(::returnResult::type v)
 #define STRING_TO_ENUM__returnResult 1
 inline ::returnResult::type to__returnResult(std::string s)
 {
-  static std::map<std::string, ::returnResult::type> m = {
-    {"returnResult_busy",::returnResult::busy},
-    {"returnResult_success",::returnResult::success},
-    {"returnResult_fail",::returnResult::fail},
-    {"returnResult_yes",::returnResult::yes},
-    {"returnResult_no",::returnResult::no},
-    {"returnResult_stub",::returnResult::stub},
-  };
+  static std::map<std::string, ::returnResult::type> m;
+  if(m.empty())
+  {
+    m["returnResult_busy"] = ::returnResult::busy;
+    m["returnResult_success"] = ::returnResult::success;
+    m["returnResult_fail"] = ::returnResult::fail;
+    m["returnResult_yes"] = ::returnResult::yes;
+    m["returnResult_no"] = ::returnResult::no;
+    m["returnResult_stub"] = ::returnResult::stub;
+
+  }
   if (m.find(s) != m.end())
   {
     return m[s];
