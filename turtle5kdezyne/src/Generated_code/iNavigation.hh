@@ -25,6 +25,7 @@ struct iNavigation
   struct
   {
     boost::function<returnResult::type ()> Navigate;
+    boost::function<returnResult::type ()> getCurrentLocation;
   } in;
 
   struct
@@ -36,6 +37,7 @@ struct iNavigation
   void check_bindings() const
   {
     if (not in.Navigate) throw dezyne::binding_error_in(meta, "in.Navigate");
+    if (not in.getCurrentLocation) throw dezyne::binding_error_in(meta, "in.getCurrentLocation");
 
 
   }

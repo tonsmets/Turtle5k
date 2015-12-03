@@ -25,6 +25,7 @@ struct iPositioningControl
   struct
   {
     boost::function<returnResult::type ()> findTheBall;
+    boost::function<returnResult::type ()> getCurrentLocation;
   } in;
 
   struct
@@ -36,6 +37,7 @@ struct iPositioningControl
   void check_bindings() const
   {
     if (not in.findTheBall) throw dezyne::binding_error_in(meta, "in.findTheBall");
+    if (not in.getCurrentLocation) throw dezyne::binding_error_in(meta, "in.getCurrentLocation");
 
 
   }

@@ -36,6 +36,7 @@ struct WheelDriver
 
   private:
   returnResult::type My_WheelDriver_getToTheBall();
+  returnResult::type My_WheelDriver_driveToLocation();
 };
 
 #endif // WHEELDRIVER_HH

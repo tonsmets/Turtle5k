@@ -44,6 +44,8 @@ struct Commands
   returnResult::type My_Commands_findTheBall();
   returnResult::type My_Commands_getToTheBall();
   returnResult::type My_Commands_shootTheBall();
+  returnResult::type My_Commands_getCurrentLocation();
+  returnResult::type My_Commands_driveToLocation();
 };
 
 #endif // COMMANDS_HH

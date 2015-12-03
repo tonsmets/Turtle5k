@@ -30,6 +30,7 @@ PositioningControl::PositioningControl(const dezyne::locator& dezyne_locator)
 
   dzn_rt.performs_flush(this) = true;
   My_PositioningControl.in.findTheBall = boost::bind(&dezyne::rcall_in< ::returnResult::type, PositioningControl,iPositioningControl>,this,boost::function< returnResult::type()>(boost::bind(&PositioningControl::My_PositioningControl_findTheBall,this)),boost::make_tuple(&My_PositioningControl, "findTheBall", "return"));
+  My_PositioningControl.in.getCurrentLocation = boost::bind(&dezyne::rcall_in< ::returnResult::type, PositioningControl,iPositioningControl>,this,boost::function< returnResult::type()>(boost::bind(&PositioningControl::My_PositioningControl_getCurrentLocation,this)),boost::make_tuple(&My_PositioningControl, "getCurrentLocation", "return"));
 
 }
 
@@ -39,6 +40,16 @@ returnResult::type PositioningControl::My_PositioningControl_findTheBall()
     returnResult::type result = returnResult::fail;
     result = this->My_WorldModel.in.findTheBall ();
     result = this->My_Navigation.in.Navigate ();
+    reply__returnResult = result;
+  }
+  return reply__returnResult;
+}
+
+returnResult::type PositioningControl::My_PositioningControl_getCurrentLocation()
+{
+  {
+    returnResult::type result = returnResult::fail;
+    result = this->My_Navigation.in.getCurrentLocation ();
     reply__returnResult = result;
   }
   return reply__returnResult;

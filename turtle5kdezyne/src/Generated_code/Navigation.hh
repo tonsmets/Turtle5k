@@ -36,6 +36,7 @@ struct Navigation
 
   private:
   returnResult::type My_Navigation_Navigate();
+  returnResult::type My_Navigation_getCurrentLocation();
 };
 
 #endif // NAVIGATION_HH

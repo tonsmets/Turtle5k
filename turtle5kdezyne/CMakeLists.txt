@@ -118,6 +118,7 @@ catkin_package(
 # include_directories(include)
 
 include_directories(${catkin_INCLUDE_DIRS})
+include_directories(src)
 include_directories(src/Dezyne_framework)
 include_directories(src/Generated_code)
 include_directories(src/Interface_impls)

@@ -36,6 +36,8 @@ Commands::Commands(const dezyne::locator& dezyne_locator)
   My_Commands.in.findTheBall = boost::bind(&dezyne::rcall_in< ::returnResult::type, Commands,iCommands>,this,boost::function< returnResult::type()>(boost::bind(&Commands::My_Commands_findTheBall,this)),boost::make_tuple(&My_Commands, "findTheBall", "return"));
   My_Commands.in.getToTheBall = boost::bind(&dezyne::rcall_in< ::returnResult::type, Commands,iCommands>,this,boost::function< returnResult::type()>(boost::bind(&Commands::My_Commands_getToTheBall,this)),boost::make_tuple(&My_Commands, "getToTheBall", "return"));
   My_Commands.in.shootTheBall = boost::bind(&dezyne::rcall_in< ::returnResult::type, Commands,iCommands>,this,boost::function< returnResult::type()>(boost::bind(&Commands::My_Commands_shootTheBall,this)),boost::make_tuple(&My_Commands, "shootTheBall", "return"));
+  My_Commands.in.getCurrentLocation = boost::bind(&dezyne::rcall_in< ::returnResult::type, Commands,iCommands>,this,boost::function< returnResult::type()>(boost::bind(&Commands::My_Commands_getCurrentLocation,this)),boost::make_tuple(&My_Commands, "getCurrentLocation", "return"));
+  My_Commands.in.driveToLocation = boost::bind(&dezyne::rcall_in< ::returnResult::type, Commands,iCommands>,this,boost::function< returnResult::type()>(boost::bind(&Commands::My_Commands_driveToLocation,this)),boost::make_tuple(&My_Commands, "driveToLocation", "return"));
 
 }
 
@@ -74,6 +76,26 @@ returnResult::type Commands::My_Commands_shootTheBall()
     reply__returnResult = returnResult::success;
     else
     reply__returnResult = returnResult::fail;
+  }
+  return reply__returnResult;
+}
+
+returnResult::type Commands::My_Commands_getCurrentLocation()
+{
+  {
+    returnResult::type result = returnResult::fail;
+    result = this->My_PositioningControl.in.getCurrentLocation ();
+    reply__returnResult = result;
+  }
+  return reply__returnResult;
+}
+
+returnResult::type Commands::My_Commands_driveToLocation()
+{
+  {
+    returnResult::type result = returnResult::fail;
+    result = this->My_WheelControl.in.driveToLocation ();
+    reply__returnResult = result;
   }
   return reply__returnResult;
 }

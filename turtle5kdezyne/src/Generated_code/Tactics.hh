@@ -45,6 +45,7 @@ struct Tactics
   returnResult::type My_Control_tac_getTheBall();
   returnResult::type My_Control_tac_shootBall();
   returnResult::type My_Control_tac_attack();
+  returnResult::type My_Control_tac_driveToTheBall();
 };
 
 #endif // TACTICS_HH

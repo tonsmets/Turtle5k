@@ -3,6 +3,7 @@
 #include "meta.hh"
 
 #include "Robot.hh"
+#include "DataStore.hh"
 
 #include <ros/ros.h>
 #include <geometry_msgs/Pose.h>
@@ -41,6 +42,7 @@ void PoseCallback(const geometry_msgs::Pose::ConstPtr msg)
 int main(int argc, char ** argv) {
 	ros::init(argc, argv, PROGRAM_NAME);
 	ros::NodeHandle node;
+	DataStore ds;
 	//ros::Subscriber pose_sub = node.subscribe(POSE_SUB_TOPIC, 1000, PoseCallback);
 	
 	dezyne::locator locator;
@@ -48,14 +50,15 @@ int main(int argc, char ** argv) {
 	dezyne::port::meta meta;
 	locator.set(runtime);
 	locator.set(meta);
-	
+	locator.set(node);
+	locator.set(ds);
 	Robot robot(locator);
 	
 	//BindFunctions(robot);
 	
 	robot.check_bindings();
 	
-	robot.My_Control.in.tac_getTheBall();
+	robot.My_Control.in.tac_driveToTheBall();
 
 
 	while(ros::ok())
@@ -63,7 +66,7 @@ int main(int argc, char ** argv) {
 		ros::spinOnce();
 		if(PoseLoaded)
 		{
-			robot.My_Control.in.tac_getTheBall();
+			robot.My_Control.in.tac_driveToTheBall();
 		}
 	}
 

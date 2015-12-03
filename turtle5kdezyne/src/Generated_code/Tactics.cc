@@ -33,6 +33,7 @@ Tactics::Tactics(const dezyne::locator& dezyne_locator)
   My_Control.in.tac_getTheBall = boost::bind(&dezyne::rcall_in< ::returnResult::type, Tactics,iControl>,this,boost::function< returnResult::type()>(boost::bind(&Tactics::My_Control_tac_getTheBall,this)),boost::make_tuple(&My_Control, "tac_getTheBall", "return"));
   My_Control.in.tac_shootBall = boost::bind(&dezyne::rcall_in< ::returnResult::type, Tactics,iControl>,this,boost::function< returnResult::type()>(boost::bind(&Tactics::My_Control_tac_shootBall,this)),boost::make_tuple(&My_Control, "tac_shootBall", "return"));
   My_Control.in.tac_attack = boost::bind(&dezyne::rcall_in< ::returnResult::type, Tactics,iControl>,this,boost::function< returnResult::type()>(boost::bind(&Tactics::My_Control_tac_attack,this)),boost::make_tuple(&My_Control, "tac_attack", "return"));
+  My_Control.in.tac_driveToTheBall = boost::bind(&dezyne::rcall_in< ::returnResult::type, Tactics,iControl>,this,boost::function< returnResult::type()>(boost::bind(&Tactics::My_Control_tac_driveToTheBall,this)),boost::make_tuple(&My_Control, "tac_driveToTheBall", "return"));
 
 }
 
@@ -91,6 +92,28 @@ returnResult::type Tactics::My_Control_tac_attack()
       reply__returnResult = returnResult::success;
       else
       reply__returnResult = returnResult::fail;
+    }
+  }
+  return reply__returnResult;
+}
+
+returnResult::type Tactics::My_Control_tac_driveToTheBall()
+{
+  if (not (busy))
+  {
+    {
+      returnResult::type retCheck = returnResult::fail;
+      retCheck = this->My_Commands.in.findTheBall ();
+      if (retCheck == returnResult::fail)
+      reply__returnResult = retCheck;
+      retCheck = returnResult::fail;
+      retCheck = this->My_Commands.in.getCurrentLocation ();
+      if (retCheck == returnResult::fail)
+      reply__returnResult = retCheck;
+      retCheck = returnResult::fail;
+      retCheck = this->My_Commands.in.driveToLocation ();
+      if (((retCheck == returnResult::busy or retCheck == returnResult::success) or retCheck == returnResult::fail))
+      reply__returnResult = retCheck;
     }
   }
   return reply__returnResult;

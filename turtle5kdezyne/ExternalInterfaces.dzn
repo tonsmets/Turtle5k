@@ -6,6 +6,8 @@ interface iControl
   	in returnResult tac_shootBall();
   	in returnResult tac_attack();
 
+	in returnResult tac_driveToTheBall();
+
   	behaviour
   	{
   		on tac_getTheBall:{
@@ -34,6 +36,15 @@ interface iControl
   		}
   		on tac_attack:{
   			reply(returnResult.fail);
+  		}
+  		on tac_driveToTheBall:{
+  			reply(returnResult.busy);
+  		}
+  		on tac_driveToTheBall:{
+  			reply(returnResult.fail);
+  		}
+  		on tac_driveToTheBall:{
+  			reply(returnResult.success);
   		}
 	}
 }
@@ -78,6 +89,7 @@ interface iShooting
 interface iWheelDriver
 {
 	in returnResult getToTheBall();
+	in returnResult driveToLocation();
 	
 	behaviour
 	{
@@ -88,6 +100,18 @@ interface iWheelDriver
    		on getToTheBall:
    		{
    			reply(returnResult.fail);
+   		}
+   		on driveToLocation:
+   		{
+   			reply(returnResult.success);
+   		}
+   		on driveToLocation:
+   		{
+   			reply(returnResult.fail);
+   		}
+   		on driveToLocation:
+   		{
+   			reply(returnResult.success);
    		}
 	}
 }
@@ -112,6 +136,7 @@ interface iWorldModel
 interface iNavigation
 {
 	in returnResult Navigate();
+	in returnResult getCurrentLocation();
 	
 	behaviour
 	{
@@ -120,6 +145,14 @@ interface iNavigation
    			reply(returnResult.success);
    		}
    		on Navigate:
+   		{
+   			reply(returnResult.fail);
+   		}
+   		on getCurrentLocation:
+   		{
+   			reply(returnResult.success);
+   		}
+   		on getCurrentLocation:
    		{
    			reply(returnResult.fail);
    		}

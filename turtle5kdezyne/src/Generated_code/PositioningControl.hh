@@ -40,6 +40,7 @@ struct PositioningControl
 
   private:
   returnResult::type My_PositioningControl_findTheBall();
+  returnResult::type My_PositioningControl_getCurrentLocation();
 };
 
 #endif // POSITIONINGCONTROL_HH

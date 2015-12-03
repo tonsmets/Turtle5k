@@ -15,20 +15,18 @@ WheelDriver::WheelDriver(const dezyne::locator& dezyne_locator)
 	dzn_rt.performs_flush(this) = true;
 	
 	My_WheelDriver.in.getToTheBall = boost::bind(&dezyne::rcall_in< ::returnResult::type, WheelDriver, iWheelDriver>,this,boost::function< returnResult::type()>(boost::bind(&WheelDriver::My_WheelDriver_getToTheBall,this)),boost::make_tuple(&My_WheelDriver, "getToTheBall", "return"));
+	My_WheelDriver.in.driveToLocation = boost::bind(&dezyne::rcall_in< ::returnResult::type, WheelDriver, iWheelDriver>,this,boost::function< returnResult::type()>(boost::bind(&WheelDriver::My_WheelDriver_driveToLocation,this)),boost::make_tuple(&My_WheelDriver, "driveToLocation", "return"));
+
 }
 
 returnResult::type WheelDriver::My_WheelDriver_getToTheBall()
 {
-	std::cout << "Enter returnresult for WheelDriver_impl: 0 for y and 1 for no" << std::endl;
-	int input=-1;
-	std::scanf("%d", &input);
-	if(input == 0)
-	{
-		reply__returnResult = returnResult::success;
-	}
-	else
-	{
-		reply__returnResult = returnResult::fail;
-	}
+	reply__returnResult = returnResult::fail;
+	return reply__returnResult;
+}
+
+returnResult::type WheelDriver::My_WheelDriver_driveToLocation()
+{
+	reply__returnResult = returnResult::fail;
 	return reply__returnResult;
 }

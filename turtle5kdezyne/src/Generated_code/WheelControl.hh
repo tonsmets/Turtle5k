@@ -38,6 +38,7 @@ struct WheelControl
 
   private:
   returnResult::type My_WheelControl_getToTheBall();
+  returnResult::type My_WheelControl_driveToLocation();
 };
 
 #endif // WHEELCONTROL_HH

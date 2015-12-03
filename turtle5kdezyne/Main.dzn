@@ -6,7 +6,10 @@ interface iCommands
 	in returnResult findTheBall();
 	in returnResult getToTheBall();
 	in returnResult shootTheBall();
-
+	
+	in returnResult getCurrentLocation();
+	in returnResult driveToLocation();
+	
 	behaviour
   	{
   		on findTheBall:{
@@ -27,6 +30,22 @@ interface iCommands
   		on shootTheBall:{
   			reply(returnResult.fail);
   		}
+  		on getCurrentLocation:{
+  			reply(returnResult.success);
+  		}
+  		on getCurrentLocation:{
+  			reply(returnResult.fail);	
+  		}
+  		on driveToLocation:
+  		{
+  			reply(returnResult.fail);
+  		}
+  		on driveToLocation:{
+  			reply(returnResult.busy);
+  		}
+  		on driveToLocation:{
+  			reply(returnResult.success);
+  		}
   		
   	}
 }
@@ -34,6 +53,7 @@ interface iCommands
 interface iWheelControl
 {
 	in returnResult getToTheBall();
+	in returnResult driveToLocation();
 	
 	behaviour
   	{
@@ -44,6 +64,18 @@ interface iWheelControl
    		on getToTheBall:
    		{
    			reply(returnResult.fail);
+   		}
+   		on driveToLocation:
+   		{
+   			reply(returnResult.success);
+   		}
+   		on driveToLocation:
+   		{
+   			reply(returnResult.fail);
+   		}
+   		on driveToLocation:
+   		{
+   			reply(returnResult.busy);
    		}
   	}
 }
@@ -68,7 +100,7 @@ interface iBallControl
 interface iPositioningControl
 {
 	in returnResult findTheBall();
-	
+	in returnResult getCurrentLocation();
 	behaviour
 	{
 	  	on findTheBall:
@@ -76,6 +108,14 @@ interface iPositioningControl
    			reply(returnResult.success);
    		}
    		on findTheBall:
+   		{
+   			reply(returnResult.fail);
+   		}
+   		on getCurrentLocation:
+   		{
+   			reply(returnResult.success);
+   		}
+   		on getCurrentLocation:
    		{
    			reply(returnResult.fail);
    		}
@@ -148,7 +188,27 @@ component Tactics
 	    		reply(returnResult.fail);
 	    	}
     	}   
-    	
+    	[!busy] on My_Control.tac_driveToTheBall():
+    	{
+    		returnResult retCheck = returnResult.fail;
+    		retCheck = My_Commands.findTheBall();
+    		if(retCheck == returnResult.fail)
+    		{
+    			reply(retCheck);
+    		}
+    		retCheck = returnResult.fail;
+    		retCheck = My_Commands.getCurrentLocation();
+    		if(retCheck == returnResult.fail)
+    		{
+    			reply(retCheck);
+    		}
+    		retCheck = returnResult.fail;
+    		retCheck = My_Commands.driveToLocation();
+    		if(retCheck == returnResult.busy || retCheck == returnResult.success || retCheck == returnResult.fail)
+    		{
+    			reply(retCheck);
+    		}
+    	}
 	}
 }
 
@@ -201,6 +261,18 @@ component Commands
 				reply(returnResult.fail);
 			}
 		}
+		on My_Commands.getCurrentLocation():
+		{
+			returnResult result = returnResult.fail;
+			result = My_PositioningControl.getCurrentLocation();
+			reply(result);
+		}
+		on My_Commands.driveToLocation():
+		{
+			returnResult result = returnResult.fail;
+			result = My_WheelControl.driveToLocation();
+			reply(result);
+		}
 	}
 }
 
@@ -237,6 +309,13 @@ component WheelControl
 			result = My_WheelDriver.getToTheBall();
 			reply(result);
 		}	
+		on My_WheelControl.driveToLocation():
+		{
+			returnResult result = returnResult.fail;
+			result = My_WheelDriver.driveToLocation();
+			reply(result);
+		}
+		
 	}
 }
 
@@ -253,7 +332,12 @@ component PositioningControl
 		{			
 			returnResult result = returnResult.fail;
 			result = My_WorldModel.findTheBall();
-			result = My_Navigation.Navigate();
+			reply(result);
+		}
+		on My_PositioningControl.getCurrentLocation():
+		{
+			returnResult result = returnResult.fail;
+			result = My_Navigation.getCurrentLocation();
 			reply(result);
 		}
 	}

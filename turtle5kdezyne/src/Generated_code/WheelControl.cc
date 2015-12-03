@@ -26,6 +26,7 @@ WheelControl::WheelControl(const dezyne::locator& dezyne_locator)
 
   dzn_rt.performs_flush(this) = true;
   My_WheelControl.in.getToTheBall = boost::bind(&dezyne::rcall_in< ::returnResult::type, WheelControl,iWheelControl>,this,boost::function< returnResult::type()>(boost::bind(&WheelControl::My_WheelControl_getToTheBall,this)),boost::make_tuple(&My_WheelControl, "getToTheBall", "return"));
+  My_WheelControl.in.driveToLocation = boost::bind(&dezyne::rcall_in< ::returnResult::type, WheelControl,iWheelControl>,this,boost::function< returnResult::type()>(boost::bind(&WheelControl::My_WheelControl_driveToLocation,this)),boost::make_tuple(&My_WheelControl, "driveToLocation", "return"));
 
 }
 
@@ -34,6 +35,16 @@ returnResult::type WheelControl::My_WheelControl_getToTheBall()
   {
     returnResult::type result = returnResult::fail;
     result = this->My_WheelDriver.in.getToTheBall ();
+    reply__returnResult = result;
+  }
+  return reply__returnResult;
+}
+
+returnResult::type WheelControl::My_WheelControl_driveToLocation()
+{
+  {
+    returnResult::type result = returnResult::fail;
+    result = this->My_WheelDriver.in.driveToLocation ();
     reply__returnResult = result;
   }
   return reply__returnResult;

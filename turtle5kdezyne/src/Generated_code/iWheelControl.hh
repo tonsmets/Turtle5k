@@ -25,6 +25,7 @@ struct iWheelControl
   struct
   {
     boost::function<returnResult::type ()> getToTheBall;
+    boost::function<returnResult::type ()> driveToLocation;
   } in;
 
   struct
@@ -36,6 +37,7 @@ struct iWheelControl
   void check_bindings() const
   {
     if (not in.getToTheBall) throw dezyne::binding_error_in(meta, "in.getToTheBall");
+    if (not in.driveToLocation) throw dezyne::binding_error_in(meta, "in.driveToLocation");
 
 
   }
