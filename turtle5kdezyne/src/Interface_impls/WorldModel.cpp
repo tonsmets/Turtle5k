@@ -3,10 +3,12 @@
 #include <geometry_msgs/PoseStamped.h>
 #include "DataStore.hh"
 
+
 ros::Subscriber wm_sub;
 DataStore * wm_ds;
 
 void ballLocationCallback(const geometry_msgs::PoseStamped::ConstPtr& msg);
+
 
 WorldModel::WorldModel(const dezyne::locator& dezyne_locator)
 : dzn_meta("","WorldModel",reinterpret_cast<const dezyne::component*>(this),0)
@@ -34,6 +36,7 @@ void ballLocationCallback(const geometry_msgs::PoseStamped::ConstPtr& msg)
 
 returnResult::type WorldModel::My_WorldModel_findTheBall()
 {
+	//Chance implementation to allow for a check that the data is loaded in the DS
 	reply__returnResult = returnResult::success;
 	return reply__returnResult;
 }

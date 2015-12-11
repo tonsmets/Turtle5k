@@ -60,14 +60,13 @@ int main(int argc, char ** argv) {
 	
 	robot.My_Control.in.tac_driveToTheBall();
 
+	ros::Rate loop_rate(100);
 
 	while(ros::ok())
 	{
 		ros::spinOnce();
-		if(PoseLoaded)
-		{
-			robot.My_Control.in.tac_driveToTheBall();
-		}
+		robot.My_Control.in.tac_driveToTheBall();
+		loop_rate.sleep();
 	}
 
     return 0;
