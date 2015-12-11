@@ -1,0 +1,29 @@
+<launch>
+
+ <!-- joy node -->
+    <node respawn="true" pkg="joy" type="joy_node" name="turtle_joy" >
+    <param name="dev" type="string" value="/dev/input/js0" />
+    <param name="deadzone" value="0.12" />
+    </node>
+
+ <!-- Axes -->
+  <param name="AxisMotor1" value="0" type="int"/>
+  <param name="AxisMotor2" value="1" type="int"/>
+  <param name="AxisMotor3" value="3" type="int"/>
+  <param name="dScaleMotor1" value="100" type="double"/>
+  <param name="dScaleMotor2" value="100" type="double"/>
+  <param name="dScaleMotor3" value="100" type="double"/>
+
+  <!-- Set drivers node -->
+	<node pkg="turtle5k_drive_system" type="joystick_to_rpm_multiarray_node" name="joystick_to_rpm_multiarray_node"/>
+
+ <!-- Motor node params -->
+	<param name= "iConvertFactor" value = "1" />
+	<param name= "iMaxPulseSpeed" value = "150" />
+	<param name= "iMinPulseSpeed" value = "-150" />
+
+ <!-- set Motor node -->
+	<node pkg =	"turtle5k_drive_system" type = "motor_driver_node" name	="motor_driver_node" required = "true" output = "screen"/>
+
+</launch>
+<!-- %EndTag(FULL)%-->

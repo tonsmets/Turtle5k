@@ -1,0 +1,12 @@
+<launch>
+	<param name= "iConvertFactor" value = "1" />
+	<param name= "iMaxPulseSpeed" value = "150" />
+	<param name= "iMinPulseSpeed" value = "-150" />
+	<node
+		pkg				=			"turtle5k_drive_system"
+		type			=			"motor_driver_node"
+		name			=			"motor_driver_node"
+		required		=			"true"
+		output			=			"screen"
+	/>
+</launch>
