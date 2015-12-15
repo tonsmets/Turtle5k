@@ -1,0 +1,17 @@
+<launch>
+ <!-- Motor node params -->
+	<param name= "iConvertFactor" value = "1" />
+	<param name= "iMaxPulseSpeed" value = "700" />
+	<param name= "iMinPulseSpeed" value = "-700" />
+	<param name= "iOmniWheelMotorDriversPfactor" value = "30" />
+	<param name= "iOmniWheelMotorDriversIfactor" value = "0" />
+
+ <!-- set Motor node -->
+ 	<node pkg =	"turtle5k_drive_system" type = "motor_driver_node" name	="motor_driver_node" required = "true" output = "screen"/>
+
+ <!-- set velocity node -->
+	<node pkg =	"turtle5k_drive_system" type = "calculate_velocity_node" name ="calculate_velocity_node" required = "true" output = "screen"/>
+
+</launch>
+<!-- %EndTag(FULL)%-->
+

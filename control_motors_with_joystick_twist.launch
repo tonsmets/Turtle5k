@@ -10,9 +10,9 @@
   <param name="iAxisX" value="1" type="int"/>
   <param name="iAxisY" value="0" type="int"/>
   <param name="iAxisZ" value="3" type="int"/>
-  <param name="dScaleAxisX" value="0.4" type="double"/>
-  <param name="dScaleAxisY" value="0.4" type="double"/>
-  <param name="dScaleAxisZ" value="1" type="double"/>
+  <param name="dScaleAxisX" value="0.3" type="double"/>
+  <param name="dScaleAxisY" value="0.3" type="double"/>
+  <param name="dScaleAxisZ" value="0.9" type="double"/>
 
   <!-- Set drivers node -->
 	<node pkg="turtle5k_drive_system" type="joystick_to_twist_node" name="joystick_to_twist_node" required = "true" output = "screen"/>
@@ -21,6 +21,8 @@
 	<param name= "iConvertFactor" value = "1" />
 	<param name= "iMaxPulseSpeed" value = "700" />
 	<param name= "iMinPulseSpeed" value = "-700" />
+	<param name= "iOmniWheelMotorDriversPfactor" value = "30" />
+	<param name= "iOmniWheelMotorDriversIfactor" value = "0" />
 
  <!-- set Motor node -->
  	<node pkg =	"turtle5k_drive_system" type = "motor_driver_node" name	="motor_driver_node" required = "true" output = "screen"/>

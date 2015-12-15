@@ -18,11 +18,11 @@ using namespace std;
 #define MESSAGE_SIZE		8
 #define PASS_COUNT			1000
 #define SLEEP				1000
-#define OPEN_WITH_NONBLOCK 	0
-#define READ_ON				1
+#define OPEN_WITH_NONBLOCK 	1
+#define READ_ON				0
 
 #define KP 					100
-#define KI 					0
+#define KI 					20
 
 /* Call this just when main() does its initialization. */
 /* Note: kbhit will call this if it hasn't been done yet. */
@@ -41,7 +41,7 @@ static struct termios original_tty;
 int main(int argc, char *argv[])
 {
 	//init variables
-	char device_name[] = "/dev/ttyS8";
+	char device_name[] = "/dev/ttyS7";
 	int i = 0;
 	int i2= 0;
 	int send_error = 0;
@@ -119,8 +119,8 @@ int main(int argc, char *argv[])
 			//	Here we convert the wheelVel's value accordingly and then send it to both of the controllers.
 			send_bytes[3]=(char)(wheelVel & 0xFF);
 			send_bytes[4]=(char)((wheelVel >> 8) & 0xFF);
-			//send_bytes[5]=(char)(KP & 0xFF);
-			//send_bytes[6]=(char)(KI & 0xFF);
+			send_bytes[5]=(char)(KI & 0xFF);
+			send_bytes[6]=(char)(KP & 0xFF);
 		
 			//send
 			number_of_bytes_to_send = sizeof(send_bytes);

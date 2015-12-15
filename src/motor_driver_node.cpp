@@ -63,7 +63,7 @@ struct termios oldkey, newkey;       //place tor old and new port settings for k
 Start defining class Subscribe
 ********************************************************************************************************************************************/
 class Subscribe
-{
+{	
 public:
 	struct Output{ char cOutBuf[8]; int iSpeed; char cInBuf[8];};	//data for serialports
 	Output serialPorts[10];							
@@ -75,7 +75,7 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////////////
 	//Function: create class and read params
 	//pre: 	-
-	//post: iConvertFactor will be 0 if there is no param readed.
+	//post: iConvertFactor will be 0 if there is no param read.
 	///////////////////////////////////////////////////////////////////////////////////////////
 	Subscribe(ros::NodeHandle nh)
 	{
@@ -95,7 +95,7 @@ public:
 		//check if param is defined.
 		if (nh.hasParam(sParamName)){
 			nh.getParam(sParamName, iConvertFactor);
-			ROS_INFO("parameter iConvertFactor is readed and has value :%i", iConvertFactor);
+			ROS_INFO("parameter iConvertFactor is read and has value :%i", iConvertFactor);
 		}else{
 			ROS_ERROR("Parameter iConvertFactor does not exist");
 			iConvertFactor = 0;
@@ -106,7 +106,7 @@ public:
 		//check if param is defined.
 		if (nh.hasParam(sParamName)){
 			nh.getParam(sParamName, iMaxPulseSpeed);
-			ROS_INFO("parameter iMaxPulseSpeed is readed and has value :%i", iMaxPulseSpeed);
+			ROS_INFO("parameter iMaxPulseSpeed is read and has value :%i", iMaxPulseSpeed);
 		}else{
 			ROS_ERROR("Parameter iMaxPulseSpeed does not exist");
 			iMaxPulseSpeed = 0;
@@ -117,7 +117,7 @@ public:
 		//check if param is defined.
 		if (nh.hasParam(sParamName)){
 			nh.getParam(sParamName, iMinPulseSpeed);
-			ROS_INFO("parameter iMinPulseSpeed is readed and has value :%i", iMinPulseSpeed);
+			ROS_INFO("parameter iMinPulseSpeed is read and has value :%i", iMinPulseSpeed);
 		}else{
 			ROS_ERROR("Parameter iMinPulseSpeed does not exist");
 			iMinPulseSpeed = 0;
@@ -128,7 +128,7 @@ public:
 		//check if param is defined.
 		if (nh.hasParam(sParamName)){
 			nh.getParam(sParamName, iKp);
-			ROS_INFO("parameter iOmniWheelMotorDriversPfactor is readed and has value :%i", iKp);
+			ROS_INFO("parameter iOmniWheelMotorDriversPfactor is read and has value :%i", iKp);
 		}else{
 			ROS_ERROR("Parameter iOmniWheelMotorDriversPfactor does not exist. Default value is taken");
 			iKp = MOTORDRIVER_KP_DEFAULT;
@@ -139,7 +139,7 @@ public:
 		//check if param is defined.
 		if (nh.hasParam(sParamName)){
 			nh.getParam(sParamName, iKi);
-			ROS_INFO("parameter iOmniWheelMotorDriversIfactor is readed and has value :%i", iKi);
+			ROS_INFO("parameter iOmniWheelMotorDriversIfactor is read and has value :%i", iKi);
 		}else{
 			ROS_ERROR("Parameter iOmniWheelMotorDriversIfactor does not exist. Default value is taken");
 			iKi = MOTORDRIVER_KI_DEFAULT;
@@ -283,13 +283,14 @@ public:
 
 		if((iReceiveError != 0) && (iEncoderDataReceiverCounter % DEBUG_SPEED == 0)){
 				ROS_INFO("Total receive errors = %i", iReceiveError);
-				ROS_INFO("first pass with receive send = %i", iFirstReceiveError);
+				ROS_INFO("First pass with receive send = %i", iFirstReceiveError);
 				ROS_INFO("Number of wanted receive bytes = %i", iWantedNumberOfReceiveBytes); 
-				ROS_INFO("Number of receiv bytes = %i", iNumberOfReceiveBytes);
+				ROS_INFO("Number of received bytes = %i", iNumberOfReceiveBytes);
 		}
 
-		if(iSerialNewData[SERIAL_PORT_5] && iSerialNewData[SERIAL_PORT_7] && iSerialNewData[SERIAL_PORT_8]){		
-			int iEncoderData;
+		if(iSerialNewData[SERIAL_PORT_5] && iSerialNewData[SERIAL_PORT_7] && iSerialNewData[SERIAL_PORT_8]){	
+
+			int16_t iEncoderData;
 
 			if(iEncoderDataReceiverCounter % DEBUG_SPEED == 0){
 				ROS_DEBUG("data encoder port 5:0x%x%x", serialPorts[SERIAL_PORT_5].cInBuf[4],serialPorts[SERIAL_PORT_5].cInBuf[3]);
@@ -324,22 +325,39 @@ public:
 				//put speedvalues into array
 				msg.data.clear();
 				msg.data.push_back(0);
-				msg.data.push_back(0);
-				msg.data.push_back(0);
-				msg.data.push_back(0);
-				iEncoderData = (serialPorts[SERIAL_PORT_5].cInBuf[4] << 8) | (serialPorts[SERIAL_PORT_5].cInBuf[3]);
-				//ROS_INFO("encoder data = %i", iEncoderData);
+
+				iEncoderData = ((unsigned char)serialPorts[SERIAL_PORT_5].cInBuf[6] << 8) | ((unsigned char)serialPorts[SERIAL_PORT_5].cInBuf[5]);
+				ROS_INFO("encoder data2.5 = %i", iEncoderData);
 				if(iEncoderDataReceiverCounter % DEBUG_SPEED == 0) ROS_INFO("data encoder wiel 5:%i", iEncoderData);
 				msg.data.push_back(iEncoderData);
-				msg.data.push_back(0);
-				iEncoderData = (serialPorts[SERIAL_PORT_7].cInBuf[4] << 8) | (serialPorts[SERIAL_PORT_7].cInBuf[3]);
+
+				iEncoderData = ((unsigned char)serialPorts[SERIAL_PORT_7].cInBuf[6] << 8) | ((unsigned char)serialPorts[SERIAL_PORT_7].cInBuf[5]);
+				ROS_INFO("encoder data2.7 = %i", iEncoderData);
 				if(iEncoderDataReceiverCounter % DEBUG_SPEED == 0) ROS_INFO("data encoder wiel 7:%i", iEncoderData);
 				msg.data.push_back(iEncoderData);
-				//ROS_INFO("encoder data = %i", iEncoderData);
-				iEncoderData = (serialPorts[SERIAL_PORT_8].cInBuf[4] << 8) | (serialPorts[SERIAL_PORT_8].cInBuf[3]);		
+
+				iEncoderData = ((unsigned char)serialPorts[SERIAL_PORT_8].cInBuf[6] << 8) | ((unsigned char)serialPorts[SERIAL_PORT_8].cInBuf[5]);
+				ROS_INFO("encoder data2.8 = %i", iEncoderData);
+				if(iEncoderDataReceiverCounter % DEBUG_SPEED == 0) ROS_INFO("data encoder wiel 5:%i", iEncoderData);
+				msg.data.push_back(iEncoderData);
+
+				iEncoderData = ((unsigned char)serialPorts[SERIAL_PORT_5].cInBuf[4] << 8) | ((unsigned char)serialPorts[SERIAL_PORT_5].cInBuf[3]);
+				ROS_INFO("encoder data1.5 = %i", iEncoderData);
+				if(iEncoderDataReceiverCounter % DEBUG_SPEED == 0) ROS_INFO("data encoder wiel 5:%i", iEncoderData);
+				msg.data.push_back(iEncoderData);
+
+				msg.data.push_back(0);
+
+				iEncoderData = ((unsigned char)serialPorts[SERIAL_PORT_7].cInBuf[4] << 8) | ((unsigned char)serialPorts[SERIAL_PORT_7].cInBuf[3]);
+				if(iEncoderDataReceiverCounter % DEBUG_SPEED == 0) ROS_INFO("data encoder wiel 7:%i", iEncoderData);
+				msg.data.push_back(iEncoderData);
+
+				ROS_INFO("encoder data1.7 = %i", iEncoderData);
+				iEncoderData = ((unsigned char)serialPorts[SERIAL_PORT_8].cInBuf[4] << 8) | ((unsigned char)serialPorts[SERIAL_PORT_8].cInBuf[3]);		
 				if(iEncoderDataReceiverCounter % DEBUG_SPEED == 0) ROS_INFO("data encoder wiel 8:%i", iEncoderData);
 				msg.data.push_back(iEncoderData);
-				//ROS_INFO("encoder data = %i", iEncoderData);
+
+				ROS_INFO("encoder data1.8 = %i", iEncoderData);
 				msg.data.push_back(0);
 
 				//send message
@@ -383,7 +401,7 @@ end of defining class Subscribe
 Start of main
 ********************************************************************************************************************************************/
 int main(int argc, char **argv  )
-{
+{	
 	//initialize ROS
 	ros::init(argc, argv, "mcMotorDriver");
 	
@@ -393,6 +411,7 @@ int main(int argc, char **argv  )
 	//create class
 	Subscribe Sobject(nh);
 	
+
 	ROS_INFO("Serial Ports will be initialized");
 	//ROS_DEBUG("O_NONBLOCK = %i", O_NONBLOCK);
 
@@ -459,7 +478,7 @@ int main(int argc, char **argv  )
 
 		//Choose with which rate the RS422 port will be read.
 		//after 300 ms the ports start reading. otherwise there will be a lot of errors.
-		if((iWhileCounter > 300) && (iWhileCounter % (ROS_LOOP_RATE_HZ/READ_RS422_INTERVAL_HZ) == 0)){
+		if((iWhileCounter >  1000) && (iWhileCounter % (ROS_LOOP_RATE_HZ/READ_RS422_INTERVAL_HZ) == 0)){
 			//check if read data is on
 			if(READ_RS422_ON){
 				Sobject.readSerialPort();
