@@ -1,0 +1,383 @@
+import ReturnResults.dzn;
+import ExternalInterfaces.dzn;
+
+interface iCommands
+{
+	in returnResult findTheBall();
+	in returnResult getToTheBall();
+	in returnResult shootTheBall();
+	
+	in returnResult getCurrentLocation();
+	in returnResult driveToLocation();
+	
+	behaviour
+  	{
+  		on findTheBall:{
+  			reply(returnResult.success);
+  		}
+  		on findTheBall:{
+  			reply(returnResult.fail);
+  		}
+  		on getToTheBall:{
+  			reply(returnResult.success);
+  		}
+  		on getToTheBall:{
+  			reply(returnResult.fail);
+  		}
+  		on shootTheBall:{
+  			reply(returnResult.success);
+  		}
+  		on shootTheBall:{
+  			reply(returnResult.fail);
+  		}
+  		on getCurrentLocation:{
+  			reply(returnResult.success);
+  		}
+  		on getCurrentLocation:{
+  			reply(returnResult.fail);	
+  		}
+  		on driveToLocation:
+  		{
+  			reply(returnResult.fail);
+  		}
+  		on driveToLocation:{
+  			reply(returnResult.busy);
+  		}
+  		on driveToLocation:{
+  			reply(returnResult.success);
+  		}
+  		
+  	}
+}
+
+interface iWheelControl
+{
+	in returnResult getToTheBall();
+	in returnResult driveToLocation();
+	
+	behaviour
+  	{
+    	on getToTheBall:
+   		{
+   			reply(returnResult.success);
+   		}
+   		on getToTheBall:
+   		{
+   			reply(returnResult.fail);
+   		}
+   		on driveToLocation:
+   		{
+   			reply(returnResult.success);
+   		}
+   		on driveToLocation:
+   		{
+   			reply(returnResult.fail);
+   		}
+   		on driveToLocation:
+   		{
+   			reply(returnResult.busy);
+   		}
+  	}
+}
+
+interface iBallControl
+{	
+	in returnResult shootTheBall();
+	
+	behaviour
+  	{
+    	on shootTheBall:
+   		{
+   			reply(returnResult.success);
+   		}
+   		on shootTheBall:
+   		{
+   			reply(returnResult.fail);
+   		}
+  	}
+}
+
+interface iPositioningControl
+{
+	in returnResult findTheBall();
+	in returnResult getCurrentLocation();
+	behaviour
+	{
+	  	on findTheBall:
+   		{
+   			reply(returnResult.success);
+   		}
+   		on findTheBall:
+   		{
+   			reply(returnResult.fail);
+   		}
+   		on getCurrentLocation:
+   		{
+   			reply(returnResult.success);
+   		}
+   		on getCurrentLocation:
+   		{
+   			reply(returnResult.fail);
+   		}
+	}
+}
+
+
+component Tactics
+{
+	provides iControl My_Control;
+	
+	requires iCommands My_Commands;
+	
+	behaviour 
+	{
+		bool busy = false;
+		bool failure = false;
+		returnResult returnCheck1 = returnResult.success;
+		returnResult returnCheck2 = returnResult.success;
+		returnResult returnCheck3 = returnResult.success;
+		
+    	[busy] on My_Control.tac_getTheBall(): 
+    	{
+    		reply(returnResult.busy);
+    	}
+    	[busy] on My_Control.tac_shootBall(): 
+    	{
+    		reply(returnResult.busy);
+    	}
+    	[busy] on My_Control.tac_attack(): 
+    	{
+    		reply(returnResult.busy);
+    	}
+    	[!busy] on My_Control.tac_getTheBall():
+    	{
+    		returnCheck1 = My_Commands.findTheBall();
+    		returnCheck2 = My_Commands.getToTheBall();
+    		if((returnCheck1 == returnResult.success) && (returnCheck2 == returnResult.success))
+	    	{
+	    		reply(returnResult.success);
+	    	}
+	    	else
+	    	{
+	    		reply(returnResult.fail);
+	    	}
+    	}
+    	[!busy] on My_Control.tac_shootBall():
+    	{
+    		returnCheck1 = My_Commands.shootTheBall();
+    		if((returnCheck1 == returnResult.success))
+	    	{
+	    		reply(returnResult.success);
+	    	}
+	    	else
+	    	{
+	    		reply(returnResult.fail);
+	    	}
+    	}
+    	[!busy] on My_Control.tac_attack():
+    	{
+    		returnCheck1 = My_Commands.findTheBall();
+    		returnCheck2 = My_Commands.getToTheBall();
+    		returnCheck3 = My_Commands.shootTheBall();
+    		if((returnCheck1 == returnResult.success) && (returnCheck2 == returnResult.success) && (returnCheck3 == returnResult.success))
+	    	{
+	    		reply(returnResult.success);
+	    	}
+	    	else
+	    	{
+	    		reply(returnResult.fail);
+	    	}
+    	}   
+    	[!busy] on My_Control.tac_driveToTheBall():
+    	{
+    		returnResult retCheck = returnResult.fail;
+    		retCheck = My_Commands.findTheBall();
+    		if(retCheck == returnResult.fail)
+    		{
+    			reply(retCheck);
+    		}
+    		retCheck = returnResult.fail;
+    		retCheck = My_Commands.getCurrentLocation();
+    		if(retCheck == returnResult.fail)
+    		{
+    			reply(retCheck);
+    		}
+    		retCheck = returnResult.fail;
+    		retCheck = My_Commands.driveToLocation();
+    		if(retCheck == returnResult.busy || retCheck == returnResult.success || retCheck == returnResult.fail)
+    		{
+    			reply(retCheck);
+    		}
+    	}
+	}
+}
+
+component Commands
+{
+	provides iCommands My_Commands;
+	
+	requires iBallControl My_BallControl;
+	requires iWheelControl My_WheelControl;
+	requires iPositioningControl My_PositioningControl;
+	      
+	behaviour
+	{
+		on My_Commands.shootTheBall():
+		{
+			returnResult result = returnResult.fail;
+			result = My_BallControl.shootTheBall();
+			if(result == returnResult.success)
+			{
+				reply(returnResult.success);
+			}
+			else
+			{
+				reply(returnResult.fail);
+			}	
+		}
+		on My_Commands.findTheBall():
+		{
+			returnResult x = returnResult.fail;
+			x = My_PositioningControl.findTheBall();
+			if(x == returnResult.success)
+			{
+				reply(returnResult.success);
+			}
+			else
+			{
+				reply(returnResult.fail);
+			}
+		}
+		on My_Commands.getToTheBall():
+		{
+			returnResult result = returnResult.fail;
+			result = My_WheelControl.getToTheBall();
+			if(result == returnResult.success)
+			{
+				reply(returnResult.success);
+			}
+			else
+			{
+				reply(returnResult.fail);
+			}
+		}
+		on My_Commands.getCurrentLocation():
+		{
+			returnResult result = returnResult.fail;
+			result = My_PositioningControl.getCurrentLocation();
+			reply(result);
+		}
+		on My_Commands.driveToLocation():
+		{
+			returnResult result = returnResult.fail;
+			result = My_WheelControl.driveToLocation();
+			reply(result);
+		}
+	}
+}
+
+component BallControl
+{
+	provides iBallControl My_BallControl;
+	
+	requires iBallHandling My_BallHandling;
+	requires iShooting My_Shooting;
+	
+	behaviour
+	{
+		on My_BallControl.shootTheBall():
+		{
+			returnResult result = returnResult.fail;
+			result = My_Shooting.shootTheBall();
+			reply(result);
+		}
+	}
+	
+}
+
+component WheelControl
+{
+	provides iWheelControl My_WheelControl;
+	
+	requires iWheelDriver My_WheelDriver;
+	
+	behaviour
+	{
+		on My_WheelControl.getToTheBall():
+		{
+			returnResult result = returnResult.fail;
+			result = My_WheelDriver.getToTheBall();
+			reply(result);
+		}	
+		on My_WheelControl.driveToLocation():
+		{
+			returnResult result = returnResult.fail;
+			result = My_WheelDriver.driveToLocation();
+			reply(result);
+		}
+		
+	}
+}
+
+component PositioningControl
+{ 	
+  	provides iPositioningControl My_PositioningControl;
+  	
+  	requires iWorldModel My_WorldModel;
+  	requires iNavigation My_Navigation;
+  	
+  	behaviour
+	{
+		on My_PositioningControl.findTheBall():
+		{			
+			returnResult result = returnResult.fail;
+			result = My_WorldModel.findTheBall();
+			reply(result);
+		}
+		on My_PositioningControl.getCurrentLocation():
+		{
+			returnResult result = returnResult.fail;
+			result = My_Navigation.getCurrentLocation();
+			reply(result);
+		}
+	}
+}
+
+component Robot
+{
+  	provides iControl My_Control;
+
+  	system
+  	{
+  		Tactics tactics;
+  		
+  		Commands commands;
+  		
+	    BallControl ballcontrol;
+	    WheelControl wheelcontrol;
+	    PositioningControl positioningcontrol;
+	    
+	    BallHandling ballhandling;
+	    Shooting shooting;
+	    WheelDriver wheeldriver;
+	    WorldModel worldmodel;
+	    Navigation navigation;
+	   
+	    	
+	    My_Control <=> tactics.My_Control;
+	    
+	    tactics.My_Commands <=> commands.My_Commands;
+	    
+	    commands.My_BallControl <=> ballcontrol.My_BallControl;
+	    commands.My_WheelControl <=> wheelcontrol.My_WheelControl;
+	    commands.My_PositioningControl <=> positioningcontrol.My_PositioningControl;
+	    
+	    ballcontrol.My_BallHandling <=> ballhandling.My_BallHandling;
+	    ballcontrol.My_Shooting <=> shooting.My_Shooting;
+	    
+	    wheelcontrol.My_WheelDriver <=> wheeldriver.My_WheelDriver;
+	    
+	    positioningcontrol.My_WorldModel <=> worldmodel.My_WorldModel;
+	    positioningcontrol.My_Navigation <=> navigation.My_Navigation;
+  	}
+}
