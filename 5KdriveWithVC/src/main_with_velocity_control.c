@@ -122,7 +122,7 @@ int16_t iMeasuredValue;
 int16_t iDifference, iPreviousValue;
 int16_t iError, iPreviousError, iIntegral;
 float fControl;
-int16_t iMeasuredVelocity, setpoint, iKp, iKi;
+int16_t iMeasuredVelocity, setpoint, previousSetpoint, iKp, iKi;
 uint16_t iControlParameters;
 
 int16_t relative_speed;	
@@ -638,7 +638,14 @@ static void VelocityControl(void)
 		iMeasuredVelocity = iDifference / 4;
 		//divided by 4 ~= (60 * 10)/(measure_time * 245) (=0.2449);
 		// Setpoint stored in data1 (received from ROS)
+		// 4 m/s² = 770 RPM. So if setpoint is higher then 800, it can't be the right value.
+		if(setpoint > 800)
+		{
+			setpoint = previousSetpoint;
+		}
+		
 		iError = setpoint - iMeasuredVelocity;
+		previousSetpoint = setpoint;
 		iIntegral = iError + iPreviousError;
 		// Control loop. Divide by 10 to compensate iKp and iKi value
 		
