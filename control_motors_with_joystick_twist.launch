@@ -21,7 +21,7 @@
 	<param name= "iConvertFactor" value = "1" />
 	<param name= "iMaxPulseSpeed" value = "700" />
 	<param name= "iMinPulseSpeed" value = "-700" />
-	<param name= "iOmniWheelMotorDriversPfactor" value = "30" />
+	<param name= "iOmniWheelMotorDriversPfactor" value = "60" />
 	<param name= "iOmniWheelMotorDriversIfactor" value = "0" />
 
  <!-- set Motor node -->

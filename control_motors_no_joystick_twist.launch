@@ -1,9 +1,12 @@
 <launch>
  <!-- Motor node params -->
+ <!-- iConvertFactor is for converting RPM to any other value necessary in the micro controller (ATM just RPM) 
+ min/max pulse speed is actually the limit for RPM. 
+ Pfactor/Ifactor is the Kp and Ki of velocity control-->
 	<param name= "iConvertFactor" value = "1" />
 	<param name= "iMaxPulseSpeed" value = "700" />
 	<param name= "iMinPulseSpeed" value = "-700" />
-	<param name= "iOmniWheelMotorDriversPfactor" value = "30" />
+	<param name= "iOmniWheelMotorDriversPfactor" value = "60" />
 	<param name= "iOmniWheelMotorDriversIfactor" value = "0" />
 
  <!-- set Motor node -->

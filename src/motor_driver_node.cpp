@@ -188,8 +188,8 @@ public:
 			serialPorts[i].cOutBuf[0] = MOTORDRIVER_START_OF_FRAME;
 			serialPorts[i].cOutBuf[1] = MOTORDRIVER_TYPE; 
 			serialPorts[i].cOutBuf[2] = MOTORDRIVER_CMD; 
-			serialPorts[i].cOutBuf[3] = (serialPorts[i].iSpeed & 0xff);
-			serialPorts[i].cOutBuf[4] = (serialPorts[i].iSpeed >> 8) & 0xff;
+			serialPorts[i].cOutBuf[3] = (unsigned char)(serialPorts[i].iSpeed & 0xff);
+			serialPorts[i].cOutBuf[4] = (unsigned char)(serialPorts[i].iSpeed >> 8) & 0xff;
 			serialPorts[i].cOutBuf[5] = iKi;  //ki value motordrivers
 			serialPorts[i].cOutBuf[6] = iKp;  //kp value motordrivers
 			serialPorts[i].cOutBuf[7] = MOTORDRIVER_END_OF_FRAME;
@@ -325,24 +325,11 @@ public:
 				//put speedvalues into array
 				msg.data.clear();
 				msg.data.push_back(0);
-
-				iEncoderData = ((unsigned char)serialPorts[SERIAL_PORT_5].cInBuf[6] << 8) | ((unsigned char)serialPorts[SERIAL_PORT_5].cInBuf[5]);
-				ROS_INFO("encoder data2.5 = %i", iEncoderData);
-				if(iEncoderDataReceiverCounter % DEBUG_SPEED == 0) ROS_INFO("data encoder wiel 5:%i", iEncoderData);
-				msg.data.push_back(iEncoderData);
-
-				iEncoderData = ((unsigned char)serialPorts[SERIAL_PORT_7].cInBuf[6] << 8) | ((unsigned char)serialPorts[SERIAL_PORT_7].cInBuf[5]);
-				ROS_INFO("encoder data2.7 = %i", iEncoderData);
-				if(iEncoderDataReceiverCounter % DEBUG_SPEED == 0) ROS_INFO("data encoder wiel 7:%i", iEncoderData);
-				msg.data.push_back(iEncoderData);
-
-				iEncoderData = ((unsigned char)serialPorts[SERIAL_PORT_8].cInBuf[6] << 8) | ((unsigned char)serialPorts[SERIAL_PORT_8].cInBuf[5]);
-				ROS_INFO("encoder data2.8 = %i", iEncoderData);
-				if(iEncoderDataReceiverCounter % DEBUG_SPEED == 0) ROS_INFO("data encoder wiel 5:%i", iEncoderData);
-				msg.data.push_back(iEncoderData);
-
+				msg.data.push_back(0);
+				msg.data.push_back(0);
+				msg.data.push_back(0);
 				iEncoderData = ((unsigned char)serialPorts[SERIAL_PORT_5].cInBuf[4] << 8) | ((unsigned char)serialPorts[SERIAL_PORT_5].cInBuf[3]);
-				ROS_INFO("encoder data1.5 = %i", iEncoderData);
+				//ROS_INFO("encoder data1.5 = %i", iEncoderData);
 				if(iEncoderDataReceiverCounter % DEBUG_SPEED == 0) ROS_INFO("data encoder wiel 5:%i", iEncoderData);
 				msg.data.push_back(iEncoderData);
 
@@ -352,12 +339,12 @@ public:
 				if(iEncoderDataReceiverCounter % DEBUG_SPEED == 0) ROS_INFO("data encoder wiel 7:%i", iEncoderData);
 				msg.data.push_back(iEncoderData);
 
-				ROS_INFO("encoder data1.7 = %i", iEncoderData);
+				//ROS_INFO("encoder data1.7 = %i", iEncoderData);
 				iEncoderData = ((unsigned char)serialPorts[SERIAL_PORT_8].cInBuf[4] << 8) | ((unsigned char)serialPorts[SERIAL_PORT_8].cInBuf[3]);		
 				if(iEncoderDataReceiverCounter % DEBUG_SPEED == 0) ROS_INFO("data encoder wiel 8:%i", iEncoderData);
 				msg.data.push_back(iEncoderData);
 
-				ROS_INFO("encoder data1.8 = %i", iEncoderData);
+				//ROS_INFO("encoder data1.8 = %i", iEncoderData);
 				msg.data.push_back(0);
 
 				//send message
