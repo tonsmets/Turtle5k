@@ -23,7 +23,7 @@ private:
       return t->before(*that.t);
     }
   };
-  std::map<std::pair<Key,type_info>, void*> services;
+  std::map<std::pair<Key,type_info>, const void*> services;
 public:
   locator()
   {
@@ -36,15 +36,15 @@ public:
   template <typename T>
   locator& set(T& t, const Key& key = Key())
   {
-    services.insert(std::make_pair(std::make_pair(key,type_info(typeid(T))), &t));
+    services[std::make_pair(key,type_info(typeid(T)))] = &t;
     return *this;
   }
   template <typename T>
   T* try_get(const Key& key = Key()) const
   {
-    std::map<std::pair<Key,type_info>, void*>::const_iterator it = services.find(std::make_pair(key,type_info(typeid(T))));
-    if(it != services.end() and it->second)
-      return reinterpret_cast<T*>(it->second);
+    std::map<std::pair<Key,type_info>, const void*>::const_iterator it = services.find(std::make_pair(key,type_info(typeid(T))));
+    if(it != services.end() && it->second)
+      return reinterpret_cast<T*>(const_cast<void*>(it->second));
     return 0;
   }
   template <typename T>

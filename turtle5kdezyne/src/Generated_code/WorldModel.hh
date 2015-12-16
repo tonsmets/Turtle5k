@@ -27,7 +27,7 @@ struct WorldModel
     };
   };
 #endif // ENUM__returnResult
-  ::returnResult::type reply__returnResult;
+  returnResult::type reply__returnResult;
   iWorldModel My_WorldModel;
 
   WorldModel(const dezyne::locator&);
@@ -35,7 +35,9 @@ struct WorldModel
   void dump_tree() const;
 
   private:
-  returnResult::type My_WorldModel_findTheBall();
+  returnResult::type My_WorldModel_isThereABall();
+  returnResult::type My_WorldModel_getCurrentBallLocation();
+  returnResult::type My_WorldModel_getCurrentRobotLocation();
 };
 
 #endif // WORLDMODEL_HH

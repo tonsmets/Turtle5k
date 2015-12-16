@@ -24,7 +24,9 @@ struct iWorldModel
 
   struct
   {
-    boost::function<returnResult::type ()> findTheBall;
+    boost::function<returnResult::type ()> isThereABall;
+    boost::function<returnResult::type ()> getCurrentBallLocation;
+    boost::function<returnResult::type ()> getCurrentRobotLocation;
   } in;
 
   struct
@@ -35,7 +37,9 @@ struct iWorldModel
 
   void check_bindings() const
   {
-    if (not in.findTheBall) throw dezyne::binding_error_in(meta, "in.findTheBall");
+    if (! in.isThereABall) throw dezyne::binding_error(meta, "in.isThereABall");
+    if (! in.getCurrentBallLocation) throw dezyne::binding_error(meta, "in.getCurrentBallLocation");
+    if (! in.getCurrentRobotLocation) throw dezyne::binding_error(meta, "in.getCurrentRobotLocation");
 
 
   }

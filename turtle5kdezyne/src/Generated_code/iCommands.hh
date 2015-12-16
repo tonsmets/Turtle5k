@@ -29,6 +29,7 @@ struct iCommands
     boost::function<returnResult::type ()> shootTheBall;
     boost::function<returnResult::type ()> getCurrentLocation;
     boost::function<returnResult::type ()> driveToLocation;
+    boost::function<returnResult::type ()> driveToTheBall;
   } in;
 
   struct
@@ -39,11 +40,12 @@ struct iCommands
 
   void check_bindings() const
   {
-    if (not in.findTheBall) throw dezyne::binding_error_in(meta, "in.findTheBall");
-    if (not in.getToTheBall) throw dezyne::binding_error_in(meta, "in.getToTheBall");
-    if (not in.shootTheBall) throw dezyne::binding_error_in(meta, "in.shootTheBall");
-    if (not in.getCurrentLocation) throw dezyne::binding_error_in(meta, "in.getCurrentLocation");
-    if (not in.driveToLocation) throw dezyne::binding_error_in(meta, "in.driveToLocation");
+    if (! in.findTheBall) throw dezyne::binding_error(meta, "in.findTheBall");
+    if (! in.getToTheBall) throw dezyne::binding_error(meta, "in.getToTheBall");
+    if (! in.shootTheBall) throw dezyne::binding_error(meta, "in.shootTheBall");
+    if (! in.getCurrentLocation) throw dezyne::binding_error(meta, "in.getCurrentLocation");
+    if (! in.driveToLocation) throw dezyne::binding_error(meta, "in.driveToLocation");
+    if (! in.driveToTheBall) throw dezyne::binding_error(meta, "in.driveToTheBall");
 
 
   }

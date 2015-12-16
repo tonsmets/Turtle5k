@@ -35,7 +35,7 @@ struct iBallHandling
 
   void check_bindings() const
   {
-    if (not in.handleTheBall) throw dezyne::binding_error_in(meta, "in.handleTheBall");
+    if (! in.handleTheBall) throw dezyne::binding_error(meta, "in.handleTheBall");
 
 
   }

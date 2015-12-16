@@ -27,7 +27,7 @@ struct Navigation
     };
   };
 #endif // ENUM__returnResult
-  ::returnResult::type reply__returnResult;
+  returnResult::type reply__returnResult;
   iNavigation My_Navigation;
 
   Navigation(const dezyne::locator&);
@@ -35,8 +35,7 @@ struct Navigation
   void dump_tree() const;
 
   private:
-  returnResult::type My_Navigation_Navigate();
-  returnResult::type My_Navigation_getCurrentLocation();
+  returnResult::type My_Navigation_determinePath();
 };
 
 #endif // NAVIGATION_HH

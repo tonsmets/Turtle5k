@@ -29,7 +29,7 @@ struct BallControl
     };
   };
 #endif // ENUM__returnResult
-  ::returnResult::type reply__returnResult;
+  returnResult::type reply__returnResult;
   iBallControl My_BallControl;
   iBallHandling My_BallHandling;
   iShooting My_Shooting;

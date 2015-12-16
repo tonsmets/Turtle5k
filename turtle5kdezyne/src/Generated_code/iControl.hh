@@ -38,10 +38,10 @@ struct iControl
 
   void check_bindings() const
   {
-    if (not in.tac_getTheBall) throw dezyne::binding_error_in(meta, "in.tac_getTheBall");
-    if (not in.tac_shootBall) throw dezyne::binding_error_in(meta, "in.tac_shootBall");
-    if (not in.tac_attack) throw dezyne::binding_error_in(meta, "in.tac_attack");
-    if (not in.tac_driveToTheBall) throw dezyne::binding_error_in(meta, "in.tac_driveToTheBall");
+    if (! in.tac_getTheBall) throw dezyne::binding_error(meta, "in.tac_getTheBall");
+    if (! in.tac_shootBall) throw dezyne::binding_error(meta, "in.tac_shootBall");
+    if (! in.tac_attack) throw dezyne::binding_error(meta, "in.tac_attack");
+    if (! in.tac_driveToTheBall) throw dezyne::binding_error(meta, "in.tac_driveToTheBall");
 
 
   }

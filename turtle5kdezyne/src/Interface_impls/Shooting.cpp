@@ -1,7 +1,7 @@
 #include "Shooting.hh"
 
 Shooting::Shooting(const dezyne::locator& dezyne_locator)
-: dzn_meta("","Shooting",reinterpret_cast<const dezyne::component*>(this),0)
+: dzn_meta("","Shooting",0)
 , dzn_rt(dezyne_locator.get<dezyne::runtime>())
 , dzn_locator(dezyne_locator)
 , My_Shooting()

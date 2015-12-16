@@ -27,7 +27,7 @@ struct BallHandling
     };
   };
 #endif // ENUM__returnResult
-  ::returnResult::type reply__returnResult;
+  returnResult::type reply__returnResult;
   iBallHandling My_BallHandling;
 
   BallHandling(const dezyne::locator&);

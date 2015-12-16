@@ -10,6 +10,7 @@ class DataStore
 	DataStore();
 	geometry_msgs::Pose ball_location;
 	nav_msgs::Odometry robot_location;
+	std::vector<geometry_msgs::Pose> path;
 };
 
 #endif //DATASTORE_HH

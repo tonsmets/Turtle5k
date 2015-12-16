@@ -17,36 +17,36 @@ namespace dezyne
   void trace_in(std::ostream&, port::meta const&, const char*);
   void trace_out(std::ostream&, port::meta const&, const char*);
 
-  inline void apply(const component* t, const boost::function<void(const dezyne::meta&)>& f)
+  inline void apply(const meta* m, const boost::function<void(const meta*)>& f)
   {
-    f(t->dzn_meta);
-    for(std::vector<const component*>::const_iterator c = t->dzn_meta.children.begin(); c != t->dzn_meta.children.end(); ++c)
+    f(m);
+    for(std::vector<const meta*>::const_iterator c = m->children.begin(); c != m->children.end(); ++c)
     {
       apply(*c, f);
     }
   }
 
-  inline void check_bindings_helper(const dezyne::meta& m)
+  inline void check_bindings_helper(const meta* m)
   {
-    for(std::vector<boost::function<void()> >::const_iterator p = m.ports_connected.begin(); p != m.ports_connected.end(); ++p)
+    for(std::vector<boost::function<void()> >::const_iterator p = m->ports_connected.begin(); p != m->ports_connected.end(); ++p)
     {
       p->operator()();
     }
   }
 
-  inline void check_bindings(const component* c)
+  inline void check_bindings(const meta* m)
   {
-    dezyne::apply(c, check_bindings_helper);
+    dezyne::apply(m, check_bindings_helper);
   }
 
-  inline void dump_tree_helper(const dezyne::meta& m)
+  inline void dump_tree_helper(const meta* m)
   {
-    std::clog << path(m) << ":" << m.type << std::endl;
+    std::clog << path(m) << ":" << m->type << std::endl;
   }
 
-  inline void dump_tree(const component* c)
+  inline void dump_tree(const meta* m)
   {
-    dezyne::apply(c, dump_tree_helper);
+    dezyne::apply(m, dump_tree_helper);
   }
 
   struct runtime

@@ -29,7 +29,7 @@ struct PositioningControl
     };
   };
 #endif // ENUM__returnResult
-  ::returnResult::type reply__returnResult;
+  returnResult::type reply__returnResult;
   iPositioningControl My_PositioningControl;
   iWorldModel My_WorldModel;
   iNavigation My_Navigation;
@@ -41,6 +41,8 @@ struct PositioningControl
   private:
   returnResult::type My_PositioningControl_findTheBall();
   returnResult::type My_PositioningControl_getCurrentLocation();
+  returnResult::type My_PositioningControl_updatePositions();
+  returnResult::type My_PositioningControl_determinePath();
 };
 
 #endif // POSITIONINGCONTROL_HH

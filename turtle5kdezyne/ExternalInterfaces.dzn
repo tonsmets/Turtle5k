@@ -1,53 +1,5 @@
 import ReturnResults.dzn;
 
-interface iControl
-{
-	in returnResult tac_getTheBall();
-  	in returnResult tac_shootBall();
-  	in returnResult tac_attack();
-
-	in returnResult tac_driveToTheBall();
-
-  	behaviour
-  	{
-  		on tac_getTheBall:{
-  			reply(returnResult.busy);
-  		}
-  		on tac_getTheBall:{
-  			reply(returnResult.success);
-  		}
-  		on tac_getTheBall:{
-  			reply(returnResult.fail);
-  		}
-  		on tac_shootBall:{
-  			reply(returnResult.busy);
-  		}
-  		on tac_shootBall:{
-  			reply(returnResult.success);
-  		}
-  		on tac_shootBall:{
-  			reply(returnResult.fail);
-  		}
-  		on tac_attack:{
-  			reply(returnResult.busy);
-  		}
-  		on tac_attack:{
-  			reply(returnResult.success);
-  		}
-  		on tac_attack:{
-  			reply(returnResult.fail);
-  		}
-  		on tac_driveToTheBall:{
-  			reply(returnResult.busy);
-  		}
-  		on tac_driveToTheBall:{
-  			reply(returnResult.fail);
-  		}
-  		on tac_driveToTheBall:{
-  			reply(returnResult.success);
-  		}
-	}
-}
 
 interface iBallHandling
 {
@@ -86,10 +38,11 @@ interface iShooting
 
 
 
-interface iWheelDriver
+interface iWheelControl
 {
 	in returnResult getToTheBall();
 	in returnResult driveToLocation();
+	in returnResult drivePathFromNavigation();
 	
 	behaviour
 	{
@@ -109,24 +62,50 @@ interface iWheelDriver
    		{
    			reply(returnResult.fail);
    		}
-   		on driveToLocation:
+   		on drivePathFromNavigation:
    		{
    			reply(returnResult.success);
+   		}
+   		on drivePathFromNavigation:
+   		{
+   			reply(returnResult.busy);
+   		}
+   		on drivePathFromNavigation:
+   		{
+   			reply(returnResult.fail);
    		}
 	}
 }
 
 interface iWorldModel
 {
-	in returnResult findTheBall();
+	in returnResult isThereABall();
+	in returnResult getCurrentBallLocation();
+	in returnResult getCurrentRobotLocation();
 	
 	behaviour
 	{
-	  	on findTheBall:
+		on isThereABall:
+		{
+			reply(returnResult.success);
+		}
+		on isThereABall:
+		{
+			reply(returnResult.fail);
+		}
+	  	on getCurrentBallLocation:
    		{
    			reply(returnResult.success);
    		}
-   		on findTheBall:
+   		on getCurrentBallLocation:
+   		{
+   			reply(returnResult.fail);
+   		}
+   		on getCurrentRobotLocation:
+   		{
+   			reply(returnResult.success);
+   		}
+   		on getCurrentRobotLocation:
    		{
    			reply(returnResult.fail);
    		}
@@ -135,33 +114,29 @@ interface iWorldModel
 
 interface iNavigation
 {
-	in returnResult Navigate();
-	in returnResult getCurrentLocation();
+	in returnResult determinePath();
+
 	
 	behaviour
 	{
-	  	on Navigate:
+	  	on determinePath:
    		{
    			reply(returnResult.success);
    		}
-   		on Navigate:
+   		on determinePath:
    		{
-   			reply(returnResult.fail);
+   			reply(returnResult.busy);
    		}
-   		on getCurrentLocation:
-   		{
-   			reply(returnResult.success);
-   		}
-   		on getCurrentLocation:
+   		on determinePath:
    		{
    			reply(returnResult.fail);
    		}
 	}
 }
 
-component WheelDriver
+component WheelControl
 {
-	provides iWheelDriver My_WheelDriver;
+	provides iWheelControl My_WheelControl;
 }
 
 component WorldModel

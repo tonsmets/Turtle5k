@@ -33,7 +33,7 @@ struct Tactics
   returnResult::type returnCheck1;
   returnResult::type returnCheck2;
   returnResult::type returnCheck3;
-  ::returnResult::type reply__returnResult;
+  returnResult::type reply__returnResult;
   iControl My_Control;
   iCommands My_Commands;
 

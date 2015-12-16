@@ -3,7 +3,7 @@
 #include <cstdio>
 
 BallHandling::BallHandling(const dezyne::locator& dezyne_locator)
-: dzn_meta("","BallHandling",reinterpret_cast<const dezyne::component*>(this),0)
+: dzn_meta("","BallHandling",0)
 , dzn_rt(dezyne_locator.get<dezyne::runtime>())
 , dzn_locator(dezyne_locator)
 , My_BallHandling()

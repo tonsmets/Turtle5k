@@ -7,6 +7,9 @@ project(turtle5kdezyne)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
+  geometry_msgs
+  message_generation
+  message_runtime
 )
 
 #Setting to c++03 instead of c++11 because ROS hydro and indigo only guarantee that it works with c++03 and it's the minimum version for the Dezyne stuff we use
@@ -53,6 +56,13 @@ set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} ${T5K_CXX_FLAGS})
 #   Message2.msg
 # )
 
+add_message_files(
+	DIRECTORY
+	msg
+	FILES
+	BallLocation.msg
+)
+
 ## Generate services in the 'srv' folder
 # add_service_files(
 #   FILES
@@ -72,6 +82,12 @@ set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} ${T5K_CXX_FLAGS})
 #   DEPENDENCIES
 #   std_msgs  # Or other packages containing msgs
 # )
+
+generate_messages(
+	DEPENDENCIES
+	std_msgs
+	geometry_msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -152,6 +168,7 @@ add_executable(turtle5kdezyne_node ${turtle5kdezyne_SRC})
 # )
 
 target_link_libraries(turtle5kdezyne_node ${catkin_LIBRARIES})
+add_dependencies(turtle5kdezyne_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 #############
 ## Install ##

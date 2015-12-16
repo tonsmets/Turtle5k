@@ -2,7 +2,6 @@
 #define WHEELCONTROL_HH
 
 #include "iWheelControl.hh"
-#include "iWheelDriver.hh"
 
 
 #include "runtime.hh"
@@ -28,9 +27,8 @@ struct WheelControl
     };
   };
 #endif // ENUM__returnResult
-  ::returnResult::type reply__returnResult;
+  returnResult::type reply__returnResult;
   iWheelControl My_WheelControl;
-  iWheelDriver My_WheelDriver;
 
   WheelControl(const dezyne::locator&);
   void check_bindings() const;
@@ -39,6 +37,7 @@ struct WheelControl
   private:
   returnResult::type My_WheelControl_getToTheBall();
   returnResult::type My_WheelControl_driveToLocation();
+  returnResult::type My_WheelControl_drivePathFromNavigation();
 };
 
 #endif // WHEELCONTROL_HH

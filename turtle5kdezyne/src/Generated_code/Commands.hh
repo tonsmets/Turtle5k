@@ -3,7 +3,7 @@
 
 #include "iCommands.hh"
 #include "iBallControl.hh"
-#include "iWheelControl.hh"
+#include "iDrivingControl.hh"
 #include "iPositioningControl.hh"
 
 
@@ -30,10 +30,11 @@ struct Commands
     };
   };
 #endif // ENUM__returnResult
-  ::returnResult::type reply__returnResult;
+  returnResult::type posState;
+  returnResult::type reply__returnResult;
   iCommands My_Commands;
   iBallControl My_BallControl;
-  iWheelControl My_WheelControl;
+  iDrivingControl My_DrivingControl;
   iPositioningControl My_PositioningControl;
 
   Commands(const dezyne::locator&);
@@ -46,6 +47,7 @@ struct Commands
   returnResult::type My_Commands_shootTheBall();
   returnResult::type My_Commands_getCurrentLocation();
   returnResult::type My_Commands_driveToLocation();
+  returnResult::type My_Commands_driveToTheBall();
 };
 
 #endif // COMMANDS_HH

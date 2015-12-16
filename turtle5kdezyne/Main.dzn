@@ -1,6 +1,56 @@
 import ReturnResults.dzn;
 import ExternalInterfaces.dzn;
 
+
+interface iControl
+{
+	in returnResult tac_getTheBall();
+  	in returnResult tac_shootBall();
+  	in returnResult tac_attack();
+
+	in returnResult tac_driveToTheBall();
+
+  	behaviour
+  	{
+  		on tac_getTheBall:{
+  			reply(returnResult.busy);
+  		}
+  		on tac_getTheBall:{
+  			reply(returnResult.success);
+  		}
+  		on tac_getTheBall:{
+  			reply(returnResult.fail);
+  		}
+  		on tac_shootBall:{
+  			reply(returnResult.busy);
+  		}
+  		on tac_shootBall:{
+  			reply(returnResult.success);
+  		}
+  		on tac_shootBall:{
+  			reply(returnResult.fail);
+  		}
+  		on tac_attack:{
+  			reply(returnResult.busy);
+  		}
+  		on tac_attack:{
+  			reply(returnResult.success);
+  		}
+  		on tac_attack:{
+  			reply(returnResult.fail);
+  		}
+  		on tac_driveToTheBall:{
+  			reply(returnResult.busy);
+  		}
+  		on tac_driveToTheBall:{
+  			reply(returnResult.fail);
+  		}
+  		on tac_driveToTheBall:{
+  			reply(returnResult.success);
+  		}
+	}
+}
+
 interface iCommands
 {
 	in returnResult findTheBall();
@@ -9,6 +59,7 @@ interface iCommands
 	
 	in returnResult getCurrentLocation();
 	in returnResult driveToLocation();
+	in returnResult driveToTheBall();
 	
 	behaviour
   	{
@@ -46,15 +97,25 @@ interface iCommands
   		on driveToLocation:{
   			reply(returnResult.success);
   		}
+  		on driveToTheBall:
+  		{
+  			reply(returnResult.fail);
+  		}
+  		on driveToTheBall:{
+  			reply(returnResult.busy);
+  		}
+  		on driveToTheBall:{
+  			reply(returnResult.success);
+  		}
   		
   	}
 }
 
-interface iWheelControl
+interface iDrivingControl
 {
 	in returnResult getToTheBall();
+	in returnResult followPath();
 	in returnResult driveToLocation();
-	
 	behaviour
   	{
     	on getToTheBall:
@@ -64,6 +125,18 @@ interface iWheelControl
    		on getToTheBall:
    		{
    			reply(returnResult.fail);
+   		}
+   		on followPath:
+   		{
+   			reply(returnResult.success);
+   		}
+   		on followPath:
+   		{
+   			reply(returnResult.fail);
+   		}
+   		on followPath:
+   		{
+   			reply(returnResult.busy);
    		}
    		on driveToLocation:
    		{
@@ -101,6 +174,9 @@ interface iPositioningControl
 {
 	in returnResult findTheBall();
 	in returnResult getCurrentLocation();
+	in returnResult updatePositions();
+	in returnResult determinePath();
+	
 	behaviour
 	{
 	  	on findTheBall:
@@ -119,6 +195,30 @@ interface iPositioningControl
    		{
    			reply(returnResult.fail);
    		}
+   		on updatePositions:
+   		{
+   			reply(returnResult.fail);
+		}
+		on updatePositions:
+   		{
+   			reply(returnResult.success);
+		}
+		on updatePositions:
+   		{
+   			reply(returnResult.busy);
+		}
+   		on determinePath:
+   		{
+   			reply(returnResult.fail);
+		}
+		on determinePath:
+   		{
+   			reply(returnResult.success);
+		}
+		on determinePath:
+   		{
+   			reply(returnResult.busy);
+		}	
 	}
 }
 
@@ -191,6 +291,14 @@ component Tactics
     	[!busy] on My_Control.tac_driveToTheBall():
     	{
     		returnResult retCheck = returnResult.fail;
+    		retCheck = My_Commands.driveToTheBall();
+    		if(retCheck == returnResult.fail 
+    			|| retCheck == returnResult.busy
+    			|| retCheck == returnResult.success)
+    		{
+    			reply(retCheck);
+    		}
+    		/*returnResult retCheck = returnResult.fail;
     		retCheck = My_Commands.findTheBall();
     		if(retCheck == returnResult.fail)
     		{
@@ -207,7 +315,7 @@ component Tactics
     		if(retCheck == returnResult.busy || retCheck == returnResult.success || retCheck == returnResult.fail)
     		{
     			reply(retCheck);
-    		}
+    		}*/
     	}
 	}
 }
@@ -217,11 +325,13 @@ component Commands
 	provides iCommands My_Commands;
 	
 	requires iBallControl My_BallControl;
-	requires iWheelControl My_WheelControl;
+	requires iDrivingControl My_DrivingControl;
 	requires iPositioningControl My_PositioningControl;
 	      
 	behaviour
 	{
+		returnResult posState = returnResult.fail;
+		
 		on My_Commands.shootTheBall():
 		{
 			returnResult result = returnResult.fail;
@@ -251,7 +361,7 @@ component Commands
 		on My_Commands.getToTheBall():
 		{
 			returnResult result = returnResult.fail;
-			result = My_WheelControl.getToTheBall();
+			result = My_DrivingControl.getToTheBall();
 			if(result == returnResult.success)
 			{
 				reply(returnResult.success);
@@ -270,8 +380,47 @@ component Commands
 		on My_Commands.driveToLocation():
 		{
 			returnResult result = returnResult.fail;
-			result = My_WheelControl.driveToLocation();
+			result = My_DrivingControl.driveToLocation();
 			reply(result);
+		}
+		on My_Commands.driveToTheBall():
+		{
+			returnResult result = returnResult.fail;
+			if(posState == returnResult.busy)
+			{
+				result = My_PositioningControl.determinePath();
+				posState = result;
+				reply(result);
+			}
+			else if(posState == returnResult.fail)
+			{
+				result = My_PositioningControl.updatePositions();
+				if(result == returnResult.fail)
+				{
+					reply(result);
+				}
+				else
+				{
+					result = My_PositioningControl.determinePath();
+					posState = result;
+					reply(result);
+				}
+			}
+			else if(posState == returnResult.success)
+			{
+				result = My_DrivingControl.followPath();
+				if(result == returnResult.success)
+				{
+					posState = returnResult.fail;
+				}
+				reply(result);
+			}
+			else
+			{
+				returnResult result = returnResult.fail;
+				posState = result;
+				reply(result);
+			}
 		}
 	}
 }
@@ -295,27 +444,32 @@ component BallControl
 	
 }
 
-component WheelControl
+component DrivingControl
 {
-	provides iWheelControl My_WheelControl;
+	provides iDrivingControl My_DrivingControl;
 	
-	requires iWheelDriver My_WheelDriver;
+	requires iWheelControl My_WheelControl;
 	
 	behaviour
 	{
-		on My_WheelControl.getToTheBall():
+		on My_DrivingControl.getToTheBall():
 		{
 			returnResult result = returnResult.fail;
-			result = My_WheelDriver.getToTheBall();
+			result = My_WheelControl.getToTheBall();
 			reply(result);
 		}	
-		on My_WheelControl.driveToLocation():
+		on My_DrivingControl.driveToLocation():
 		{
 			returnResult result = returnResult.fail;
-			result = My_WheelDriver.driveToLocation();
+			result = My_WheelControl.driveToLocation();
 			reply(result);
 		}
-		
+		on My_DrivingControl.followPath():
+		{
+			returnResult result = returnResult.fail;
+			result = My_WheelControl.drivePathFromNavigation();
+			reply(result);	
+		}
 	}
 }
 
@@ -331,13 +485,35 @@ component PositioningControl
 		on My_PositioningControl.findTheBall():
 		{			
 			returnResult result = returnResult.fail;
-			result = My_WorldModel.findTheBall();
+			result = My_WorldModel.getCurrentBallLocation();
 			reply(result);
 		}
 		on My_PositioningControl.getCurrentLocation():
 		{
 			returnResult result = returnResult.fail;
-			result = My_Navigation.getCurrentLocation();
+			result = My_WorldModel.getCurrentRobotLocation();
+			reply(result);
+		}
+		on My_PositioningControl.updatePositions():
+		{
+			//isthereaball getball get robot
+			returnResult result = returnResult.fail;
+			result = My_WorldModel.isThereABall();
+			if(result == returnResult.success)
+			{
+				result = My_WorldModel.getCurrentBallLocation();
+				result = My_WorldModel.getCurrentRobotLocation();
+				reply(result);
+			}
+			else
+			{
+				reply(returnResult.fail);
+			}
+		}
+		on My_PositioningControl.determinePath():
+		{
+			returnResult result = returnResult.fail;
+			result = My_Navigation.determinePath();
 			reply(result);
 		}
 	}
@@ -354,12 +530,12 @@ component Robot
   		Commands commands;
   		
 	    BallControl ballcontrol;
-	    WheelControl wheelcontrol;
+	    DrivingControl drivingControl;
 	    PositioningControl positioningcontrol;
 	    
 	    BallHandling ballhandling;
 	    Shooting shooting;
-	    WheelDriver wheeldriver;
+	    WheelControl wheelcontrol;
 	    WorldModel worldmodel;
 	    Navigation navigation;
 	   
@@ -369,13 +545,13 @@ component Robot
 	    tactics.My_Commands <=> commands.My_Commands;
 	    
 	    commands.My_BallControl <=> ballcontrol.My_BallControl;
-	    commands.My_WheelControl <=> wheelcontrol.My_WheelControl;
+	    commands.My_DrivingControl <=> drivingControl.My_DrivingControl;
 	    commands.My_PositioningControl <=> positioningcontrol.My_PositioningControl;
 	    
 	    ballcontrol.My_BallHandling <=> ballhandling.My_BallHandling;
 	    ballcontrol.My_Shooting <=> shooting.My_Shooting;
 	    
-	    wheelcontrol.My_WheelDriver <=> wheeldriver.My_WheelDriver;
+	    drivingControl.My_WheelControl <=> wheelcontrol.My_WheelControl;
 	    
 	    positioningcontrol.My_WorldModel <=> worldmodel.My_WorldModel;
 	    positioningcontrol.My_Navigation <=> navigation.My_Navigation;

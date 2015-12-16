@@ -1,7 +1,8 @@
-#ifndef SHOOTING_HH
-#define SHOOTING_HH
+#ifndef DRIVINGCONTROL_HH
+#define DRIVINGCONTROL_HH
 
-#include "iShooting.hh"
+#include "iDrivingControl.hh"
+#include "iWheelControl.hh"
 
 
 #include "runtime.hh"
@@ -12,7 +13,7 @@ namespace dezyne {
 }
 
 
-struct Shooting
+struct DrivingControl
 {
   dezyne::meta dzn_meta;
   dezyne::runtime& dzn_rt;
@@ -28,14 +29,17 @@ struct Shooting
   };
 #endif // ENUM__returnResult
   returnResult::type reply__returnResult;
-  iShooting My_Shooting;
+  iDrivingControl My_DrivingControl;
+  iWheelControl My_WheelControl;
 
-  Shooting(const dezyne::locator&);
+  DrivingControl(const dezyne::locator&);
   void check_bindings() const;
   void dump_tree() const;
 
   private:
-  returnResult::type My_Shooting_shootTheBall();
+  returnResult::type My_DrivingControl_getToTheBall();
+  returnResult::type My_DrivingControl_followPath();
+  returnResult::type My_DrivingControl_driveToLocation();
 };
 
-#endif // SHOOTING_HH
+#endif // DRIVINGCONTROL_HH

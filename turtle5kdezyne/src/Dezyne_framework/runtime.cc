@@ -9,14 +9,14 @@ runtime::runtime(){}
 
 void trace_in(std::ostream& os, port::meta const& m, const char* e)
 {
-  os << path(m.requires.address, m.requires.port) << "." << e << " -> "
-            << path(m.provides.address, m.provides.port) << "." << e << std::endl;
+  os << path(m.requires.meta, m.requires.port) << "." << e << " -> "
+     << path(m.provides.meta, m.provides.port) << "." << e << std::endl;
 }
 
 void trace_out(std::ostream& os, port::meta const& m, const char* e)
 {
-  os << path(m.provides.address, m.provides.port) << "." << e << " -> "
-     << path(m.requires.address, m.requires.port) << "." << e << std::endl;
+  os << path(m.provides.meta, m.provides.port) << "." << e << " -> "
+     << path(m.requires.meta, m.requires.port) << "." << e << std::endl;
 }
 
 bool runtime::external(void* scope) {

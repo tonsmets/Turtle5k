@@ -4,11 +4,11 @@
 #include "Tactics.hh"
 #include "Commands.hh"
 #include "BallControl.hh"
-#include "WheelControl.hh"
+#include "DrivingControl.hh"
 #include "PositioningControl.hh"
 #include "BallHandling.hh"
 #include "Shooting.hh"
-#include "WheelDriver.hh"
+#include "WheelControl.hh"
 #include "WorldModel.hh"
 #include "Navigation.hh"
 
@@ -25,14 +25,15 @@ namespace dezyne
 struct Robot
 {
   dezyne::meta dzn_meta;
+  dezyne::runtime& dzn_rt;
   Tactics tactics;
   Commands commands;
   BallControl ballcontrol;
-  WheelControl wheelcontrol;
+  DrivingControl drivingControl;
   PositioningControl positioningcontrol;
   BallHandling ballhandling;
   Shooting shooting;
-  WheelDriver wheeldriver;
+  WheelControl wheelcontrol;
   WorldModel worldmodel;
   Navigation navigation;
 

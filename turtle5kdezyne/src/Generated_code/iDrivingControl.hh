@@ -1,5 +1,5 @@
-#ifndef IWHEELDRIVER_HH
-#define IWHEELDRIVER_HH
+#ifndef IDRIVINGCONTROL_HH
+#define IDRIVINGCONTROL_HH
 
 #include "meta.hh"
 
@@ -19,12 +19,13 @@ struct returnResult
 #endif // ENUM__returnResult
 
 
-struct iWheelDriver
+struct iDrivingControl
 {
 
   struct
   {
     boost::function<returnResult::type ()> getToTheBall;
+    boost::function<returnResult::type ()> followPath;
     boost::function<returnResult::type ()> driveToLocation;
   } in;
 
@@ -36,14 +37,15 @@ struct iWheelDriver
 
   void check_bindings() const
   {
-    if (not in.getToTheBall) throw dezyne::binding_error_in(meta, "in.getToTheBall");
-    if (not in.driveToLocation) throw dezyne::binding_error_in(meta, "in.driveToLocation");
+    if (! in.getToTheBall) throw dezyne::binding_error(meta, "in.getToTheBall");
+    if (! in.followPath) throw dezyne::binding_error(meta, "in.followPath");
+    if (! in.driveToLocation) throw dezyne::binding_error(meta, "in.driveToLocation");
 
 
   }
 };
 
-inline void connect (iWheelDriver& provided, iWheelDriver& required)
+inline void connect (iDrivingControl& provided, iDrivingControl& required)
 {
   provided.out = required.out;
   required.in = provided.in;
@@ -94,4 +96,4 @@ inline ::returnResult::type to__returnResult(std::string s)
 #endif // STRING_TO_ENUM__returnResult
 
 
-#endif // IWHEELDRIVER_HH
+#endif // IDRIVINGCONTROL_HH

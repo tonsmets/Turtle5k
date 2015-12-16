@@ -35,7 +35,7 @@ struct iShooting
 
   void check_bindings() const
   {
-    if (not in.shootTheBall) throw dezyne::binding_error_in(meta, "in.shootTheBall");
+    if (! in.shootTheBall) throw dezyne::binding_error(meta, "in.shootTheBall");
 
 
   }
