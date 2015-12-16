@@ -95,21 +95,15 @@ void threshSingle(Mat image, Mat &thresholded, thresholds thr) {
 			Scalar(thr.H_MAX, thr.S_MAX, thr.V_MAX), thresholded);
 }
 
-float angleBetween(const Point &v1, const Point &v2)
+float angleBetween(const Point &v1, const Point &v2, const Point &v3, const Point &v4)
 {
-    float len1 = sqrt(v1.x * v1.x + v1.y * v1.y);
-    float len2 = sqrt(v2.x * v2.x + v2.y * v2.y);
-
-    float dot = v1.x * v2.x + v1.y * v2.y;
-
-    float a = dot / (len1 * len2);
-
-    if (a >= 1.0)
-        return 0.0;
-    else if (a <= -1.0)
-        return M_PI;
-    else
-        return acos(a); // 0..PI
+    float angle1 = atan2(v1.y-v2.y, v1.x-v2.x);
+	float angle2 = atan2(v3.y-v4.y, v3.x-v4.x);
+	float result = (angle2-angle1) * 180 / M_PI;
+	if (result<0) {
+		result+=360;
+	}
+	return result;
 }
 
 void trackFilteredObject(int &x, int &y, Mat threshold, Mat &cameraFeed){
@@ -166,11 +160,9 @@ void trackFilteredObject(int &x, int &y, Mat threshold, Mat &cameraFeed){
 				}
 				
 				line(cameraFeed, Point(centerX, centerY), Point(x, y), Scalar(150,150,20), 2);
-				float diffAngle = angleBetween(Point(centerX, 0), Point(x,y));
-				diffAngle = (diffAngle * 180) / M_PI;
-				//cout << diffAngle << endl;
+				float diffAngle = angleBetween(Point(centerX, centerY), Point(x,0), Point(centerX, centerY), Point(x, y));
 				int currAngle = diffAngle;
-				putText(cameraFeed, ("Angle: " + to_string(currAngle)), Point(10, 50), FONT_HERSHEY_SIMPLEX, 0.7, Scalar(0, 255, 0));
+				putText(cameraFeed, ("Angle: " + to_string(currAngle)), Point(10, 25), FONT_HERSHEY_SIMPLEX, 0.6, Scalar(0, 255, 0));
 			}
 
 		}
@@ -205,12 +197,12 @@ int main(int argc, char** argv) {
 	thresholds thresh1 = {23, 151, 136, 256, 256, 256};
 	thresholds thresh2 = {0, 30, 91, 256, 161, 256};
 	thresholds thresh3 = {8, 159, 201, 256, 0, 256};
-	thresholds thresh4 = {0, 61, 99, 256, 144, 256};
+	thresholds thresh4 = {0, 150, 190, 256, 5, 256};
 	
 	allThresholds.push_back(thresh1);
 	allThresholds.push_back(thresh2);
 	allThresholds.push_back(thresh3);
-	//allThresholds.push_back(thresh4);
+	allThresholds.push_back(thresh4);
 	
 	pFramePub = pHandle.advertise<std_msgs::String>("/t5k/frame", 1000);
 	
