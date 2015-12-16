@@ -222,7 +222,11 @@ public:
 
 			//Write data.
 			if(iWantedNumberOfSendBytes != iNumberOfSendBytes){
-				ROS_ERROR("port %i gives a send error", (iPort+1));
+				switch(iPort){
+					case SERIAL_PORT_5: ROS_ERROR_ONCE("Data send error on port %i", (iPort + 1)); break;
+					case SERIAL_PORT_7: ROS_ERROR_ONCE("Data send error on port %i", (iPort + 1)); break;
+					case SERIAL_PORT_8: ROS_ERROR_ONCE("Data send error on port %i", (iPort + 1)); break;
+				}
 				if(iSendError == 0){
 					iFirstSendError = iCommandReceivedCounter;
 				}
@@ -231,10 +235,10 @@ public:
 		}
 
 		if((iSendError != 0) && (iCommandReceivedCounter % DEBUG_SPEED == 0)){
-				ROS_INFO("Total send errors = %i", iSendError);
-				ROS_INFO("first pass with error send = %i", iFirstSendError);
-				ROS_INFO("Number of wanted send bytes = %i", iWantedNumberOfSendBytes); 
-				ROS_INFO("Number of send bytes = %i", iNumberOfSendBytes);
+				ROS_INFO_ONCE("Total send errors = %i", iSendError);
+				ROS_INFO_ONCE("first pass with error send = %i", iFirstSendError);
+				ROS_INFO_ONCE("Number of wanted send bytes = %i", iWantedNumberOfSendBytes); 
+				ROS_INFO_ONCE("Number of send bytes = %i", iNumberOfSendBytes);
 		}
 	}
 
@@ -266,26 +270,33 @@ public:
 				case 2: iPort = SERIAL_PORT_8; break;
 			}
 
-		iNumberOfReceiveBytes = read(iSerialPortId[iPort], serialPorts[iPort].cInBuf,sizeof serialPorts[iPort].cInBuf);
-		iWantedNumberOfReceiveBytes = sizeof serialPorts[iPort].cInBuf;
+			iNumberOfReceiveBytes = read(iSerialPortId[iPort], serialPorts[iPort].cInBuf,sizeof serialPorts[iPort].cInBuf);
+			iWantedNumberOfReceiveBytes = sizeof serialPorts[iPort].cInBuf;
 
-		if ( iNumberOfReceiveBytes == iWantedNumberOfReceiveBytes){
+			if ( iNumberOfReceiveBytes == iWantedNumberOfReceiveBytes){
 				iSerialNewData[iPort] = true;	//is needed for sending data to ROS
 			}else{
-				ROS_ERROR("Encoder data read on port %i", (iPort + 1));
-				if(iReceiveError == 0){
-					iFirstReceiveError = iEncoderDataReceiverCounter;
+				if(iNumberOfReceiveBytes == -1){
+					switch(iPort){
+						case SERIAL_PORT_5: ROS_ERROR_ONCE("Encoder data read error on port %i", (iPort + 1)); break;
+						case SERIAL_PORT_7: ROS_ERROR_ONCE("Encoder data read error on port %i", (iPort + 1)); break;
+						case SERIAL_PORT_8: ROS_ERROR_ONCE("Encoder data read errro on port %i", (iPort + 1)); break;
+					}
+
+					if(iReceiveError == 0){
+						iFirstReceiveError = iEncoderDataReceiverCounter;
+					}
+					iReceiveError++;	
 				}
-				iReceiveError++;
 			}
 		}
 
 
 		if((iReceiveError != 0) && (iEncoderDataReceiverCounter % DEBUG_SPEED == 0)){
-				ROS_INFO("Total receive errors = %i", iReceiveError);
-				ROS_INFO("First pass with receive send = %i", iFirstReceiveError);
-				ROS_INFO("Number of wanted receive bytes = %i", iWantedNumberOfReceiveBytes); 
-				ROS_INFO("Number of received bytes = %i", iNumberOfReceiveBytes);
+				ROS_INFO_ONCE("Total receive errors = %i", iReceiveError);
+				ROS_INFO_ONCE("First pass with receive send = %i", iFirstReceiveError);
+				ROS_INFO_ONCE("Number of wanted receive bytes = %i", iWantedNumberOfReceiveBytes); 
+				ROS_INFO_ONCE("Number of received bytes = %i", iNumberOfReceiveBytes);
 		}
 
 		if(iSerialNewData[SERIAL_PORT_5] && iSerialNewData[SERIAL_PORT_7] && iSerialNewData[SERIAL_PORT_8]){	
@@ -465,7 +476,7 @@ int main(int argc, char **argv  )
 
 		//Choose with which rate the RS422 port will be read.
 		//after 300 ms the ports start reading. otherwise there will be a lot of errors.
-		if((iWhileCounter >  1000) && (iWhileCounter % (ROS_LOOP_RATE_HZ/READ_RS422_INTERVAL_HZ) == 0)){
+		if((iWhileCounter >  1000)){// && (iWhileCounter % (ROS_LOOP_RATE_HZ/READ_RS422_INTERVAL_HZ) == 0)){
 			//check if read data is on
 			if(READ_RS422_ON){
 				Sobject.readSerialPort();
