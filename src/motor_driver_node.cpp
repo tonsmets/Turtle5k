@@ -28,7 +28,7 @@ date 		: 11-12-2015
 #include <errno.h>
 
 //-----settings
-#define ROS_LOOP_RATE_HZ			1000
+#define ROS_LOOP_RATE_HZ			5000
 #define MOTORDRIVER_START_OF_FRAME 	0x5a
 #define MOTORDRIVER_TYPE 			0xaa
 #define MOTORDRIVER_TYPE_RECEIVE	0x55
@@ -45,7 +45,7 @@ date 		: 11-12-2015
 #define RS422_VMIN					0	//minimal number of characters for receiving data. only when OPEN_WITH_NONBLOCK = 1
 #define RS422_VTIME					0	//time to wait on a signal. only when OPEN_WITH_NONBLOCK = 1
 #define READ_RS422_INTERVAL_HZ		100	
-#define DEBUG_SPEED					100 //delay for debug messages. it has no time defenition
+#define DEBUG_SPEED					500 //delay for debug messages. it has no time defenition
 
 #define MOTORDRIVER_KP_DEFAULT		100	//= kp * 100
 #define MOTORDRIVER_KI_DEFAULT		0	//= ki * 100
@@ -341,18 +341,18 @@ public:
 				msg.data.push_back(0);
 				iEncoderData = ((unsigned char)serialPorts[SERIAL_PORT_5].cInBuf[4] << 8) | ((unsigned char)serialPorts[SERIAL_PORT_5].cInBuf[3]);
 				//ROS_INFO("encoder data1.5 = %i", iEncoderData);
-				if(iEncoderDataReceiverCounter % DEBUG_SPEED == 0) ROS_INFO("data encoder wiel 5:%i", iEncoderData);
+				if(iEncoderDataReceiverCounter % DEBUG_SPEED == 0) ROS_DEBUG("data encoder wiel 5:%i", iEncoderData);
 				msg.data.push_back(iEncoderData);
 
 				msg.data.push_back(0);
 
 				iEncoderData = ((unsigned char)serialPorts[SERIAL_PORT_7].cInBuf[4] << 8) | ((unsigned char)serialPorts[SERIAL_PORT_7].cInBuf[3]);
-				if(iEncoderDataReceiverCounter % DEBUG_SPEED == 0) ROS_INFO("data encoder wiel 7:%i", iEncoderData);
+				if(iEncoderDataReceiverCounter % DEBUG_SPEED == 0) ROS_DEBUG("data encoder wiel 7:%i", iEncoderData);
 				msg.data.push_back(iEncoderData);
 
 				//ROS_INFO("encoder data1.7 = %i", iEncoderData);
 				iEncoderData = ((unsigned char)serialPorts[SERIAL_PORT_8].cInBuf[4] << 8) | ((unsigned char)serialPorts[SERIAL_PORT_8].cInBuf[3]);		
-				if(iEncoderDataReceiverCounter % DEBUG_SPEED == 0) ROS_INFO("data encoder wiel 8:%i", iEncoderData);
+				if(iEncoderDataReceiverCounter % DEBUG_SPEED == 0) ROS_DEBUG("data encoder wiel 8:%i", iEncoderData);
 				msg.data.push_back(iEncoderData);
 
 				//ROS_INFO("encoder data1.8 = %i", iEncoderData);
@@ -474,13 +474,17 @@ int main(int argc, char **argv  )
 	{	
 		iWhileCounter++;
 
-		//Choose with which rate the RS422 port will be read.
 		//after 300 ms the ports start reading. otherwise there will be a lot of errors.
-		if((iWhileCounter >  1000)){// && (iWhileCounter % (ROS_LOOP_RATE_HZ/READ_RS422_INTERVAL_HZ) == 0)){
+		if((iWhileCounter >  5000)){// && (iWhileCounter % (ROS_LOOP_RATE_HZ/READ_RS422_INTERVAL_HZ) == 0)){
 			//check if read data is on
 			if(READ_RS422_ON){
 				Sobject.readSerialPort();
 			}
+		}
+
+		//prevent an overflow
+		if(iWhileCounter == 50000){
+			iWhileCounter = 10000;
 		}
 
 		//wait until a Float32MulitArray is received and run the callback function
