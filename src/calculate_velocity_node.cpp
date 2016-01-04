@@ -52,7 +52,7 @@ Start defining class PublischAndSubscribe
 class PublishAndSubscribe
 {
 public:
-	
+	int iConvertFactor;
 	///////////////////////////////////////////////////////////////////////////////////////////
 	//Function: create class
 	//pre: 	-
@@ -66,6 +66,14 @@ public:
 		iTwistMessageReceivedCounter = 0;
 
 		ROS_INFO("calculate_velocity_node is initialized");
+		std::string sParamName = "iConvertFactor";
+		if (nh.hasParam(sParamName)){
+			nh.getParam(sParamName, iConvertFactor);
+			ROS_INFO("parameter iConvertFactor is read and has value :%i", iConvertFactor);
+		}else{
+			ROS_ERROR("Parameter iConvertFactor does not exist");
+			iConvertFactor = 0;
+		}
 	}
 	
 	/////////////////////////////////////////////////////////////////////////////
@@ -127,7 +135,7 @@ public:
 		//RPM = rad * 60/2pi
 		for(int i = 0 ; i < 10 ; i++){
 			fSpeedWheel[i] = fSpeedWheel[i] * (60 / ( 2 * M_PI));
-			fSpeedWheel[i] = fSpeedWheel[i] * fMotorToWheelTransmissionRatio;
+			fSpeedWheel[i] = fSpeedWheel[i] ;//* (fMotorToWheelTransmissionRatio / 5);
 		}
 
 		if(iTwistMessageReceivedCounter % DEBUG_SPEED == 0 ){
@@ -137,7 +145,7 @@ public:
 			ROS_DEBUG("speed wheel 3 RPM = %f", fSpeedWheel[8]);
 		}
 
-		//Define output message (Float32MultiArray)
+		//Define output message (Float32MultiArray)asdfer 
 		std_msgs::Float32MultiArray msg_out;
 
 		//Clear data. If you don't don't use this function the array won't start again on number 0 with filling new data.
