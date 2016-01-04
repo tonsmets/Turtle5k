@@ -29,6 +29,8 @@ date 		: 11-12-2015
 #include <std_msgs/Float32MultiArray.h>
 #include "ros/ros.h"
 #include <math.h>
+#include <pthread.h>
+#include <sched.h>
 
 //-----settings
 #define PUBLISH_TOPIC_NAME 						"mcWheelVelocityMps"
@@ -172,6 +174,16 @@ private:
 	ros::Publisher pub;
 	int iTwistMessageReceivedCounter;
 };
+
+//function that waits on callback functions.
+void* spinFunctionRos(void *arg)
+{	
+	ROS_DEBUG("entered spinFunctionROs");
+	//wait until a Float32MulitArray is received and run the callback function
+	ros::spin();
+
+	return 0;
+}
 /*****************************************************************************************************************************************
 end of defining class Subscribe
 ********************************************************************************************************************************************/
@@ -190,8 +202,18 @@ int main(int argc, char **argv  )
 	//create class
 	PublishAndSubscribe PandSobject(nh);
 
-	//wait until a Float32MulitArray is received and run the callback function
-	ros::spin();
+	//create thread
+	pthread_t tid;
+	int err = pthread_create(&(tid), NULL, &spinFunctionRos, NULL);
+
+	//check if thread is made
+	if (err != 0) ROS_ERROR("can't create thread :[%s]", strerror(err));
+    else ROS_INFO("calculate velocity thread created successfully");	
+
+	//Wait until thread is ended.
+ 	return pthread_join(tid, NULL); 
+
+ 	ROS_INFO("Calculate velocity node is ended");
 
 	return 0;
 }

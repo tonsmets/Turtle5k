@@ -26,6 +26,9 @@ date 		: 11-12-2015
 #include <termios.h>
 #include <fcntl.h>
 #include <errno.h>
+#include <pthread.h>
+#include <sched.h>
+
 
 //-----settings
 #define ROS_LOOP_RATE_HZ			5000
@@ -395,6 +398,107 @@ private:
 end of defining class Subscribe
 ********************************************************************************************************************************************/
 
+//function that waits on callback functions.
+void* spinFunctionRos(void *arg)
+{	
+	//create nodehandle
+	ros::NodeHandle nh;
+
+	//create class
+	Subscribe Sobject(nh);
+	
+
+	ROS_INFO("Serial Ports will be initialized");
+	//ROS_DEBUG("O_NONBLOCK = %i", O_NONBLOCK);
+
+	//open the serial ports and put the id number in a variable
+	//O_RWDR = open for reading and writing
+	//O_NOCTTY = the port never becomes the controlling terminal of the process
+	//O_NDELAY = use non-blocking i/o. on some system this is also means the rs232 dcd signal line is ignored.	
+	if(OPEN_WITH_NONBLOCK){
+		Sobject.iSerialPortId[SERIAL_PORT_5] = open("/dev/ttyS5", O_RDWR | O_NONBLOCK);
+		ROS_INFO("Serial port 5 are connected to hardware");
+		Sobject.iSerialPortId[SERIAL_PORT_7] = open("/dev/ttyS7", O_RDWR | O_NONBLOCK);
+		ROS_INFO("Serial port 7 are connected to hardware");
+		Sobject.iSerialPortId[SERIAL_PORT_8] = open("/dev/ttyS8", O_RDWR | O_NONBLOCK);
+		ROS_INFO("Serial port 8 are connected to hardware");
+	}else{
+		Sobject.iSerialPortId[SERIAL_PORT_5] = open("/dev/ttyS5", O_RDWR);
+		ROS_INFO("Serial port 5 are connected to hardware");
+		Sobject.iSerialPortId[SERIAL_PORT_7] = open("/dev/ttyS7", O_RDWR);
+		ROS_INFO("Serial port 7 are connected to hardware");
+		Sobject.iSerialPortId[SERIAL_PORT_8] = open("/dev/ttyS8", O_RDWR);
+		ROS_INFO("Serial port 8 are connected to hardware");
+	}
+
+	for(int i = 0; i < 3; i++){
+		int iPort;
+
+		//change values for serial ports
+		switch(i){
+			case 0: iPort = SERIAL_PORT_5; break;
+			case 1: iPort = SERIAL_PORT_7; break;
+			case 2: iPort = SERIAL_PORT_8; break;
+		}
+
+		if(Sobject.iSerialPortId[iPort] <= 0){
+			ROS_ERROR("Error opening port %i", iPort);
+		}else{
+				ROS_INFO("port %i is open", (iPort + 1));
+			#if 1
+				ROS_INFO("Setting options port %i", iPort);
+				tcgetattr(Sobject.iSerialPortId[iPort],&oldkey); // save current port settings   //so commands are interpreted right for this program
+				// set new port settings for non-canonical input processing  //must be NOCTTY
+				newkey.c_cflag = B115200 | CS8 | CLOCAL | CREAD;
+				newkey.c_iflag = IGNPAR;
+				newkey.c_oflag = 0;
+				newkey.c_lflag = 0;       //ICANON;
+				newkey.c_cc[VMIN]= RS422_VMIN;
+				newkey.c_cc[VTIME]= RS422_VTIME;
+				tcflush(Sobject.iSerialPortId[iPort], TCIFLUSH);
+				tcsetattr(Sobject.iSerialPortId[iPort],TCSANOW,&newkey);
+				ROS_INFO("Setting options completed for port %i", (iPort +1));
+			#endif
+		}
+	}
+
+	ROS_INFO("Serial ports are initialized");
+	ROS_INFO("Starting Transmission");
+
+	ros::Rate loop_rate(ROS_LOOP_RATE_HZ);
+	int iWhileCounter = 0;
+
+	while(ros::ok() )
+	{	
+		iWhileCounter++;
+
+		//after 300 ms the ports start reading. otherwise there will be a lot of errors.
+		if((iWhileCounter >  5000)){// && (iWhileCounter % (ROS_LOOP_RATE_HZ/READ_RS422_INTERVAL_HZ) == 0)){
+			//check if read data is on
+			if(READ_RS422_ON){
+				Sobject.readSerialPort();
+			}
+		}
+
+		//prevent an overflow
+		if(iWhileCounter == 50000){
+			iWhileCounter = 10000;
+		}
+
+		//wait until a Float32MulitArray is received and run the callback function
+		ros::spinOnce();
+		loop_rate.sleep();
+	}
+	
+	// here the port will be closed and the keyboard will be given back to the system.
+	close(Sobject.iSerialPortId[SERIAL_PORT_5]);
+	close(Sobject.iSerialPortId[SERIAL_PORT_7]);
+	close(Sobject.iSerialPortId[SERIAL_PORT_8]);
+	ROS_INFO("ports are closed\n");
+
+	return 0;
+}
+
 /*****************************************************************************************************************************************
 Start of main
 ********************************************************************************************************************************************/
@@ -402,7 +506,21 @@ int main(int argc, char **argv  )
 {	
 	//initialize ROS
 	ros::init(argc, argv, "mcMotorDriver");
-	
+
+
+	pthread_t tid;
+	int err = pthread_create(&(tid), NULL, &spinFunctionRos, NULL);
+
+	if (err != 0) ROS_ERROR("can't create thread :[%s]", strerror(err));
+    else ROS_INFO("calculate velocity thread created successfully");	
+
+	//Wait until thread is ended.
+ 	return pthread_join(tid, NULL); 
+
+ 	ROS_INFO("Motor node is ended");
+
+	return 0;
+/*
 	//create nodehandle
 	ros::NodeHandle nh;
 
@@ -498,6 +616,7 @@ int main(int argc, char **argv  )
 		ROS_INFO("ports are closed\n");
 
 	return 0;
+*/
 }
 
 /*****************************************************************************************************************************************
