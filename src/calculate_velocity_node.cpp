@@ -175,10 +175,59 @@ private:
 	int iTwistMessageReceivedCounter;
 };
 
+/* struct to hold data to be passed to a thread
+this shows how multiple data items can be passed to a thread */
+typedef struct str_thdata
+{
+int thread_no;
+int thread_value;
+char message[100];
+  } thdata;
+
 //function that waits on callback functions.
 void* spinFunctionRos(void *arg)
 {	
 	ROS_DEBUG("entered spinFunctionROs");
+
+/*
+	thdata *data;            
+	data = (thdata *) arg;  // type cast to a pointer to thdata
+	
+	struct sched_param param;
+	int priority=10;
+	// sched_priority will be the priority of the thread
+	param.sched_priority = priority;
+	param.sc
+	// only supported policy, others will result in ENOTSUP
+	
+	int policy = SCHED_FIFO;
+	ROS_INFO("treadh = %lu", pthread_self());
+	// scheduling parameters of target thread
+	pthread_setschedparam(pthread_self(), policy, &param);
+	//ROS_INFO("Thread %d says sched policy %d \n", data->thread_no, SCHED_FIFO);
+	
+	pthread_getschedparam(pthread_self(),&policy,&param);
+	ROS_INFO("MAX = %i", sched_get_priority_max(policy));
+	ROS_INFO("PRIO = %i", param.sched_priority);
+	
+	//ROS_INFO("Thread %d says %s  %d \n", data->thread_no, data->message,policy);
+/*
+ 	int policy = SCHED_FIFO;
+    struct sched_param param;
+
+    ROS_INFO("policy = %i", policy);
+    pthread_getschedparam(pthread_self(), &policy, &param);
+
+    ROS_INFO("Thread %d says %s  %d \n", data->thread_no, data->message,policy);
+    ROS_INFO("policy = %i", policy);
+    ROS_INFO("param = %i", param.sched_priority);
+    param.sched_priority = sched_get_priority_max(policy);
+    ROS_INFO("param = %i", param.sched_priority);
+    ROS_INFO("policy = %i", policy);
+    pthread_setschedparam(pthread_self(), policy, &param);
+    ROS_INFO("policy = %i", policy);
+*/
+
 	//wait until a Float32MulitArray is received and run the callback function
 	ros::spin();
 
