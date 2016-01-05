@@ -1,6 +1,6 @@
 Avans Turtle5k Branch
 ============
-This directory needs to be placed in a catkin (ros) directory. If the standard ros tutorials are followed it is needs to be placed in this directory : Home/catkin_ws/src/
+This directory needs to be placed in a catkin (ros) directory. If the standard ROS tutorials are followed it is needs to be placed in this directory : Home/catkin_ws/src/
 
 ///////////5KdriveWithVC/////////////
 The directory 5KdriveWithVC is the code for the motordrivers (microcontrollers). It is only usefull for the omniwheel drivers, because the data feedback is different from the ball handling. This code can be opened in atmel studio.
