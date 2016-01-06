@@ -160,7 +160,7 @@ void trackFilteredObject(int &x, int &y, Mat threshold, Mat &cameraFeed){
 				}
 				
 				line(cameraFeed, Point(centerX, centerY), Point(x, y), Scalar(150,150,20), 2);
-				float diffAngle = angleBetween(Point(centerX, centerY), Point(x,0), Point(centerX, centerY), Point(x, y));
+				float diffAngle = angleBetween(Point(centerX, centerY), Point(centerX, 0), Point(centerX, centerY), Point(x, y));
 				int currAngle = diffAngle;
 				putText(cameraFeed, ("Angle: " + to_string(currAngle)), Point(10, 25), FONT_HERSHEY_SIMPLEX, 0.6, Scalar(0, 255, 0));
 			}
@@ -185,7 +185,7 @@ int main(int argc, char** argv) {
 	ros::NodeHandle pHandle;
 	ros::Rate pRate(24);
 	
-	VideoCapture cap("/home/viki/testvideo.mp4");
+	VideoCapture cap("/home/syntax/Downloads/testvideo.mp4");
 
 	Mat image;
 	Mat output;
