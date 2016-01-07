@@ -6,6 +6,8 @@
 #include <geometry_msgs/Twist.h>
 #include <iostream>
 #include <math.h>
+#include <angles/angles.h>
+
 
 ros::Publisher pFramePub;
 
@@ -214,7 +216,7 @@ int main(int argc, char** argv) {
 	allThresholds.push_back(thresh4);
 	
 	pFramePub = pHandle.advertise<std_msgs::String>("/t5k/frame", 1000);
-	pTwistPub = pHandle.advertise<geometry_msgs::Twist>("/t5k/BallLocation", 1000);
+	pTwistPub = pHandle.advertise<geometry_msgs::Twist>("/motorspeed_set", 1000);
 	int frameCount = 0;
 	
 	while(ros::ok()) {
@@ -252,11 +254,14 @@ int main(int argc, char** argv) {
 		float relative_y = y - centerY;
 		
 		geometry_msgs::Twist twistmsg;
+		
+		float rad_angle = (current_angle / (180/M_PI));
+		float norm_angle = angles::normalize_angle(rad_angle);
 		if(ballFound)
 		{
-			twistmsg.linear.x = relative_x;
-			twistmsg.linear.y = relative_y;
-			twistmsg.angular.z = current_angle;
+			//twistmsg.linear.x = relative_x;
+			//twistmsg.linear.y = relative_y;
+			twistmsg.angular.z = norm_angle;
 		}
 		else
 		{
