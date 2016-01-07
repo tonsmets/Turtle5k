@@ -193,7 +193,7 @@ void morphOps(Mat &thresh){
 int main(int argc, char** argv) {
 	ros::init(argc, argv, "t5k_camera");
 	ros::NodeHandle pHandle;
-	ros::Rate pRate(24);
+	ros::Rate pRate(50);
 	ros::Publisher pTwistPub;
 	
 	VideoCapture cap(0);
@@ -257,6 +257,7 @@ int main(int argc, char** argv) {
 		
 		float rad_angle = (current_angle / (180/M_PI));
 		float norm_angle = angles::normalize_angle(rad_angle);
+		norm_angle*= -3.5;
 		if(ballFound)
 		{
 			//twistmsg.linear.x = relative_x;
