@@ -3,6 +3,7 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/opencv.hpp>
+#include <geometry_msgs/Twist.h>
 #include <iostream>
 #include <math.h>
 
@@ -31,6 +32,9 @@ const int MAX_NUM_OBJECTS = 10;
 //minimum and maximum object area
 const int MIN_OBJECT_AREA = 2*2;
 const int MAX_OBJECT_AREA = 30 * 30;
+
+float current_angle = 0.0;
+bool ballFound = false;
 
 struct thresholds{
 	int H_MIN;
@@ -140,12 +144,15 @@ void trackFilteredObject(int &x, int &y, Mat threshold, Mat &cameraFeed){
 					refArea = area;
 					angle = (0.5*atan2((2 * moment.mu11), (moment.mu20 - moment.mu02))) * (180 / M_PI);
 				}
-				else objectFound = false;
-
-
+				else 
+				{
+					objectFound = false;
+				}
 			}
+			
 			//let user know you found an object
 			if (objectFound == true){
+				ballFound = objectFound;
 				//putText(cameraFeed, "Tracking Object", Point(0, 50), 2, 1, Scalar(0, 255, 0), 2);
 				//draw object location on screen
 				RotatedRect minRectangle = minAreaRect(globalContour);
@@ -162,6 +169,7 @@ void trackFilteredObject(int &x, int &y, Mat threshold, Mat &cameraFeed){
 				line(cameraFeed, Point(centerX, centerY), Point(x, y), Scalar(150,150,20), 2);
 				float diffAngle = angleBetween(Point(centerX, centerY), Point(centerX, 0), Point(centerX, centerY), Point(x, y));
 				int currAngle = diffAngle;
+				current_angle = diffAngle;
 				putText(cameraFeed, ("Angle: " + to_string(currAngle)), Point(10, 25), FONT_HERSHEY_SIMPLEX, 0.6, Scalar(0, 255, 0));
 			}
 
@@ -184,8 +192,9 @@ int main(int argc, char** argv) {
 	ros::init(argc, argv, "t5k_camera");
 	ros::NodeHandle pHandle;
 	ros::Rate pRate(24);
+	ros::Publisher pTwistPub;
 	
-	VideoCapture cap("/home/syntax/Downloads/testvideo.mp4");
+	VideoCapture cap(0);
 
 	Mat image;
 	Mat output;
@@ -205,7 +214,7 @@ int main(int argc, char** argv) {
 	allThresholds.push_back(thresh4);
 	
 	pFramePub = pHandle.advertise<std_msgs::String>("/t5k/frame", 1000);
-	
+	pTwistPub = pHandle.advertise<geometry_msgs::Twist>("/t5k/BallLocation", 1000);
 	int frameCount = 0;
 	
 	while(ros::ok()) {
@@ -215,11 +224,6 @@ int main(int argc, char** argv) {
 		resize(image, image, Size(640, 360));
 		rectangle(image, Point(centerX-squareSide/2, centerY-squareSide/2), Point(centerX+squareSide/2, centerY+squareSide/2), 20, 8);
 		circle(image, Point(centerX, centerY), 267, Scalar(0, 0, 0), 175);
-
-		if (frameCount == cap.get(CV_CAP_PROP_FRAME_COUNT)) {
-			frameCount = 0;
-			cap.set(CV_CAP_PROP_POS_FRAMES, 0);
-		}
 		
 		ballThresh = { H_MIN, H_MAX, S_MIN, S_MAX, V_MIN, V_MAX };
 		//threshSingle(image, output, ballThresh);
@@ -244,6 +248,25 @@ int main(int argc, char** argv) {
 		std_msgs::String pMessage;
 		pMessage.data = "frame:{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}";
 		pFramePub.publish(pMessage);
+		float relative_x = x - centerX;
+		float relative_y = y - centerY;
+		
+		geometry_msgs::Twist twistmsg;
+		if(ballFound)
+		{
+			twistmsg.linear.x = relative_x;
+			twistmsg.linear.y = relative_y;
+			twistmsg.angular.z = current_angle;
+		}
+		else
+		{
+			twistmsg.linear.x = 0;
+			twistmsg.linear.y = 0;
+			twistmsg.angular.z = 0;
+		}
+
+		pTwistPub.publish(twistmsg);
+		ballFound = false;
 		ros::spinOnce();
 		pRate.sleep();
 	}
