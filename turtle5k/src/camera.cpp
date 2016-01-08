@@ -193,7 +193,7 @@ void morphOps(Mat &thresh){
 int main(int argc, char** argv) {
 	ros::init(argc, argv, "t5k_camera");
 	ros::NodeHandle pHandle;
-	ros::Rate pRate(50);
+	ros::Rate pRate(30);
 	ros::Publisher pTwistPub;
 	
 	VideoCapture cap(0);
@@ -251,7 +251,7 @@ int main(int argc, char** argv) {
 		pMessage.data = "frame:{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}";
 		pFramePub.publish(pMessage);
 		float relative_x = x - centerX;
-		float relative_y = y - centerY;
+		float relative_y = centerY-y;
 		
 		geometry_msgs::Twist twistmsg;
 		
@@ -262,6 +262,13 @@ int main(int argc, char** argv) {
 		{
 			//twistmsg.linear.x = relative_x;
 			//twistmsg.linear.y = relative_y;
+			float speed_x = abs(sqrt((pow(relative_x,2)+pow(relative_y,2))));
+			//ROS_INFO("Current x: %f\n Current y: %f\n Current speed: %f", relative_x, relative_y, speed_x);
+			twistmsg.linear.x = speed_x/60;
+			twistmsg.linear.y = 0;
+			twistmsg.linear.z = 0;
+			twistmsg.angular.x = 0;
+			twistmsg.angular.y = 0;
 			twistmsg.angular.z = norm_angle;
 		}
 		else
