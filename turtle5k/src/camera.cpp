@@ -200,13 +200,13 @@ int angleBetween(Point tip, Point next, Point prev)
 
 //USAGE: call this function and provide the camera feed Matrix (example: fdetectGoal(cameraFeed))
 //we can use the vector from the robot to the goal to get a correction angle for the robot to turn
-void fdetectGoal(Mat &cameraFeed, int frame_reduction_ratio = 1){
-
+void fdetectGoal(Mat &cameraFeed, Mat &output, int& goal_x, int& goal_y, int frame_reduction_ratio = 1){
+	Mat cameraFeedBackup = cameraFeed;
 	//crop the unused parts of the frame
-	cv::Rect cropRect(cameraFeed.cols / 5, 0, cameraFeed.cols / 1.5, cameraFeed.rows);
-	cameraFeed = cameraFeed(cropRect).clone();
+	//cv::Rect cropRect(cameraFeed.cols / 5, 0, cameraFeed.cols / 1.5, cameraFeed.rows);
+	//cameraFeed = cameraFeed(cropRect).clone();
 	//downsize the frame for faster computation time
-	cv::resize(cameraFeed, cameraFeed, cv::Size(cameraFeed.cols / frame_reduction_ratio, cameraFeed.rows / frame_reduction_ratio));
+	//cv::resize(cameraFeed, cameraFeed, cv::Size(cameraFeed.cols / frame_reduction_ratio, cameraFeed.rows / frame_reduction_ratio));
 	
 	// get binary image that contains only the field lines
 	Mat HSV,tresholdFrame;
@@ -298,6 +298,8 @@ void fdetectGoal(Mat &cameraFeed, int frame_reduction_ratio = 1){
 			int x = mu.m10 / contourArea;
 			int y = mu.m01 / contourArea;
 			COG_of_goal.x = x; COG_of_goal.y = y;
+			goal_x = x;
+			goal_y = y;
 			cv::circle(cameraFeed, Point(x, y), 5, Scalar(255, 0, 0), 2);
 			//get unit vector (direction which line from cog bot to cog goal points)
 			cv::Point dp = COG_of_goal - COG_of_bot;
@@ -306,9 +308,11 @@ void fdetectGoal(Mat &cameraFeed, int frame_reduction_ratio = 1){
 			float unitVecy = dp.y / (sqrt(dp.x*dp.x + dp.y*dp.y));
 			cv::Point2f unitVec(unitVecx, unitVecy);
 			//cout << unitVec << endl;
-			cv::line(cameraFeed, COG_of_bot, COG_of_goal + cv::Point(unitVec.x, unitVec.y), Scalar(0, 255, 0), 2);
+			cv::line(cameraFeed, COG_of_bot, COG_of_goal + cv::Point((unitVec*(100/frame_reduction_ratio)).x, (unitVec*(100/frame_reduction_ratio)).y), Scalar(0, 255, 0), 2);
 		}
 	}
+	output = cameraFeed;
+	cameraFeed = cameraFeedBackup;
 }
 
 int main(int argc, char** argv) {
@@ -318,11 +322,14 @@ int main(int argc, char** argv) {
 	ros::Publisher pTwistPub;
 	
 	VideoCapture cap(0);
+	cap.set(CV_CAP_PROP_FRAME_WIDTH, 1920);
+	cap.set(CV_CAP_PROP_FRAME_HEIGHT, 1080);
 
 	Mat image;
 	Mat output;
+	Mat goalOutput;
 	
-	createTrackbars();
+	//createTrackbars();
 	
 	thresholds ballThresh = { H_MIN, H_MAX, S_MIN, S_MAX, V_MIN, V_MAX };
 	
@@ -359,13 +366,21 @@ int main(int argc, char** argv) {
 		int x = 0;
 		int y = 0;
 		
+		int goalX = 0;
+		int goalY = 0;
+		
 		trackFilteredObject(x, y, output, image);
-		fdetectGoal(image);
+		fdetectGoal(image, goalOutput, goalX, goalY, 1);
+		
+		if(goalX != 0 && goalY != 0) {
+			circle(image, Point(goalX, goalY), 10, Scalar(0, 0, 255), 5);
+		}
 		
 		//resize(output, output, Size(640, 360));
 		
 		
-		imshow( "Display window", output );
+		imshow( "Ball window", output );
+		//imshow( "Goal window", goalOutput );
 		imshow( "Original", image);
 		waitKey(20);
 
