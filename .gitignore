@@ -2,3 +2,4 @@ OpenCV/*
 OpenCV/
 *.*~
 .DS_Store
+*.o

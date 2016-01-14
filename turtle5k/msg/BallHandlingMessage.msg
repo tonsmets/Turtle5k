@@ -1,1 +1,1 @@
-float64 pRevolutionsPerSecond
+bool ballGrabbed
