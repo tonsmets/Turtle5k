@@ -10,7 +10,7 @@
 #include "ObjectTypes.h"
 #include "turtle5k/WorldMessage.h"
 
-ros::Publisher pFramePub;
+ros::Publisher pWorldPub;
 
 using namespace cv;
 using namespace std;
@@ -38,6 +38,7 @@ const int MAX_OBJECT_AREA = 30 * 30;
 
 float current_angle = 0.0;
 bool ballFound = false;
+bool goalFound = false;
 
 struct thresholds{
 	int H_MIN;
@@ -374,6 +375,7 @@ int main(int argc, char** argv) {
 		fdetectGoal(image, goalOutput, goalX, goalY, 1);
 		
 		if(goalX != 0 && goalY != 0) {
+			goalFound = true;
 			circle(image, Point(goalX, goalY), 10, Scalar(0, 0, 255), 5);
 		}
 		
@@ -381,18 +383,32 @@ int main(int argc, char** argv) {
 		
 		
 		imshow( "Ball window", output );
-		//imshow( "Goal window", goalOutput );
+		imshow( "Goal window", goalOutput );
 		imshow( "Original", image);
 		waitKey(20);
 
 		float relative_x = x - centerX;
 		float relative_y = centerY-y;
 		
+		float goalRelativeX = goalX - centerX;
+		float goalRelativeY = centerY - goalY;
+		
+		float goalAngle = angleBetween(Point(centerX, centerY), Point(centerX, 0), Point(centerX, centerY), Point(goalX, goalY));
+		
 		geometry_msgs::Twist twistmsg;
 		
 		float rad_angle = (current_angle / (180/M_PI));
 		float norm_angle = angles::normalize_angle(rad_angle);
 		norm_angle*= -3.5;
+		if(goalFound) {
+			turtle5k::WorldMessage pMessage;
+			pMessage.objectType = OBJECT_GOAL;
+			pMessage.objectPosition.x = goalRelativeX;
+			pMessage.objectPosition.y = goalRelativeY;
+			pMessage.angleBetween = goalAngle;
+			pWorldPub.publish(pMessage);
+			goalFound = false;
+		}
 		if(ballFound)
 		{
 			//twistmsg.linear.x = relative_x;
@@ -419,7 +435,7 @@ int main(int argc, char** argv) {
 			twistmsg.angular.z = 0;
 		}
 
-		pTwistPub.publish(twistmsg);
+		//pTwistPub.publish(twistmsg);
 		ballFound = false;
 		ros::spinOnce();
 		pRate.sleep();
