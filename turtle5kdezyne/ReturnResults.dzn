@@ -1,9 +1,0 @@
-enum returnResult
-{
-	busy,
-	success,
-	fail,
-	yes,
-	no,
-	stub
-};

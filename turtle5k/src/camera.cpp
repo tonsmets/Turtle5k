@@ -7,7 +7,8 @@
 #include <iostream>
 #include <math.h>
 #include <angles/angles.h>
-
+#include "ObjectTypes.h"
+#include "turtle5k/WorldMessage.h"
 
 ros::Publisher pFramePub;
 
@@ -343,8 +344,8 @@ int main(int argc, char** argv) {
 	allThresholds.push_back(thresh3);
 	allThresholds.push_back(thresh4);
 	
-	pFramePub = pHandle.advertise<std_msgs::String>("/t5k/frame", 1000);
-	pTwistPub = pHandle.advertise<geometry_msgs::Twist>("/motorspeed_set", 1000);
+	pWorldPub = pHandle.advertise<turtle5k::WorldMessage>("/world", 1000);
+	//pTwistPub = pHandle.advertise<geometry_msgs::Twist>("/motorspeed_set", 1000);
 	int frameCount = 0;
 	
 	while(ros::ok()) {
@@ -384,9 +385,6 @@ int main(int argc, char** argv) {
 		imshow( "Original", image);
 		waitKey(20);
 
-		std_msgs::String pMessage;
-		pMessage.data = "frame:{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}";
-		pFramePub.publish(pMessage);
 		float relative_x = x - centerX;
 		float relative_y = centerY-y;
 		
@@ -407,6 +405,12 @@ int main(int argc, char** argv) {
 			twistmsg.angular.x = 0;
 			twistmsg.angular.y = 0;
 			twistmsg.angular.z = norm_angle;
+			turtle5k::WorldMessage pMessage;
+			pMessage.objectType = OBJECT_BALL;
+			pMessage.objectPosition.x = relative_x;
+			pMessage.objectPosition.y = relative_y;
+			pMessage.angleBetween = current_angle;
+			pWorldPub.publish(pMessage);
 		}
 		else
 		{
