@@ -31,12 +31,13 @@ const string trackbarWindowName = "Trackbars";
 
 //max number of objects to be detected in frame
 const int MAX_NUM_OBJECTS = 10;
-//minimum and maximum object area
+//minimum and maximum object areagoal
 const int MIN_OBJECT_AREA = 2*2;
 const int MAX_OBJECT_AREA = 30 * 30;
 
 float current_angle = 0.0;
 bool ballFound = false;
+bool goalFound = false;
 
 struct thresholds{
 	int H_MIN;
@@ -237,6 +238,8 @@ int main(int argc, char** argv) {
 		
 		int x = 0;
 		int y = 0;
+		
+		int goalX, goalY =0;
 		
 		trackFilteredObject(x, y, output, image);
 		//fdetectGoal(image, goalOutput, goalX, goalY, 1);
