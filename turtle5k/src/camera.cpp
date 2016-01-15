@@ -409,31 +409,26 @@ int main(int argc, char** argv) {
 			pWorldPub.publish(pMessage);
 			goalFound = false;
 		}
+		turtle5k::WorldMessage pMessage;
 		if(ballFound)
 		{
 			//twistmsg.linear.x = relative_x;
 			//twistmsg.linear.y = relative_y;
-			float speed_x = abs(sqrt((pow(relative_x,2)+pow(relative_y,2))));
+			//float speed_x = abs(sqrt((pow(relative_x,2)+pow(relative_y,2))));
 			//ROS_INFO("Current x: %f\n Current y: %f\n Current speed: %f", relative_x, relative_y, speed_x);
-			twistmsg.linear.x = speed_x/60;
-			twistmsg.linear.y = 0;
-			twistmsg.linear.z = 0;
-			twistmsg.angular.x = 0;
-			twistmsg.angular.y = 0;
-			twistmsg.angular.z = norm_angle;
-			turtle5k::WorldMessage pMessage;
 			pMessage.objectType = OBJECT_BALL;
 			pMessage.objectPosition.x = relative_x;
 			pMessage.objectPosition.y = relative_y;
 			pMessage.angleBetween = current_angle;
-			pWorldPub.publish(pMessage);
 		}
 		else
 		{
-			twistmsg.linear.x = 0;
-			twistmsg.linear.y = 0;
-			twistmsg.angular.z = 0;
+			pMessage.objectType = OBJECT_BALL;
+			pMessage.objectPosition.x = 0;
+			pMessage.objectPosition.y = 0;
+			pMessage.angleBetween = 0;
 		}
+		pWorldPub.publish(pMessage);
 
 		//pTwistPub.publish(twistmsg);
 		ballFound = false;
