@@ -22,7 +22,6 @@ ros::Publisher pBallHandlingPub;
 
 const char* pDevices[] = 
 {
-	"/dev/ttyS4",
 	"/dev/ttyS6",
 	"/dev/ttyS9"
 };
@@ -66,9 +65,6 @@ void ReadSensor(int& aLevel, int& aDegree, int aScale, int aPort, uint8_t aArm)
 
 int16_t CalculateSpeed(int aLevel, int aDegree, int aSign)
 {
-	int16_t pSpeed = 0,
-			pMin_spd = NORM_MIN_SPD,
-			pMax_spd = NORM_MAX_SPD;
 	double  pScale = aSign ? ((aDegree / 255) + aLevel) : ((aDegree / 255) + aLevel + HALL_DIFF);
 	pHasBall = (pScale < 4);
 	return aSign * 110;
@@ -76,10 +72,23 @@ int16_t CalculateSpeed(int aLevel, int aDegree, int aSign)
 
 void SetSpeed(int aLevel, int aDegree, int aPort, int aSign)
 {
+	OpenPorts(pDevices, pPorts);
+	pClkNow = clock();
+	
+	if(pClkPart == pClkCompare) {
+			pClkCompare++;
+			ReadSensor(pLevel_Right, pDegree_Right, SCALE_RIGHT, pPorts[0], SENSOR_RIGHT);
+			ReadSensor(pLevel_Left, pDegree_Left, SCALE_LEFT, pPorts[0], SENSOR_LEFT);
+	}
+	else 
+	{
+			pClkPart = pClkNow / CLK_SCALE;
+	}
+
 	int16_t	pWheelVel = CalculateSpeed(aLevel, aDegree, aSign);
-	uint8_t	pSend[] = { 0x5A, 0xAA, 0x07, (uint8_t)(pWheelVel & 0xFF), (uint8_t)((pWheelVel >> 8) & 0xFF), 0x00, 0x00, 0x00 },
-			pBuffer[8];
+	uint8_t	pSend[] = { 0x5A, 0xAA, 0x07, (uint8_t)(pWheelVel & 0xFF), (uint8_t)((pWheelVel >> 8) & 0xFF), 0x00, 0x00, 0x00 };
 	write(aPort, pSend, sizeof(pSend));
+	ClosePorts(pPorts);
 }
 
 int main(int argc, char** argv) {
@@ -87,19 +96,10 @@ int main(int argc, char** argv) {
 	ros::NodeHandle pHandle;
 	pBallHandlingPub = pHandle.advertise<turtle5k::BallHandlingMessage>("/ballhandling", 1000);
 	
-	OpenPorts(pDevices, pPorts);
-	while(ros::ok()) {
-		pClkNow = clock();
-		if(pClkPart == pClkCompare) {
-				pClkCompare++;
-				ReadSensor(pLevel_Right, pDegree_Right, SCALE_RIGHT, pPorts[0], SENSOR_RIGHT);
-				ReadSensor(pLevel_Left, pDegree_Left, SCALE_LEFT, pPorts[0], SENSOR_LEFT);
-		}
-		else {
-			pClkPart = pClkNow / CLK_SCALE;
-		}
-		SetSpeed(pLevel_Left, pDegree_Left, pPorts[2], -1);
-		SetSpeed(pLevel_Right, pDegree_Right, pPorts[1], 1);
+	while(ros::ok()) 
+	{
+		SetSpeed(pLevel_Left, pDegree_Left, pPorts[0], 1);
+		SetSpeed(pLevel_Right, pDegree_Right, pPorts[1], -1);
 		
 		turtle5k::BallHandlingMessage pMessage;
 		pMessage.ballGrabbed = pHasBall;
@@ -107,7 +107,5 @@ int main(int argc, char** argv) {
 		
 		ros::spinOnce();
 	}
-	ClosePorts(pPorts);
-	
 	return 0;
 }

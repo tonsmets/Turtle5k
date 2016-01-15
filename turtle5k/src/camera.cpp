@@ -372,7 +372,7 @@ int main(int argc, char** argv) {
 		int goalY = 0;
 		
 		trackFilteredObject(x, y, output, image);
-		fdetectGoal(image, goalOutput, goalX, goalY, 1);
+		//fdetectGoal(image, goalOutput, goalX, goalY, 1);
 		
 		if(goalX != 0 && goalY != 0) {
 			goalFound = true;
@@ -383,7 +383,7 @@ int main(int argc, char** argv) {
 		
 		
 		imshow( "Ball window", output );
-		imshow( "Goal window", goalOutput );
+		//imshow( "Goal window", goalOutput );
 		imshow( "Original", image);
 		waitKey(20);
 
