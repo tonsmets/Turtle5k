@@ -20,8 +20,12 @@ geometry_msgs::Twist GetTwistMessage(turtle5k::WorldMessage aMessage)
 	geometry_msgs::Twist pReturn;
 	memset(&pReturn, 0, sizeof(geometry_msgs::Twist));
 	if(aMessage.objectType == OBJECT_BALL) {
-		pReturn.linear.x = sqrt((pow(aMessage.objectPosition.x, 2) + pow(aMessage.objectPosition.y, 2))) / 60;
-		pReturn.angular.z = (angles::normalize_angle((aMessage.angleBetween / (180/M_PI))) * - 2.5);
+		pReturn.linear.x = sqrt((pow(aMessage.objectPosition.x, 2) + pow(aMessage.objectPosition.y, 2))) / 30;
+		if(pReturn.linear.x > 2.3)
+		{
+			pReturn.linear.x = 2.3;
+		}
+		pReturn.angular.z = (angles::normalize_angle((aMessage.angleBetween / (180/M_PI))) * - 3);
 	}
 	else if(aMessage.objectType == OBJECT_GOAL) {
 		//pReturn.angular.z = (angles::normalize_angle((aMessage.angleBetween / (180/M_PI))) * - 1.5);

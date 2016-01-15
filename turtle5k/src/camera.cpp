@@ -40,6 +40,8 @@ float current_angle = 0.0;
 bool ballFound = false;
 bool goalFound = false;
 
+int ballNotFoundCounter = 0;
+
 struct thresholds{
 	int H_MIN;
 	int H_MAX;
@@ -420,16 +422,25 @@ int main(int argc, char** argv) {
 			pMessage.objectPosition.x = relative_x;
 			pMessage.objectPosition.y = relative_y;
 			pMessage.angleBetween = current_angle;
+			pWorldPub.publish(pMessage);
+			ballNotFoundCounter = 0;
 		}
 		else
 		{
-			pMessage.objectType = OBJECT_BALL;
-			pMessage.objectPosition.x = 0;
-			pMessage.objectPosition.y = 0;
-			pMessage.angleBetween = 0;
+			if(ballNotFoundCounter >= 5)
+			{
+				pMessage.objectType = OBJECT_BALL;
+				pMessage.objectPosition.x = 0;
+				pMessage.objectPosition.y = 0;
+				pMessage.angleBetween = 0;
+				pWorldPub.publish(pMessage);
+			}
+			else
+			{
+				ballNotFoundCounter++;
+			}
 		}
-		pWorldPub.publish(pMessage);
-
+		
 		//pTwistPub.publish(twistmsg);
 		ballFound = false;
 		ros::spinOnce();
