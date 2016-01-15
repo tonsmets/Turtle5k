@@ -7,9 +7,10 @@
 #include <iostream>
 #include <math.h>
 #include <angles/angles.h>
+#include "ObjectTypes.h"
+#include "turtle5k/WorldMessage.h"
 
-
-ros::Publisher pFramePub;
+ros::Publisher pWorldPub;
 
 using namespace cv;
 using namespace std;
@@ -31,7 +32,7 @@ const string trackbarWindowName = "Trackbars";
 
 //max number of objects to be detected in frame
 const int MAX_NUM_OBJECTS = 10;
-//minimum and maximum object areagoal
+//minimum and maximum object area
 const int MIN_OBJECT_AREA = 2*2;
 const int MAX_OBJECT_AREA = 30 * 30;
 
@@ -191,6 +192,131 @@ void morphOps(Mat &thresh){
 	dilate(thresh, thresh, dilateElement);
 }
 
+int angleBetween(Point tip, Point next, Point prev)
+// calculate the angle between the tip and its neighboring folds
+// (in integer degrees)
+{
+	return abs((int)round((atan2(next.x - tip.x, next.y - tip.y) - atan2(prev.x - tip.x, prev.y - tip.y)) * 180 / 3.141));
+}
+
+
+//USAGE: call this function and provide the camera feed Matrix (example: fdetectGoal(cameraFeed))
+//we can use the vector from the robot to the goal to get a correction angle for the robot to turn
+void fdetectGoal(Mat &cameraFeed, Mat &output, int& goal_x, int& goal_y, int frame_reduction_ratio = 1){
+	Mat cameraFeedBackup = cameraFeed;
+	//crop the unused parts of the frame
+	//cv::Rect cropRect(cameraFeed.cols / 5, 0, cameraFeed.cols / 1.5, cameraFeed.rows);
+	//cameraFeed = cameraFeed(cropRect).clone();
+	//downsize the frame for faster computation time
+	//cv::resize(cameraFeed, cameraFeed, cv::Size(cameraFeed.cols / frame_reduction_ratio, cameraFeed.rows / frame_reduction_ratio));
+	
+	// get binary image that contains only the field lines
+	Mat HSV,tresholdFrame;
+	//convert frame from BGR to HSV colorspace
+	cvtColor(cameraFeed, HSV, COLOR_BGR2HSV);
+	//filter using HSV values
+	H_MIN = 0;
+	H_MAX = 255;
+	S_MIN = 0;
+	S_MAX = 19;
+	V_MIN = 203;
+	V_MAX = 255;
+	inRange(HSV, Scalar(H_MIN, S_MIN, V_MIN), Scalar(H_MAX, S_MAX, V_MAX), tresholdFrame);
+
+	Mat erodeElement = getStructuringElement(MORPH_RECT, Size(3, 3));
+	//dilate with larger element so make sure object is nicely visible
+	Mat dilateElement = getStructuringElement(MORPH_RECT, Size(5, 5));
+	dilate(tresholdFrame, tresholdFrame, dilateElement);
+	dilate(tresholdFrame, tresholdFrame, dilateElement);
+
+
+	//here I aim to find the unique features of the goal and determine coordinates of the best aim point for the robot to shoot at.
+
+	//Find contours in image, analyze geometry of contours that we detect to determine goal shape
+
+	Mat temp;
+	tresholdFrame.copyTo(temp);
+	//these two vectors needed for output of findContours
+	vector< vector<Point> > contours;
+	vector<vector<cv::Point> >approxContours;
+	vector<Vec4i> hierarchy;
+	//find contours of filtered image using openCV findContours function
+	findContours(temp, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE);
+	cv::RNG rng(12345);
+	for (int i = 0; i < contours.size(); i++){
+
+		//cv::drawContours(cameraFeed, contours, i, Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255)), 2);
+		vector<cv::Point> approxContour;
+		cv::approxPolyDP(contours.at(i), approxContour, 10 / frame_reduction_ratio, 1);
+		approxContours.push_back(approxContour);
+	}
+
+	cv::Point COG_of_goal(0, 0);
+	cv::Point COG_of_bot(cameraFeed.cols / 2, cameraFeed.rows / 2 - 30 / frame_reduction_ratio);
+	for (int i = 0; i < approxContours.size(); i++){
+
+		int numberOfVertices = approxContours.at(i).size();
+		//int contourArea = cv::boundingRect(approxContours.at(i)).area();
+		int contourArea = cv::contourArea(approxContours.at(i));
+
+
+		//find number of "corner points" (ie. 80deg <angle <100deg) by iterating through approxPoly and checking angles
+		vector<Point> cornerPnts;
+		for (int j = 0; j < approxContours.at(i).size(); j++){
+
+			int pdx;
+			int sdx;
+			if (j == 0) pdx = approxContours.at(i).size() - 1;
+			else pdx = j - 1;
+
+			if (j == approxContours.at(i).size() - 1) sdx = 0;
+			else sdx = j + 1;
+
+			//find angle to points on either side of pointand find smallest angles for sharpest points
+			cv::Point pnt1 = approxContours.at(i).at(j);
+			cv::Point pnt2 = approxContours.at(i).at(sdx);
+			cv::Point pnt3 = approxContours.at(i).at(pdx);
+
+			double angle = angleBetween(pnt1, pnt2, pnt3);
+
+			//cv::putText(cameraFeed, std::to_string(angle), pnt1, 1, 1, Scalar(0, 255, 0), 2);
+
+			//test for corner Points
+			if (angle<95.0 || angle>265.0){
+				cornerPnts.push_back(pnt1);
+			}
+		}
+			int number_of_corner_points = cornerPnts.size();
+		//filter out our goal contour
+			if (numberOfVertices> 7 && numberOfVertices < 12 && contourArea >10000/frame_reduction_ratio && contourArea <100000 / frame_reduction_ratio  && number_of_corner_points>2){
+				//cout << "number of corner points: " << number_of_corner_points << endl;
+			//cout << "contour #" << i << ":\n" << endl;
+			//cout << "number of vertices: " << approxContours.at(i).size() << endl;
+			//cout << "area: " << cv::boundingRect(approxContours.at(i)).area() << endl;
+			cv::drawContours(cameraFeed, approxContours, i, Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255)), 2);
+
+			//find center of gravity of contour from "moments" 
+			cv::Moments mu = cv::moments(approxContours.at(i));
+			int x = mu.m10 / contourArea;
+			int y = mu.m01 / contourArea;
+			COG_of_goal.x = x; COG_of_goal.y = y;
+			goal_x = x;
+			goal_y = y;
+			cv::circle(cameraFeed, Point(x, y), 5, Scalar(255, 0, 0), 2);
+			//get unit vector (direction which line from cog bot to cog goal points)
+			cv::Point dp = COG_of_goal - COG_of_bot;
+			//cout << dp << endl;
+			float unitVecx = dp.x / (sqrt(dp.x*dp.x + dp.y*dp.y));
+			float unitVecy = dp.y / (sqrt(dp.x*dp.x + dp.y*dp.y));
+			cv::Point2f unitVec(unitVecx, unitVecy);
+			//cout << unitVec << endl;
+			cv::line(cameraFeed, COG_of_bot, COG_of_goal + cv::Point((unitVec*(100/frame_reduction_ratio)).x, (unitVec*(100/frame_reduction_ratio)).y), Scalar(0, 255, 0), 2);
+		}
+	}
+	output = cameraFeed;
+	cameraFeed = cameraFeedBackup;
+}
+
 int main(int argc, char** argv) {
 	ros::init(argc, argv, "t5k_camera");
 	ros::NodeHandle pHandle;
@@ -198,11 +324,14 @@ int main(int argc, char** argv) {
 	ros::Publisher pTwistPub;
 	
 	VideoCapture cap(0);
+	cap.set(CV_CAP_PROP_FRAME_WIDTH, 1920);
+	cap.set(CV_CAP_PROP_FRAME_HEIGHT, 1080);
 
 	Mat image;
 	Mat output;
+	Mat goalOutput;
 	
-	createTrackbars();
+	//createTrackbars();
 	
 	thresholds ballThresh = { H_MIN, H_MAX, S_MIN, S_MAX, V_MIN, V_MAX };
 	
@@ -216,8 +345,8 @@ int main(int argc, char** argv) {
 	allThresholds.push_back(thresh3);
 	allThresholds.push_back(thresh4);
 	
-	pFramePub = pHandle.advertise<std_msgs::String>("/t5k/frame", 1000);
-	pTwistPub = pHandle.advertise<geometry_msgs::Twist>("/motorspeed_set", 1000);
+	pWorldPub = pHandle.advertise<turtle5k::WorldMessage>("/world", 1000);
+	//pTwistPub = pHandle.advertise<geometry_msgs::Twist>("/motorspeed_set", 1000);
 	int frameCount = 0;
 	
 	while(ros::ok()) {
@@ -239,10 +368,11 @@ int main(int argc, char** argv) {
 		int x = 0;
 		int y = 0;
 		
-		int goalX, goalY =0;
+		int goalX = 0;
+		int goalY = 0;
 		
 		trackFilteredObject(x, y, output, image);
-		//fdetectGoal(image, goalOutput, goalX, goalY, 1);
+		fdetectGoal(image, goalOutput, goalX, goalY, 1);
 		
 		if(goalX != 0 && goalY != 0) {
 			goalFound = true;
@@ -251,22 +381,34 @@ int main(int argc, char** argv) {
 		
 		//resize(output, output, Size(640, 360));
 		
+		
 		imshow( "Ball window", output );
-		//imshow( "Goal window", goalOutput );
+		imshow( "Goal window", goalOutput );
 		imshow( "Original", image);
 		waitKey(20);
 
-		std_msgs::String pMessage;
-		pMessage.data = "frame:{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}";
-		pFramePub.publish(pMessage);
 		float relative_x = x - centerX;
 		float relative_y = centerY-y;
+		
+		float goalRelativeX = goalX - centerX;
+		float goalRelativeY = centerY - goalY;
+		
+		float goalAngle = angleBetween(Point(centerX, centerY), Point(centerX, 0), Point(centerX, centerY), Point(goalX, goalY));
 		
 		geometry_msgs::Twist twistmsg;
 		
 		float rad_angle = (current_angle / (180/M_PI));
 		float norm_angle = angles::normalize_angle(rad_angle);
 		norm_angle*= -3.5;
+		if(goalFound) {
+			turtle5k::WorldMessage pMessage;
+			pMessage.objectType = OBJECT_GOAL;
+			pMessage.objectPosition.x = goalRelativeX;
+			pMessage.objectPosition.y = goalRelativeY;
+			pMessage.angleBetween = goalAngle;
+			pWorldPub.publish(pMessage);
+			goalFound = false;
+		}
 		if(ballFound)
 		{
 			//twistmsg.linear.x = relative_x;
@@ -279,6 +421,12 @@ int main(int argc, char** argv) {
 			twistmsg.angular.x = 0;
 			twistmsg.angular.y = 0;
 			twistmsg.angular.z = norm_angle;
+			turtle5k::WorldMessage pMessage;
+			pMessage.objectType = OBJECT_BALL;
+			pMessage.objectPosition.x = relative_x;
+			pMessage.objectPosition.y = relative_y;
+			pMessage.angleBetween = current_angle;
+			pWorldPub.publish(pMessage);
 		}
 		else
 		{
@@ -287,7 +435,7 @@ int main(int argc, char** argv) {
 			twistmsg.angular.z = 0;
 		}
 
-		pTwistPub.publish(twistmsg);
+		//pTwistPub.publish(twistmsg);
 		ballFound = false;
 		ros::spinOnce();
 		pRate.sleep();
