@@ -4,11 +4,13 @@
 #include "turtle5k/WorldMessage.h"
 #include "turtle5k/ShootMessage.h"
 #include "turtle5k/BallHandlingMessage.h"
+#include "turtle5k/BallHandlingOnOffMessage.h"
 #include <angles/angles.h>
 
 ros::Publisher pTacticsPub;
 ros::Publisher	pTwistPub;
 ros::Publisher pShootPub;
+ros::Publisher pBallHandlingPub;
 ros::Subscriber pPathSub;
 ros::Subscriber pWorldSub;
 ros::Subscriber pBallHandlingSub;
@@ -73,11 +75,30 @@ int main(int argc, char** argv) {
 	
 	pWorldSub = pHandle.subscribe("/world", 1000, worldCallback);
 	pTwistPub = pHandle.advertise<geometry_msgs::Twist>("/motorspeed_set", 1000);
-	pShootPub = pHandle.advertise<turtle5k::ShootMessage>("/shooting_shoot", 1000);
+	pShootPub = pHandle.advertise<turtle5k::ShootMessage>("/shoot", 1000);
 	pBallHandlingSub = pHandle.subscribe("/ballhandling", 1000, ballhandlingCallback);
+	pBallHandlingPub = pHandle.advertise<turtle5k::BallHandlingOnOffMessage>("/handle", 1000);
+	
 	memset(&pTwistMessage, 0 , sizeof(pTwistMessage));
+	
+	turtle5k::BallHandlingOnOffMessage ballhandlingMsg;
+	ballhandlingMsg.on = true;
+	
+	turtle5k::ShootMessage shootMsg;
+	shootMsg.shootPower = 2;
+	shootMsg.shootAngle = 9;
+	
 	while(ros::ok()) {
 		pTwistPub.publish(pTwistMessage);
+		pBallHandlingPub.publish(ballhandlingMsg);
+		if(pBallGrabbed) {
+			ROS_INFO("We have the ball");
+			//std::cout << "Got the ball" << std::endl;
+			pShootPub.publish(shootMsg);
+		}
+		else {
+			ROS_INFO("We don't have the ball");
+		}
 		ros::spinOnce();
 		pRate.sleep();
 	}

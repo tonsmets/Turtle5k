@@ -1,6 +1,6 @@
 <launch>
 <include file="$(find turtle5k_drive_system)/control_motors_no_joystick_twist.launch" />
-<node name="ballhandling" pkg="turtle5k" type="ballhandling" />
+<node name="shootingLever" pkg="turtle5k" type="shootingLever" launch-prefix="xterm -e"/>
 <node name="camera" pkg="turtle5k" type="camera" />
-<node name="tactics" pkg="turtle5k" type="tactics" />
+<node name="tactics" pkg="turtle5k" type="tactics" launch-prefix="xterm -e"/>
 </launch>

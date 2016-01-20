@@ -20,6 +20,7 @@ add_message_files(
 	ShootMessage.msg
 	MovementMessage.msg
 	WorldMessage.msg
+	BallHandlingOnOffMessage.msg
 )
 
 generate_messages(
