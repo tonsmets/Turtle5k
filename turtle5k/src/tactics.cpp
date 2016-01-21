@@ -15,6 +15,10 @@ ros::Subscriber pPathSub;
 ros::Subscriber pWorldSub;
 ros::Subscriber pBallHandlingSub;
 geometry_msgs::Twist pTwistMessage;
+ros::Subscriber pPathSub;
+ros::Subscriber pWorldSub;
+ros::Subscriber pBallHandlingSub;
+
 bool pBallGrabbed = false;
 
 geometry_msgs::Twist GetTwistMessage(turtle5k::WorldMessage aMessage)
@@ -55,6 +59,7 @@ void ballhandlingCallback(const turtle5k::BallHandlingMessage aMessage)
 void worldCallback(const turtle5k::WorldMessage& aMessage)
 {
 	memset(&pTwistMessage, 0, sizeof(pTwistMessage));
+
 	if(aMessage.objectType == OBJECT_GOAL && pBallGrabbed) {
 		if(aMessage.angleBetween < (8 / (180 / M_PI))) {
 			turtle5k::ShootMessage pMessage;
@@ -87,6 +92,11 @@ int main(int argc, char** argv) {
 	turtle5k::ShootMessage shootMsg;
 	shootMsg.shootPower = 2;
 	shootMsg.shootAngle = 9;
+
+	pWorldSub = pHandle.subscribe("/world", 1000, worldCallback);
+	pTwistPub = pHandle.advertise<geometry_msgs::Twist>("/motorspeed_set", 1000);
+	pShootPub = pHandle.advertise<turtle5k::ShootMessage>("/shooting_shoot", 1000);
+	pBallHandlingSub = pHandle.subscribe("/ballhandling", 1000, ballhandlingCallback);
 	
 	while(ros::ok()) {
 		pTwistPub.publish(pTwistMessage);

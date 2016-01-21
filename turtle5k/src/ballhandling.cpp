@@ -84,7 +84,7 @@ void ReadSensor(int& aLevel, int& aDegree, int aScale, int aPort, uint8_t aArm)
 	
 	std::cout << "pBuffer3: " <<(int)pBuffer[3] << std::endl;
 	std::cout << "pBuffer4: " << (int)pBuffer[4] << std::endl;
-	
+
 	aLevel = (int)pBuffer[3] - aScale;
 	aDegree = (int)pBuffer[4] - aScale;
 }
@@ -165,5 +165,8 @@ int main(int argc, char** argv) {
 		
 		ros::spinOnce();
 	}
+
+	ClosePorts(pPorts);
+
 	return 0;
 }
