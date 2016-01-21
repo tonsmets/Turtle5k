@@ -1,5 +1,4 @@
 #include "ros/ros.h"
-<<<<<<< HEAD
 #include "std_msgs/String.h"
 #include "turtle5k/ShootMessage.h"
 #include "turtle5k/BallHandlingMessage.h"
