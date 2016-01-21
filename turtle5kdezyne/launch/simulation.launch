@@ -1,0 +1,4 @@
+<launch>
+	<node pkg="stage_ros" name="simulator" type="stageros" args="$(find assignment5)/world/empty.world"/>
+	<node pkg="turtle5kdezyne" name="turtle5kdezyne_node" type="turtle5kdezyne_node" output="screen" launch-prefix="xterm -e"/>
+</launch>

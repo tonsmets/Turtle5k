@@ -1,0 +1,161 @@
+import ReturnResults.dzn;
+
+
+interface iBallHandling
+{
+	in returnResult handleTheBall();
+	
+	behaviour
+  	{
+		on handleTheBall:
+		{
+			reply(returnResult.success);
+		}   	
+		on handleTheBall:
+		{
+			reply(returnResult.fail);
+		}	
+  	}
+}
+
+interface iShooting
+{
+	in returnResult shootTheBall();
+	
+	behaviour
+  	{
+   		on shootTheBall:
+   		{
+   			reply(returnResult.success);
+   		}
+   		on shootTheBall:
+   		{
+   			reply(returnResult.fail);
+   		}
+   		
+  	}
+}
+
+
+
+interface iWheelControl
+{
+	in returnResult getToTheBall();
+	in returnResult driveToLocation();
+	in returnResult drivePathFromNavigation();
+	
+	behaviour
+	{
+	  	on getToTheBall:
+   		{
+   			reply(returnResult.success);
+   		}
+   		on getToTheBall:
+   		{
+   			reply(returnResult.fail);
+   		}
+   		on driveToLocation:
+   		{
+   			reply(returnResult.success);
+   		}
+   		on driveToLocation:
+   		{
+   			reply(returnResult.fail);
+   		}
+   		on drivePathFromNavigation:
+   		{
+   			reply(returnResult.success);
+   		}
+   		on drivePathFromNavigation:
+   		{
+   			reply(returnResult.busy);
+   		}
+   		on drivePathFromNavigation:
+   		{
+   			reply(returnResult.fail);
+   		}
+	}
+}
+
+interface iWorldModel
+{
+	in returnResult isThereABall();
+	in returnResult getCurrentBallLocation();
+	in returnResult getCurrentRobotLocation();
+	
+	behaviour
+	{
+		on isThereABall:
+		{
+			reply(returnResult.success);
+		}
+		on isThereABall:
+		{
+			reply(returnResult.fail);
+		}
+	  	on getCurrentBallLocation:
+   		{
+   			reply(returnResult.success);
+   		}
+   		on getCurrentBallLocation:
+   		{
+   			reply(returnResult.fail);
+   		}
+   		on getCurrentRobotLocation:
+   		{
+   			reply(returnResult.success);
+   		}
+   		on getCurrentRobotLocation:
+   		{
+   			reply(returnResult.fail);
+   		}
+	}
+}
+
+interface iNavigation
+{
+	in returnResult determinePath();
+
+	
+	behaviour
+	{
+	  	on determinePath:
+   		{
+   			reply(returnResult.success);
+   		}
+   		on determinePath:
+   		{
+   			reply(returnResult.busy);
+   		}
+   		on determinePath:
+   		{
+   			reply(returnResult.fail);
+   		}
+	}
+}
+
+component WheelControl
+{
+	provides iWheelControl My_WheelControl;
+}
+
+component WorldModel
+{
+	provides iWorldModel My_WorldModel;
+}
+
+component Navigation
+{
+	provides iNavigation My_Navigation;
+}
+
+component Shooting
+{
+	provides iShooting My_Shooting;
+}
+
+component BallHandling
+{
+	provides iBallHandling My_BallHandling;
+}
+

@@ -1,0 +1,202 @@
+# empty.world - world file example
+#
+# USE:
+# terminal 1: roscore
+# terminal 2: rosrun stage stageros empty.world
+#             View>Data, View>Trails 
+# terminal 3: rqt > plugins > Robot Steering
+#
+# REF:
+# http://www-users.cs.york.ac.uk/~jowen/player/playerstage-tutorial-manual.pdf
+# 
+
+define obstacle model
+(
+  size [0.5 0.5 0.5]
+  gui_nose 0
+)
+
+define hokuyo ranger
+(
+  sensor( 
+    range [ 0.0  5.0 ]
+    fov 270.25
+    samples 1081
+  )
+  block(
+    points 4
+    point[0] [0 1]
+    point[1] [1 1]
+    point[2] [1 0]
+    point[3] [0 0]
+    z [0 1]
+  )  
+  color "black"
+  size [ 0.05 0.05 0.1 ]
+)
+
+define kinect ranger
+(
+  sensor
+  (
+    range [ 0.0  5.0 ]
+    fov 58.0
+    samples 640
+  )
+  
+  block(
+    points 4
+    point[0] [0 1]
+    point[1] [1 1]
+    point[2] [1 0]
+    point[3] [0 0]
+    z [0 1]
+  )  
+  color "black"
+  size [ 0.06 0.15 0.03 ]
+)
+
+define roomba position
+(
+	# This block approximates the circular shape of a Roomba
+  block
+  ( 
+		points 16
+		point[0]  [ 0.225 0.000 ]
+		point[1]  [ 0.208 0.086 ]
+		point[2]  [ 0.159 0.159 ]
+		point[3]  [ 0.086 0.208 ]
+		point[4]  [ 0.000 0.225 ]
+		point[5]  [ -0.086 0.208 ]
+		point[6]  [ -0.159 0.159 ]
+		point[7]  [ -0.208 0.086 ]
+		point[8]  [ -0.225 0.000 ]
+		point[9]  [ -0.208 -0.086 ]
+		point[10] [ -0.159 -0.159 ]
+		point[11] [ -0.086 -0.208 ]
+		point[12] [ -0.000 -0.225 ]
+		point[13] [ 0.086 -0.208 ]
+		point[14] [ 0.159 -0.159 ]
+		point[15] [ 0.208 -0.086 ]
+		z [0 1]
+  )
+	size [0.33 0.33 0.1]
+  color "gray50"
+
+	gui_nose 1
+
+	drive "diff"
+	watchdog_timeout 0.6
+	localization "gps" # Report error-free position in world coordinates
+	#localization "odom"
+	# odometry error model parameters, 
+  # only used if localization is set to "odom"
+  #odom_error [0.03 0.03 0.00 0.05]
+	#odom_error [0.03 0.03 999999 999999 999999 0.02]
+)
+
+define roomba_hokuyo roomba( 
+	color "gray90"
+	hokuyo(pose [ 0.0 0.0 0.0 0.0 ])
+)
+
+define turtlebot roomba( 
+	color "gray90"
+	kinect(pose [-0.1 0.0 0.3 0.0 ])
+)
+
+define tribot position
+(
+  # Triangle shape robot
+  block
+  (
+    points 3
+    point[0] [1 0.5]
+    point[1] [0 1]
+    point[2] [0 0]                                
+    z [0 1]
+  )
+  # Fit shape to this size in meters
+  size [0.5 0.5 0.5]
+  origin [0 0 0 0]
+  color "gray50"
+  gui_nose 1
+
+  drive "diff"
+  localization "gps" # Report error-free position in world coordinates
+
+  hokuyo(pose [ 0.0 0.0 0.0 0.0 ])
+  #ctrl "wander"
+)
+
+define floorplan model
+(
+  # sombre, sensible, artistic
+  color "gray30"
+
+  # most maps will need a bounding box
+  boundary 1
+
+  gui_nose 1
+  gui_grid 0
+  gui_move 0
+  gui_outline 0
+  gripper_return 0
+  fiducial_return 0
+  ranger_return 0.5
+
+  obstacle_return 0
+)
+
+define zone model
+(
+  color	"orange"
+  size [ 4 4 0.01 ]
+
+  gui_nose 0
+  gui_grid 0
+  gui_move 1
+  gui_outline 0
+
+  # insensible to collision and range sensors
+  obstacle_return 0
+  ranger_return -1  # transparent to range sensors
+)
+
+# Set the resolution of the underlying raytrace model in meters
+resolution 0.02
+# Simulation timestep in milliseconds
+interval_sim 100
+
+# Configure the GUI window
+window
+(
+	size [ 1200.000 600.000 ]       # in pixels
+	scale 20                        # pixels per meter
+	center [ 0.0  0.0 ]
+	rotate [ 0  0 ]
+                        
+  show_data 1                     # 1=on 0=off
+	show_trailarrows 0
+)
+
+# Load an environment bitmap
+#floorplan
+#( 
+#  name "the_floorplan"
+#  size [100 100 1.00]
+#  pose [0 0 0 0]
+#  bitmap "the_bitmap"
+#)
+
+# Setup the scene
+#obstacle( pose [ 10  0 0 0 ] color "red")
+#obstacle( pose [ 10  2 0 0 ] color "green")
+#obstacle( pose [ 10 -2 0 0 ] color "blue")
+
+# Throw in a robot
+turtlebot
+(                 
+  name "turtlebot"
+  pose [ 0.00 0.00 0 0.00 ]
+)
