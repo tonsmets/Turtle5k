@@ -1,0 +1,35 @@
+Terminal window 1
+Step 1: Copy the turtle5kdezyne folder to your catkin workspace (usually ~/catkin_ws)
+Step 2: Open a terminal window and go to the catkin_ws folder
+Step 3: Use the command: "catkin_make" to build the catkin workspace
+Step 4: Use the command: "source devel/setup.bash" to update the references in your terminal (for 		auto completion)
+Step 5: Use the command: "roslaunch turtle5kdezyne simulation.launch" to start the world model and the dezyne software
+
+Terminal window 2
+Step 6: Open a new terminal again use "source devel/setup.bash" (always in the catkin workspace)
+Step 7: Use the following command below:
+
+rostopic pub /t5k/ball_location turtle5kdezyne/BallLocation "found: true 
+pose:
+  header:
+    seq: 0
+    stamp:
+      secs: 0
+      nsecs: 0
+    frame_id: ''
+  pose:
+    position:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 0.0" 
+
+The robot will only start to drive to the given location if the parameter "found" is true and
+the orientation is valid (it uses Quaternions, easiest is to use x, y, z as 0 and w as 1.0).
+From the position part only the "x" and "y" parameters are used.
+
+Once you've done this, you should see the robot driving to the given location
