@@ -8,6 +8,7 @@ find_package(
 	roscpp
 	std_msgs
 	message_generation
+	geometry_msgs
 )
 
 find_package(OpenCV REQUIRED)
@@ -16,13 +17,16 @@ add_message_files(
 	FILES
 	BallHandlingMessage.msg
 	CompassMessage.msg
-	ShootingLeverMessage.msg
+	ShootMessage.msg
 	MovementMessage.msg
+	WorldMessage.msg
+	BallHandlingOnOffMessage.msg
 )
 
 generate_messages(
 	DEPENDENCIES
 	std_msgs
+	geometry_msgs
 )
 
 catkin_package(
@@ -95,23 +99,3 @@ add_dependencies(compass turtle5k_generate_messages_cpp)
 add_executable(camera src/camera.cpp)
 target_link_libraries(camera ${OpenCV_LIBRARIES} ${catkin_LIBRARIES})
 add_dependencies(camera turtle5k_generate_messages_cpp)
-
-# Ball handling
-add_executable(ballhandlingStub src/stubs/ballhandlingStub.cpp ${Library_SOURCES} ${Library_HEADER})
-target_link_libraries(ballhandlingStub ${catkin_LIBRARIES})
-add_dependencies(ballhandlingStub turtle5k_generate_messages_cpp)
-
-# Compass
-add_executable(compassStub src/stubs/compassStub.cpp ${Library_SOURCES} ${Library_HEADER})
-target_link_libraries(compassStub ${catkin_LIBRARIES})
-add_dependencies(compassStub turtle5k_generate_messages_cpp)
-
-# Shooting
-add_executable(shootingLeverStub src/stubs/shootingLeverStub.cpp ${Library_SOURCES} ${Library_HEADER})
-target_link_libraries(shootingLeverStub ${catkin_LIBRARIES})
-add_dependencies(shootingLeverStub turtle5k_generate_messages_cpp)
-
-# Movement
-add_executable(movementStub src/stubs/movementStub.cpp ${Library_SOURCES} ${Library_HEADER})
-target_link_libraries(movementStub ${catkin_LIBRARIES})
-add_dependencies(shootingLeverStub turtle5k_generate_messages_cpp)

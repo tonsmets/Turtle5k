@@ -1,0 +1,3 @@
+<launch>
+	<node name="camera" pkg="turtle5k" type="camera" output="log" launch-prefix="xterm -e"/>
+</launch>

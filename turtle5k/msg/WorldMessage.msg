@@ -1,0 +1,3 @@
+int8 objectType
+geometry_msgs/Vector3 objectPosition
+float32 angleBetween
